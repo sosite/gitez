@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 buildscript {
 	ext {
 		kotlinVersion = '1.2.61'
@@ -29,3 +31,43 @@ allprojects {
 task clean(type: Delete) {
 	delete rootProject.buildDir
 }
+
+static def getAutoVersionName() {
+	if (getCurrentBranch() == "master") {
+		return "${getLastMasterGitTagVersion()}"
+	} else {
+		return "${getBuildDate()} #${getGitCommitsCount()}.${getGitSha()}.${getCurrentBranch()}"
+	}
+}
+
+static def getAutoVersionCode() {
+	return getGitCommitsCount().toInteger()
+}
+
+static def getGitSha() {
+	//return "git --git-dir=${rootDir}/../.git --work-tree=${rootDir}/../ rev-parse --short HEAD".execute().text.trim()
+	return "git rev-parse --verify --short HEAD".execute().text.trim()
+}
+
+static def getCurrentBranch() {
+	return "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+}
+
+static def getBuildDate() {
+	def df = new SimpleDateFormat("dd.MM.''yy")
+	df.setTimeZone(TimeZone.getTimeZone("UTC"))
+	return df.format(new Date())
+}
+
+static def getGitCommitsCount() {
+	return ("git rev-list ${getCurrentBranch()} --count").execute().text.trim()
+}
+
+static def getLastMasterGitTagVersion() {
+	def longVersionName = "git describe --tags master --long".execute().text.replace("v", "").trim()
+	def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
+	def (versionMajor, versionMinor, versionPatch) = fullVersionTag.tokenize('.')
+
+	return sprintf("%s.%s.%s", [versionMajor, versionMinor, versionPatch])
+}
+
