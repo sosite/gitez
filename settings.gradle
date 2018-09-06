@@ -1,2 +1,2 @@
 rootProject.name = "Gitez"
-include ':app', ':base'
+include ':app', ':base', ':tim'
