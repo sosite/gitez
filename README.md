@@ -1,4 +1,4 @@
-#<img width="150" alt="Gitez" src="https://user-images.githubusercontent.com/2025949/45154336-88711f00-b1d7-11e8-97c1-b5a6d17e0fb8.png">
+# <img width="150" alt="Gitez" src="https://user-images.githubusercontent.com/2025949/45154336-88711f00-b1d7-11e8-97c1-b5a6d17e0fb8.png">
 Test app written for recruitment process. Copy, paste, share and smile! :)
 
 ## Project assumptions
