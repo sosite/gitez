@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="GitezTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:windowBackground">@color/windowBackgroundOnLight</item>
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primaryDark</item>
+		<item name="colorAccent">@color/accent</item>
+	</style>
+
+	<style name="GitezTheme" parent="GitezTheme.Base" />
+
+
+	<style name="GitezTheme.Dark.Base" parent="Theme.AppCompat.NoActionBar">
+		<item name="android:windowBackground">@color/windowBackgroundOnDark</item>
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primaryDark</item>
+		<item name="colorAccent">@color/accent</item>
+	</style>
+
+	<style name="GitezTheme.Dark" parent="GitezTheme.Dark.Base" />
+
+</resources>

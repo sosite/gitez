@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="windowBackgroundOnLight">@color/white</color>
+	<color name="windowBackgroundOnDark">@color/github_gray900</color>
+
+	<color name="primary">@color/github_gray900</color>
+	<color name="primaryLight">#4c5157</color>
+	<color name="primaryDark">@color/black</color>
+
+	<color name="accent">#ffb300</color>
+	<color name="accentLight">#ffe54c</color>
+	<color name="accentDark">#c68400</color>
+
+	<color name="github_gray900">#24292e</color>
+	<color name="github_gray800">#3c4146</color>
+	<color name="github_blueGray200">#b3bcc7</color>
+	<color name="github_blueGray40">#eff4fc</color>
+	<color name="github_blueGray10">#fafbfc</color>
+
+	<color name="white">#fff</color>
+	<color name="black">#000</color>
+
+</resources>
