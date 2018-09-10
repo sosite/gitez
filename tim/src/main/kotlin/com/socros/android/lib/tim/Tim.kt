@@ -91,7 +91,7 @@ object Tim {
 
 	inline fun w(throwable: Throwable?, lazyMessage: () -> String) {
 		if (debug) {
-			w(lazyMessage.invoke(), throwable)
+			Timber.w(throwable, lazyMessage.invoke())
 		}
 	}
 
