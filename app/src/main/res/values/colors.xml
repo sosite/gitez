@@ -3,6 +3,7 @@
 
 	<color name="windowBackgroundOnLight">@color/white</color>
 	<color name="windowBackgroundOnDark">@color/github_gray900</color>
+	<color name="navigationBarSemiTransparent">#5000</color>
 
 	<color name="primary">@color/github_gray900</color>
 	<color name="primaryLight">#4c5157</color>
