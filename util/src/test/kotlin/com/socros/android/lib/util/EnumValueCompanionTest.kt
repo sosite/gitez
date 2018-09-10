@@ -30,6 +30,18 @@ class EnumValueCompanionTest {
 		assertNull(EnumWithNullWhenNotFound.fromValue("jabba"))
 	}
 
+	@Test
+	fun enumFromCorrectValueWithoutSpecifiedDefault() {
+		assertEquals(EnumWithoutDefault.HAN_SOLO, EnumWithoutDefault.fromValue("solo"))
+		assertEquals(EnumWithoutDefault.LEIA_ORGANA, EnumWithoutDefault.fromValue("leia"))
+		assertEquals(EnumWithoutDefault.YODA, EnumWithoutDefault.fromValue("yoda"))
+	}
+
+	@Test(expected = NoSuchElementException::class)
+	fun enumFromWrongValueWithoutSpecifiedDefault() {
+		EnumWithoutDefault.fromValue("jabba")
+	}
+
 
 	private enum class EnumWithSpecifiedDefault(private val starName: String) {
 		HAN_SOLO("solo"),
@@ -47,6 +59,15 @@ class EnumValueCompanionTest {
 
 		companion object : EnumValueCompanion<String, EnumWithNullWhenNotFound?>(
 				EnumWithNullWhenNotFound.values().associateBy(EnumWithNullWhenNotFound::starName), null)
+	}
+
+	private enum class EnumWithoutDefault(private val starName: String) {
+		HAN_SOLO("solo"),
+		LEIA_ORGANA("leia"),
+		YODA("yoda");
+
+		companion object : EnumValueCompanion<String, EnumWithoutDefault>(
+				EnumWithoutDefault.values().associateBy(EnumWithoutDefault::starName))
 	}
 
 }
