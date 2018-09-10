@@ -1,4 +1,4 @@
-package com.socros.android.app.gitez.view.splash
+package com.socros.android.app.gitez.view.launcher
 
 import android.support.test.runner.AndroidJUnit4
 import com.socros.android.app.gitez.R.array
