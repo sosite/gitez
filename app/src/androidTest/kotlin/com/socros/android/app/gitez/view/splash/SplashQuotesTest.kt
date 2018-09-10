@@ -1,6 +1,8 @@
-package com.socros.android.app.gitez
+package com.socros.android.app.gitez.view.splash
 
 import android.support.test.runner.AndroidJUnit4
+import com.socros.android.app.gitez.R.array
+import com.socros.android.app.gitez.ResourceTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -14,8 +16,8 @@ class SplashQuotesTest : ResourceTest() {
 
 	@Before
 	fun init() {
-		quotesLocales = targetCtx.getResourceLocales(R.array.splash_quotes).toTypedArray()
-		authorsLocales = targetCtx.getResourceLocales(R.array.splash_quoteAuthors).toTypedArray()
+		quotesLocales = targetCtx.getResourceLocales(array.splash_quotes).toTypedArray()
+		authorsLocales = targetCtx.getResourceLocales(array.splash_quoteAuthors).toTypedArray()
 	}
 
 	@Test
@@ -27,8 +29,8 @@ class SplashQuotesTest : ResourceTest() {
 	fun quotesWithAuthorsMatchEqualityTest() {
 		for (locale in quotesLocales) {
 			val res = getLocalizedContext(locale).resources
-			val quotes = res.getStringArray(R.array.splash_quotes)
-			val authors = res.getStringArray(R.array.splash_quoteAuthors)
+			val quotes = res.getStringArray(array.splash_quotes)
+			val authors = res.getStringArray(array.splash_quoteAuthors)
 			assertEquals(
 					"Quotes (${quotes.size}) aren't match authors (${authors.size}) array size for \"$locale\" language!",
 					quotes.size, authors.size)

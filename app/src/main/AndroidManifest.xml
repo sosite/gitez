@@ -12,7 +12,7 @@
 		android:theme="@style/GitezTheme">
 
 		<activity
-			android:name=".view.LauncherActivity"
+			android:name=".view.splash.SplashActivity"
 			android:theme="@style/GitezTheme.Dark">
 			<!-- Main intent filter to launch app from icon -->
 			<intent-filter>
