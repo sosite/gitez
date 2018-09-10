@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	buildToolsVersion rootProject.ext.buildToolsVersion
+
+	defaultConfig {
+		minSdkVersion rootProject.ext.minSdkVersion
+		targetSdkVersion rootProject.ext.targetSdkVersion
+		versionCode getAutoVersionCode()
+		versionName getAutoVersionName()
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	}
+
+	buildTypes {
+		debug {
+			minifyEnabled false
+			useProguard false
+			shrinkResources false
+		}
+
+		release {
+			minifyEnabled false
+			useProguard false
+			shrinkResources false
+
+			files { rootProject.file('settings/proguard').listFiles() }.each {
+				proguardFile it
+			}
+		}
+	}
+
+	sourceSets {
+		androidTest.java.srcDirs += 'src/androidTest/kotlin'
+		main.java.srcDirs += 'src/main/kotlin'
+		test.java.srcDirs += 'src/test/kotlin'
+	}
+}
+
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+	implementation 'com.android.support:appcompat-v7:27.1.1'
+	testImplementation 'junit:junit:4.12'
+}
