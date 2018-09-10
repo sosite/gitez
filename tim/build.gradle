@@ -43,5 +43,7 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 	api 'com.jakewharton.timber:timber:4.7.1'
+
+	// Tests
 	testImplementation 'junit:junit:4.12'
 }
