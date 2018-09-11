@@ -4,20 +4,34 @@
 	<style name="GitezTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:windowBackground">@color/windowBackgroundOnLight</item>
 		<item name="colorPrimary">@color/primary</item>
-		<item name="colorPrimaryDark">@color/primaryDark</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
 		<item name="colorAccent">@color/accent</item>
+
+		<item name="dividerColor">@color/divider_onLight</item>
+		<item name="errorColor">@color/error_onLight</item>
+
+		<item name="android:textColorHint">?android:textColorSecondary</item>
+		<item name="checkboxStyle">@style/CheckBox</item>
+		<item name="alertDialogTheme">@style/Dialog</item>
 	</style>
 
 	<style name="GitezTheme" parent="GitezTheme.Base">
-		<item name="android:navigationBarColor">@color/navigationBarSemiTransparent</item>
+		<item name="android:navigationBarColor">@color/navigationBar_semiTransparent</item>
 	</style>
 
 
 	<style name="GitezTheme.Dark.Base" parent="Theme.AppCompat.NoActionBar">
 		<item name="android:windowBackground">@color/windowBackgroundOnDark</item>
 		<item name="colorPrimary">@color/primary</item>
-		<item name="colorPrimaryDark">@color/primaryDark</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
 		<item name="colorAccent">@color/accent</item>
+
+		<item name="dividerColor">@color/divider_onDark</item>
+		<item name="errorColor">@color/error_onDark</item>
+
+		<item name="android:textColorHint">?android:textColorSecondary</item>
+		<item name="checkboxStyle">@style/CheckBox</item>
+		<item name="alertDialogTheme">@style/Dialog</item>
 	</style>
 
 	<style name="GitezTheme.Dark" parent="GitezTheme.Dark.Base">

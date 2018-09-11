@@ -4,7 +4,7 @@
 	<style name="GitezTheme" parent="GitezTheme.Base">
 		<item name="android:statusBarColor">@color/white</item>
 		<item name="android:windowLightStatusBar">true</item>
-		<item name="android:navigationBarColor">@color/navigationBarSemiTransparent</item>
+		<item name="android:navigationBarColor">@color/navigationBar_semiTransparent</item>
 	</style>
 
 </resources>
