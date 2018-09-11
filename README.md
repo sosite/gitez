@@ -5,7 +5,7 @@ Test app written for recruitment process. Copy, paste, share and smile! :)
 
 * Create simple Android application that uses [GitHub API](https://developer.github.com/v3/)
 
-  I decided to use [GitHub GraphQL API V4](https://developer.github.com/v4/) for fun part :)
+  Unfortunately [anonymous apps can't use GitHub GraphQL API V4](https://platform.github.community/t/permit-access-without-oauth-token/2572) so far. So we're stick with REST API V3.
 
 * Application should allow to search for users and repositories
 * Main screen of the app should contain search field and list of search results
