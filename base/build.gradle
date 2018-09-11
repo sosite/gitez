@@ -54,6 +54,8 @@ dependencies {
 
 	// Support
 	api "androidx.appcompat:appcompat:$appCompatVersion"
+	api "androidx.core:core-ktx:$ktxVersion"
+	api "androidx.collection:collection-ktx:$ktxVersion"
 	api "com.google.android.material:material:$materialVersion"
 
 	// Reactive
