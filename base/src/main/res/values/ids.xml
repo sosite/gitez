@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<id name="toolbar" />
+	<id name="scrollView" />
+	<id name="recyclerView" />
+
+	<id name="fab" />
+
+	<id name="guidelineStart" />
+	<id name="guidelineEnd" />
+
+</resources>

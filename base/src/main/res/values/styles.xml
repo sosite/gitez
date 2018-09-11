@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- BASE -->
+
+	<style name="BaseWrap">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+
+	<style name="BaseMatch">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+
+	<style name="BaseMatch.Constraint">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">0dp</item>
+	</style>
+
+	<style name="BaseMatchHorizontal">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+
+	<style name="BaseMatchHorizontal.Constraint">
+		<item name="android:layout_width">0dp</item>
+	</style>
+
+	<style name="BaseMatchVertical">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+
+	<style name="BaseMatchVertical.Constraint">
+		<item name="android:layout_height">0dp</item>
+	</style>
+
+	<style name="BaseNoDimens">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">0dp</item>
+	</style>
+
+
+	<style name="Space" parent="@style/BaseNoDimens">
+		<item name="android:layout_weight">1</item>
+	</style>
+
+
+	<!-- TEXT -->
+
+	<style name="Text" parent="BaseWrap">
+		<item name="android:textColor">?android:textColorSecondary</item>
+		<item name="android:fontFamily">sans-serif</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Primary">
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+
+	<style name="Text.Secondary">
+		<item name="android:textColor">?android:textColorSecondary</item>
+	</style>
+
+	<style name="Text.Light">
+		<item name="android:fontFamily">sans-serif-light</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Regular" />
+
+	<style name="Text.Medium">
+		<item name="android:fontFamily">sans-serif-medium</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="Text.Black">
+		<item name="android:fontFamily">sans-serif-black</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Condensed.Light">
+		<item name="android:fontFamily">sans-serif-condensed-light</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Condensed">
+		<item name="android:fontFamily">sans-serif-condensed</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Condensed.Regular" />
+
+	<style name="Text.Condensed.Medium">
+		<item name="android:fontFamily">sans-serif-condensed-medium</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="Text.Condensed.Bold">
+		<item name="android:fontFamily">sans-serif-condensed</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
+
+	<!-- TEXT INPUT LAYOUT -->
+
+	<style name="HelperTextAppearance" parent="TextAppearance.Design.Error">
+		<item name="android:textColor">?android:textColorSecondary</item>
+	</style>
+
+	<style name="TextErrorAppearance" parent="@android:style/TextAppearance">
+		<item name="android:textSize">@dimen/text_caption</item>
+	</style>
+
+	<style name="TextHintAppearance" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/text_caption</item>
+	</style>
+
+
+	<style name="TextInputLayout" parent="Widget.Design.TextInputLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">@dimen/textInputLayout_margin_top</item>
+		<!-- hack to align EditText to specify place -->
+		<!--<item name="android:layout_marginStart">@dimen/interactiveHorizontalMarginHack</item>-->
+		<!--<item name="android:layout_marginEnd">@dimen/interactiveHorizontalMarginHack</item>-->
+		<!--<item name="android:textColorHint">?android:textColorSecondary</item>-->
+		<item name="errorTextAppearance">@style/TextError</item>
+	</style>
+
+	<!--<style name="TextInputHelperLayout" parent="TextErrorAppearance">-->
+	<!--<item name="android:textColor">?android:textColorSecondary</item>-->
+	<!--</style>-->
+
+	<style name="TextError" parent="TextAppearance.Design.Error">
+		<item name="android:textColor">?attr/errorColor</item>
+	</style>
+
+
+	<!-- EDIT TEXT -->
+
+	<style name="EditText" parent="Widget.AppCompat.EditText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<!-- hack to align EditText to specify place -->
+		<!--<item name="android:layout_marginStart">@dimen/interactiveHorizontalMarginHack</item>-->
+		<!--<item name="android:layout_marginEnd">@dimen/interactiveHorizontalMarginHack</item>-->
+		<!--<item name="android:textColorHint">?android:textColorSecondary</item>-->
+		<item name="android:paddingTop">7dp</item> <!-- to set proper floating label position -->
+		<item name="android:paddingBottom">15.5dp</item> <!-- to set proper text position -->
+		<item name="android:textSize">@dimen/text_input</item>
+	</style>
+
+
+	<!-- INTERACTIVE -->
+
+	<style name="CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginStart">@dimen/checkboxMargin_horizontal_hackWithOthers</item>
+		<item name="android:paddingStart">7dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:minHeight">@dimen/interactiveSize_optimal</item>
+		<item name="android:textSize">@dimen/text_input</item>
+	</style>
+
+
+	<!-- DIVIDER -->
+
+	<style name="DividerHorizontal">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/divider_height</item>
+		<item name="android:background">?attr/dividerColor</item>
+	</style>
+
+	<style name="DividerVertical">
+		<item name="android:layout_width">@dimen/divider_height</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:background">?attr/dividerColor</item>
+	</style>
+
+
+	<!-- CARD VIEW -->
+
+	<style name="CoreCard" parent="CardView">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginStart">@dimen/activityMargin_horizontal</item>
+		<item name="android:layout_marginEnd">@dimen/activityMargin_horizontal</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:foreground">?android:selectableItemBackground</item>
+		<item name="android:stateListAnimator">@animator/card_lift_selector</item>
+		<item name="cardBackgroundColor">@color/cardview_light_background</item>
+		<item name="cardElevation">0dp</item>
+		<item name="cardMaxElevation">0dp</item>
+		<item name="contentPaddingTop">@dimen/cardPadding_vertical</item>
+		<item name="contentPaddingBottom">@dimen/cardPadding_vertical</item>
+		<item name="contentPaddingLeft">@dimen/cardPadding_vertical</item>
+		<item name="contentPaddingRight">@dimen/cardPadding_vertical</item>
+	</style>
+
+	<style name="CoreCard.Dark">
+		<item name="cardBackgroundColor">@color/cardview_dark_background</item>
+	</style>
+
+	<style name="Text.CardTitle">
+		<item name="android:textSize">@dimen/text_body</item>
+	</style>
+
+	<style name="Text.CardTitle.Large">
+		<item name="android:textSize">@dimen/text_headline</item>
+	</style>
+
+
+	<!-- TOOLBAR -->
+
+	<style name="Toolbar" parent="BaseMatchHorizontal">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?attr/actionBarSize</item>
+		<item name="android:paddingStart">0dp</item>
+		<item name="android:paddingEnd">4dp</item>
+		<item name="contentInsetStartWithNavigation">0dp</item>
+		<item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+		<item name="popupTheme">@style/ThemeOverlay.Light</item>
+	</style>
+
+
+	<!-- TAB -->
+
+	<style name="TabLayout" parent="Widget.Design.TabLayout">
+		<item name="android:id">@android:id/tabs</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="tabIndicatorColor">@color/tabIndicator</item>
+		<item name="tabTextAppearance">@style/TabTextAppearance</item>
+	</style>
+
+	<style name="TabTextAppearance" parent="TextAppearance.Design.Tab" />
+
+
+	<!-- DIALOG -->
+	<!-- Remember to add this style as alertDialogTheme in your theme! -->
+	<!-- <item name="alertDialogTheme">@style/Dialog</item> -->
+
+	<style name="Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+		<item name="android:colorPrimary">@color/primary</item>
+		<item name="android:colorAccent">@color/accent</item>
+		<item name="android:windowTitleStyle">@style/DialogTitle</item>
+		<item name="android:textColorPrimary">@color/dialog_content</item>
+		<item name="android:textColorAlertDialogListItem">@color/dialog_content</item>
+		<!--<item name="android:buttonBarStyle">@style/ButtonRowStyle</item>-->
+		<item name="android:buttonBarPositiveButtonStyle">@style/DialogButton.Positive</item>
+		<item name="android:buttonBarNegativeButtonStyle">@style/DialogButton.Negative</item>
+		<item name="android:buttonBarNeutralButtonStyle">@style/DialogButton.Neutral</item>
+	</style>
+
+	<style name="DialogTitle" parent="TextAppearance.AppCompat.Title">
+		<item name="android:paddingBottom">@dimen/dialogPadding_title_bottom</item>
+		<item name="android:textColor">@color/dialog_title</item>
+		<item name="android:textSize">@dimen/dialog_textTitle</item>
+	</style>
+
+	<style name="DialogContentContainer" parent="BaseMatchHorizontal">
+		<item name="android:paddingStart">@dimen/dialogPadding</item>
+		<item name="android:paddingEnd">@dimen/dialogPadding</item>
+		<item name="android:paddingTop">@dimen/dialogPadding_content_top</item>
+		<item name="android:paddingBottom">@dimen/dialogPadding_content_bottom</item>
+		<item name="android:orientation">vertical</item>
+	</style>
+
+	<!--<style name="ButtonRowStyle">-->
+	<!--<item name="android:paddingTop">14dp</item>-->
+	<!--<item name="android:paddingBottom">5.5dp</item>-->
+	<!--<item name="android:paddingEnd">-1dp</item>-->
+	<!--</style>-->
+
+	<style name="DialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+		<item name="android:layout_marginTop">1.5dp</item>
+		<item name="android:layout_marginBottom">-1.5dp</item>
+		<item name="android:layout_marginStart">6dp</item>
+		<item name="android:layout_marginEnd">-8dp</item>
+	</style>
+
+	<style name="DialogButton.Positive">
+		<item name="android:layout_marginStart">6dp</item>
+		<item name="android:textColor">@color/dialog_positive</item>
+	</style>
+
+	<style name="DialogButton.Negative">
+		<item name="android:textColor">@color/dialog_negative</item>
+	</style>
+
+	<style name="DialogButton.Neutral">
+		<item name="android:layout_marginStart">0dp</item>
+		<item name="android:textColor">@color/dialog_neutral</item>
+	</style>
+
+
+	<!-- SCROLLABLE -->
+
+	<style name="ScrollView" parent="BaseMatch">
+		<item name="android:id">@id/scrollView</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:scrollbarStyle">outsideOverlay</item>
+		<item name="android:scrollbars">vertical</item>
+	</style>
+
+	<style name="ListRecycler" parent="BaseMatch">
+		<item name="android:id">@id/recyclerView</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:scrollbarStyle">outsideOverlay</item>
+		<item name="android:scrollbars">vertical</item>
+	</style>
+
+</resources>

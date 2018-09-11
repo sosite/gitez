@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="ThemeOverlay.Light" parent="ThemeOverlay.AppCompat.Light">
+		<item name="dividerColor">@color/divider_onLight</item>
+		<item name="errorColor">@color/error_onLight</item>
+	</style>
+
+	<style name="ThemeOverlay.Dark" parent="ThemeOverlay.AppCompat.Dark">
+		<item name="dividerColor">@color/divider_onDark</item>
+		<item name="errorColor">@color/error_onDark</item>
+	</style>
+
+</resources>

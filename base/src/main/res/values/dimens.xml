@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<item name="match_parent" format="integer" type="dimen">-1</item>
+	<item name="wrap_content" format="integer" type="dimen">-2</item>
+
+	<dimen name="activityMargin_horizontal">16dp</dimen>
+	<dimen name="activityMargin_horizontal_asInteractiveContainer">12dp</dimen>
+	<dimen name="activityMargin_horizontalAddition">0dp</dimen> <!-- difference between normal and larger device -->
+	<dimen name="activityMargin_vertical">16dp</dimen>
+	<dimen name="activityMargin_bottomWithButtonAtBottom">10dp</dimen>
+
+	<dimen name="interactiveSize_minimal">48dp</dimen> <!-- minimal size of clickable widget -->
+	<dimen name="interactiveSize_optimal">56dp</dimen> <!-- optimal size of clickable widget -->
+	<dimen name="interactivePadding_horizontal">4dp</dimen> <!-- margin that are added to the interactive widgets like EditText, Button, etc. -->
+	<dimen name="interactivePadding_horizontal_hack">-4dp</dimen>
+
+	<dimen name="checkboxMargin_horizontal">7dp</dimen>
+	<dimen name="checkboxMargin_horizontal_hack">-7dp</dimen>
+	<dimen name="checkboxMargin_horizontal_hackWithOthers">-3dp</dimen>
+
+	<dimen name="text_caption">12sp</dimen>
+	<dimen name="text_body">14sp</dimen>
+	<dimen name="text_button">14sp</dimen>
+	<dimen name="text_button_dense">13sp</dimen>
+	<dimen name="text_subhead">16sp</dimen>
+	<dimen name="text_input">16sp</dimen>
+	<dimen name="text_title">20sp</dimen>
+	<dimen name="text_headline">24sp</dimen>
+	<dimen name="text_display1">34sp</dimen>
+	<dimen name="text_display2">45sp</dimen>
+	<dimen name="text_display3">56sp</dimen>
+	<dimen name="text_display4">112sp</dimen>
+
+	<dimen name="buttonHeight">36dp</dimen>
+	<dimen name="buttonHeight_optimal">44dp</dimen>
+	<dimen name="buttonHeight_dense">32dp</dimen>
+	<dimen name="buttonPadding_horizontal">16dp</dimen>
+	<dimen name="buttonInnerMargin_vertical">6dp</dimen>
+	<dimen name="buttonCornerRadius">2dp</dimen>
+	
+	<dimen name="textInputLayout_margin_top">9dp</dimen>
+	<dimen name="editText_iconSignifierMargin_end">12dp</dimen> <!-- icon signifier value reduced by interactiveHorizontalPadding -->
+	<dimen name="editText_marginBelowAnother">17.5dp</dimen> <!-- EditText top margin which is below another EditText without floating label -->
+
+	<dimen name="elevation_dialog">24dp</dimen>
+	<dimen name="elevation_picker">24dp</dimen>
+	<dimen name="elevation_navigationDrawer">16dp</dimen>
+	<dimen name="elevation_rightDrawer">16dp</dimen>
+	<dimen name="elevation_modalBottomSheet">16dp</dimen>
+	<dimen name="elevation_subMenu">9dp</dimen> <!-- +1dp for each sub menu -->
+	<dimen name="elevation_bottomNavigationBar">8dp</dimen>
+	<dimen name="elevation_menu">8dp</dimen>
+	<dimen name="elevation_snackbar">6dp</dimen>
+	<dimen name="elevation_fab_pressed">12dp</dimen>
+	<dimen name="elevation_fab_resting">6dp</dimen>
+	<dimen name="elevation_appBar">4dp</dimen>
+	<dimen name="elevation_refreshIndicator">3dp</dimen>
+	<dimen name="elevation_card_pickedUp">8dp</dimen>
+	<dimen name="elevation_card_resting">2dp</dimen>
+	<dimen name="elevation_raisedButton_pressed">8dp</dimen>
+	<dimen name="elevation_raisedButton_resting">2dp</dimen>
+	<dimen name="elevation_quickEntryScrolled">3dp</dimen>
+	<dimen name="elevation_quickEntry_resting">2dp</dimen>
+	<dimen name="elevation_searchBar_scrolled">3dp</dimen>
+	<dimen name="elevation_searchBar_resting">2dp</dimen>
+	<dimen name="elevation_switch">1dp</dimen>
+
+	<dimen name="divider_height">1dp</dimen>
+	<dimen name="divider_negative">-1dp</dimen>
+
+	<dimen name="dialog_textTitle">20sp</dimen>
+	<!--<dimen name="dialog_textContent">14sp</dimen>-->
+	<dimen name="dialogPadding">24dp</dimen>
+	<!--<dimen name="dialogPadding_title_bottom">20dp</dimen>-->
+	<!-- support alert dialog add padding to the content! -->
+	<!--<dimen name="dialogPadding_title_top">@dimen/dialogPadding</dimen>-->
+	<!--<dimen name="dialogListPadding_top_bottom">16dp</dimen>-->
+	<dimen name="dialogPadding_title_bottom">6dp</dimen> <!-- support alert dialog adds padding to the content! -->
+	<dimen name="dialogPadding_content_top">0dp</dimen> <!-- support alert dialog adds padding to the content! -->
+	<dimen name="dialogPadding_content_bottom">@dimen/dialogPadding</dimen>
+
+	<dimen name="cardPadding_vertical">16dp</dimen>
+	<dimen name="cardPadding_vertical_large">24dp</dimen>
+	<dimen name="cardPadding_vertical_forInteractive">10dp</dimen>
+	<dimen name="cardPadding_top_forLargeTitle">14.5dp</dimen>
+	<dimen name="cardPadding_top_forLargeTitle_large">22.5dp</dimen>
+	<!--<dimen name="cardPadding_bottom_forEditText">10dp</dimen>-->
+	<!--<dimen name="cardPadding_bottom_forButton">10dp</dimen>-->
+	<dimen name="cardPadding_bottom_forText">13dp</dimen>
+	<dimen name="cardPadding_bottom_forText_large">21dp</dimen>
+	<dimen name="cardPadding_horizontal">16dp</dimen>
+	<dimen name="cardPadding_horizontal_interactive">12dp</dimen> <!-- cardPaddingHorizontal - interactiveHorizontalMargin -->
+	<dimen name="cardPadding_actions">8dp</dimen>
+	<dimen name="cardCornerRadius">2dp</dimen>
+	<dimen name="cardGutter_small">8dp</dimen>
+	<dimen name="cardGutter_normal">16dp</dimen>
+	<dimen name="cardGutter_large">24dp</dimen>
+	<dimen name="cardGutter_xLarge">40dp</dimen>
+
+	<dimen name="fabMargin">16dp</dimen>
+
+</resources>
