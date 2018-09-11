@@ -43,12 +43,15 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
+	// Support
+	implementation "androidx.appcompat:appcompat:$appCompatVersion"
+	implementation "androidx.annotation:annotation:$supportAnnotationsVersion"
+
 	// Reactive
 	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 	implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 	implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
 
 	// Tests
-	implementation 'com.android.support:appcompat-v7:27.1.1'
 	testImplementation 'junit:junit:4.12'
 }

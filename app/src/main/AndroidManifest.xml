@@ -9,5 +9,16 @@
 		android:label="@string/appName"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/GitezTheme" />
+		android:theme="@style/GitezTheme">
+
+		<activity
+			android:name=".view.launcher.SplashActivity"
+			android:theme="@style/GitezTheme.Dark">
+			<!-- Main intent filter to launch app from icon -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+	</application>
 </manifest>

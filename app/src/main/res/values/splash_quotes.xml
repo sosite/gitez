@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="splash_quote" translatable="false">\"%s\"</string>
+	<string name="splash_author" translatable="false">― %s</string>
+
+	<string-array name="splash_quotes">
+		<item>Every awesome app \n needs a splash screen</item>
+		<item>Code never lies, \n comments sometimes do</item>
+		<item>First, solve the problem. \n Then, write the code.</item>
+		<item>Programming is thinking \n not typing</item>
+	</string-array>
+
+	<string-array name="splash_quoteAuthors">
+		<item>some Terran</item>
+		<item>Ron Jeffries</item>
+		<item>John Johnson</item>
+		<item>Casey Patton</item>
+	</string-array>
+
+</resources>

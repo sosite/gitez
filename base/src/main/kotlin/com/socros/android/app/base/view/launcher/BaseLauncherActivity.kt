@@ -8,7 +8,7 @@ import android.os.Bundle
  *
  * Use with `android:theme="@android:style/Theme.NoDisplay"`
  */
-abstract class LauncherActivity : Activity(), Launcher {
+abstract class BaseLauncherActivity : Activity(), Launcher {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		startActivity(provideNextActivity())
