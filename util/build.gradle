@@ -45,6 +45,7 @@ dependencies {
 
 	// Support
 	implementation "androidx.appcompat:appcompat:$appCompatVersion"
+	implementation "androidx.annotation:annotation:$supportAnnotationsVersion"
 
 	// Reactive
 	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
