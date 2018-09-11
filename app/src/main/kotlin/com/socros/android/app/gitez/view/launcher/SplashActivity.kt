@@ -2,9 +2,9 @@ package com.socros.android.app.gitez.view.launcher
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.view.doOnPreDraw
 import com.socros.android.app.base.view.launcher.BaseSplashActivity
 import com.socros.android.app.gitez.R
-import com.socros.android.lib.util.afterMeasured
 import com.socros.android.lib.util.random
 import kotlinx.android.synthetic.main.activity_splash.authorTxt
 import kotlinx.android.synthetic.main.activity_splash.quoteTxt
@@ -33,8 +33,8 @@ class SplashActivity : BaseSplashActivity<Any>() {
 		authorTxt.text = getString(R.string.splash_author, author)
 
 		// fix auto resized TextView bug with not updated height to the scaled text
-		quoteTxt.afterMeasured {
-			quoteTxt.requestLayout()
+		quoteTxt.doOnPreDraw {
+			it.requestLayout()
 		}
 	}
 

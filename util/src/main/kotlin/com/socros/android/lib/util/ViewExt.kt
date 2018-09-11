@@ -2,7 +2,6 @@ package com.socros.android.lib.util
 
 import android.view.View
 import android.view.ViewStub
-import android.view.ViewTreeObserver
 import androidx.annotation.IdRes
 
 /* MAIN UTILS */
@@ -31,21 +30,6 @@ inline var View.visibilityEnum: Visibility
 val View.hasTag: Boolean
 	get() = tag != null
 
-inline fun <T : View> T.afterMeasured(crossinline action: T.() -> Unit) {
-	if (measuredWidth > 0 || measuredHeight > 0) {
-		action()
-
-	} else {
-		viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-			override fun onGlobalLayout() {
-				if (measuredWidth > 0 || measuredHeight > 0) {
-					viewTreeObserver.removeOnGlobalLayoutListener(this)
-					action()
-				}
-			}
-		})
-	}
-}
 
 val ViewStub.inflated: Boolean
 	get() = parent == null
