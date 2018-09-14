@@ -10,7 +10,13 @@ object Tim {
 	var debug: Boolean by Delegates.notNull()
 		private set
 
+	private var initialized = false
+
 	fun init(debug: Boolean, productionTree: Timber.Tree? = null) {
+		if (initialized) throw ExceptionInInitializerError(
+				"You can't initialize Tim more than once! Do it only in your base Application")
+
+		this.initialized = true
 		this.debug = debug
 
 		if (debug || productionTree != null) {
