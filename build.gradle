@@ -6,7 +6,7 @@ buildscript {
 		minSdkVersion = 21
 		targetSdkVersion = 28
 		compileSdkVersion = 28
-		buildToolsVersion = '27.0.3'
+		buildToolsVersion = '28.0.2'
 		appCompatVersion = '1.0.0-rc02'
 		supportAnnotationsVersion = '1.0.0-rc02'
 		ktxVersion = '1.0.0-rc02'
@@ -22,7 +22,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.1.4'
+		classpath 'com.android.tools.build:gradle:3.2.0-rc03'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 		classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
 	}
