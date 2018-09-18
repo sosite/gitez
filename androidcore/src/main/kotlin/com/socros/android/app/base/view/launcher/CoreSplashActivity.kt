@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit.MILLISECONDS
  * Fist app activity that decide which activity should be run as first depends on user logged in status.
  */
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseSplashActivity<T> : AppCompatActivity(), Launcher {
+abstract class CoreSplashActivity<T> : AppCompatActivity(), Launcher {
 
 	object SplashStartOperation {
 		private val subject by lazy { BehaviorSubject.create<Boolean>() }

@@ -3,15 +3,15 @@ package com.socros.android.app.gitez.view.launcher
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.doOnPreDraw
-import com.socros.android.app.base.view.launcher.BaseSplashActivity
+import com.socros.android.app.base.view.launcher.CoreSplashActivity
 import com.socros.android.app.gitez.R
 import com.socros.android.lib.util.random
-import kotlinx.android.synthetic.main.activity_splash.authorTxt
-import kotlinx.android.synthetic.main.activity_splash.quoteTxt
+import kotlinx.android.synthetic.main.splash_activity.authorTxt
+import kotlinx.android.synthetic.main.splash_activity.quoteTxt
 
-class SplashActivity : BaseSplashActivity<Any>() {
+class SplashActivity : CoreSplashActivity<Any>() {
 
-	override val layoutResId = R.layout.activity_splash
+	override val layoutResId = R.layout.splash_activity
 	override val splashMinVisibilityTime = 3_000
 
 	override fun onCreate(savedInstanceState: Bundle?) {

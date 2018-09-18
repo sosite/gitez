@@ -64,7 +64,7 @@ dependencies {
 
 	// Base
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation project(':base')
+	implementation project(':androidcore')
 	implementation project(':tim')
 	implementation project(':util')
 	implementation appDependencies.kotlin
