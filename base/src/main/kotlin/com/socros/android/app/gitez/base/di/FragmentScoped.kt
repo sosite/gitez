@@ -4,7 +4,7 @@ import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.RUNTIME
 
 /**
- * See Also: [Android Architecture Components samples](https://github.com/googlesamples/android-architecture-components)
+ * @see <a href="https://github.com/googlesamples/android-architecture-components">Android Architecture Components samples</a>
  */
 @Scope
 @Retention(RUNTIME)

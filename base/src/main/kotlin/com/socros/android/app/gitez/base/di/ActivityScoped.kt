@@ -9,7 +9,7 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
  * scope to be used by all fragment components. Additionally, a component with a specific scope
  * cannot have a sub component with the same scope.
  *
- * See Also: [Android Architecture Components samples](https://github.com/googlesamples/android-architecture-components)
+ * @see <a href="https://github.com/googlesamples/android-architecture-components">Android Architecture Components samples</a>
  */
 @Scope
 @Retention(RUNTIME)

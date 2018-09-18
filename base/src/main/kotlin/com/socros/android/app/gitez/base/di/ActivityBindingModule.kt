@@ -9,7 +9,7 @@ import dagger.Module
  * We are also telling Dagger.Android that this generated SubComponent needs to include the specified modules and be aware of a scope annotation @ActivityScoped
  * When Dagger.Android annotation processor runs it will create subcomponents for us.
  *
- * See Also: [Android Architecture Components samples](https://github.com/googlesamples/android-architecture-components)
+ * @see <a href="https://github.com/googlesamples/android-architecture-components">Android Architecture Components samples</a>
  */
 @Module
 abstract class ActivityBindingModule

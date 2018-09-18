@@ -13,7 +13,7 @@ import dagger.Module
  * Application & Activities are provided into your graph for you.
  * [ApplicationComponent].
  *
- * See Also: [Android Architecture Components samples](https://github.com/googlesamples/android-architecture-components)
+ * @see <a href="https://github.com/googlesamples/android-architecture-components">Android Architecture Components samples</a>
  */
 @Module
 abstract class ApplicationModule {
