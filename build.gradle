@@ -1,19 +1,19 @@
 import java.text.SimpleDateFormat
 
+apply from: 'buildsystem/dependencies.gradle'
+
 buildscript {
 	ext {
-		kotlinVersion = '1.2.61'
-		minSdkVersion = 21
-		targetSdkVersion = 28
-		compileSdkVersion = 28
+		kotlinVersion = '1.2.70'
+		gradleToolsVersion = '3.2.0-rc03'
 		buildToolsVersion = '28.0.2'
-		appCompatVersion = '1.0.0-rc02'
-		supportAnnotationsVersion = '1.0.0-rc02'
-		ktxVersion = '1.0.0-rc02'
-		materialVersion = '1.0.0-rc02'
-		rxJavaVersion = '2.1.14'
-		rxAndroidVersion = '2.0.1'
-		rxKotlinVersion = '2.2.0'
+
+		minSdk = 21
+		targetSdk = 28
+		compileSdk = 28
+
+		applicationId = 'com.socros.android.app.gitez'
+		testRunner = 'android.support.test.runner.AndroidJUnitRunner'
 	}
 
 	repositories {
@@ -22,7 +22,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.2.0-rc03'
+		classpath "com.android.tools.build:gradle:$gradleToolsVersion"
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 		classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
 	}
@@ -39,7 +39,7 @@ task clean(type: Delete) {
 	delete rootProject.buildDir
 }
 
-static def getAutoVersionName() {
+static def generateVersionName() {
 	if (getCurrentBranch() == "master") {
 		return "${getLastMasterGitTagVersion()}"
 	} else {
@@ -47,17 +47,8 @@ static def getAutoVersionName() {
 	}
 }
 
-static def getAutoVersionCode() {
+static def generateVersionCode() {
 	return getGitCommitsCount().toInteger()
-}
-
-static def getGitSha() {
-	//return "git --git-dir=${rootDir}/../.git --work-tree=${rootDir}/../ rev-parse --short HEAD".execute().text.trim()
-	return "git rev-parse --verify --short HEAD".execute().text.trim()
-}
-
-static def getCurrentBranch() {
-	return "git rev-parse --abbrev-ref HEAD".execute().text.trim()
 }
 
 static def getBuildDate() {
@@ -70,9 +61,19 @@ static def getGitCommitsCount() {
 	return ("git rev-list ${getCurrentBranch()} --count").execute().text.trim()
 }
 
+static def getGitSha() {
+	//return "git --git-dir=${rootDir}/../.git --work-tree=${rootDir}/../ rev-parse --short HEAD".execute().text.trim()
+	return "git rev-parse --verify --short HEAD".execute().text.trim()
+}
+
+static def getCurrentBranch() {
+	return "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+}
+
 static def getLastMasterGitTagVersion() {
 	def longVersionName = "git describe --tags master --long".execute().text.replace("v", "").trim()
 	def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
+//	return fullVersionTag // simplify git tag version usage
 	def (versionMajor, versionMinor, versionPatch) = fullVersionTag.tokenize('.')
 
 	return sprintf("%s.%s.%s", [versionMajor, versionMinor, versionPatch])

@@ -1,0 +1,71 @@
+allprojects {
+	repositories {
+		google()
+		jcenter()
+	}
+}
+
+ext {
+	// Android
+	appCompatVersion = '1.0.0-rc02'
+	supportAnnotationsVersion = '1.0.0-rc02'
+	ktxVersion = '1.0.0-rc02'
+	materialVersion = '1.0.0-rc02'
+	constraintLayoutVersion = '1.1.3'
+
+	// Reactive
+	rxJavaVersion = '2.1.14'
+	rxAndroidVersion = '2.0.1'
+	rxKotlinVersion = '2.2.0'
+
+	// Other
+	timberVersion = '4.7.1'
+
+	// Unit Testing
+	junitVersion = '4.12'
+	robolectricVersion = '3.8'
+	mockitoKotlinVersion = '2.0.0-RC2'
+
+	// Acceptance Testing
+	runnerVersion = '1.0.2'
+	espressoVersion = '3.0.2'
+
+	mainApplication = [
+			// Kotlin
+			kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+			// Android
+			appCompat         : "androidx.appcompat:appcompat:$appCompatVersion",
+			coreKtx           : "androidx.core:core-ktx:$ktxVersion",
+			constraintLayout  : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"]
+
+	coreComponent = [
+			// Kotlin
+			kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+			// Android
+			appCompat         : "androidx.appcompat:appcompat:$appCompatVersion",
+			androidAnnotations: "androidx.annotation:annotation:$supportAnnotationsVersion",
+			coreKtx           : "androidx.core:core-ktx:$ktxVersion",
+			collectionKtx     : "androidx.collection:collection-ktx:$ktxVersion",
+			material          : "com.google.android.material:material:$materialVersion",
+			// Reactive
+			rxJava            : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+			rxAndroid         : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+			rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+			// Other
+			timber            : "com.jakewharton.timber:timber:$timberVersion"]
+
+	unitTesting = [
+			// Kotlin
+			kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
+			kotlinTest: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+			// Unit/Integration tests
+			junit     : "junit:junit:$junitVersion",
+			mockito   : "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"]
+
+	acceptanceTesting = [
+			// Acceptance tests
+			testRunner        : "com.android.support.test:runner:$runnerVersion",
+			espressoCore      : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+			espressoIntents   : "com.android.support.test.espresso:espresso-intents:$espressoVersion",
+			androidAnnotations: "androidx.annotation:annotation:$supportAnnotationsVersion"]
+}

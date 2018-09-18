@@ -2,16 +2,19 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
-	buildToolsVersion rootProject.ext.buildToolsVersion
+	def rootExt = rootProject.ext
+
+	compileSdkVersion rootExt.compileSdk
+	buildToolsVersion rootExt.buildToolsVersion
 
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode getAutoVersionCode()
-		versionName getAutoVersionName()
+		minSdkVersion rootExt.minSdk
+		targetSdkVersion rootExt.targetSdk
 
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		versionCode generateVersionCode()
+		versionName generateVersionName()
+
+		testInstrumentationRunner rootExt.testRunner
 	}
 
 	buildTypes {
@@ -40,20 +43,27 @@ android {
 }
 
 dependencies {
-	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+	def rootExt = rootProject.ext
+	def componentDependencies = rootExt.coreComponent
+	def unitTestDependencies = rootExt.unitTesting
 
-	// Support
-	implementation "androidx.appcompat:appcompat:$appCompatVersion"
-	implementation "androidx.annotation:annotation:$supportAnnotationsVersion"
-	implementation "androidx.core:core-ktx:$ktxVersion"
-	implementation "androidx.collection:collection-ktx:$ktxVersion"
+	// Base
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation componentDependencies.kotlin
+
+	// Android
+	implementation componentDependencies.appCompat
+	implementation componentDependencies.androidAnnotations
+	implementation componentDependencies.coreKtx
+	implementation componentDependencies.collectionKtx
 
 	// Reactive
-	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-	implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-	implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+	implementation componentDependencies.rxJava
+	implementation componentDependencies.rxAndroid
+	implementation componentDependencies.rxKotlin
 
-	// Tests
-	testImplementation 'junit:junit:4.12'
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
 }

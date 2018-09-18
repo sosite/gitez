@@ -4,16 +4,19 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
-	buildToolsVersion rootProject.ext.buildToolsVersion
+	def rootExt = rootProject.ext
+
+	compileSdkVersion rootExt.compileSdk
+	buildToolsVersion rootExt.buildToolsVersion
 
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode getAutoVersionCode()
-		versionName getAutoVersionName()
+		minSdkVersion rootExt.minSdk
+		targetSdkVersion rootExt.targetSdk
 
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		versionCode generateVersionCode()
+		versionName generateVersionName()
+
+		testInstrumentationRunner rootExt.testRunner
 	}
 
 	buildTypes {
@@ -47,24 +50,33 @@ androidExtensions {
 }
 
 dependencies {
+	def rootExt = rootProject.ext
+	def componentDependencies = rootExt.coreComponent
+	def unitTestDependencies = rootExt.unitTesting
+	def acceptanceTestDependencies = rootExt.acceptanceTesting
+
+	// Base
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 	implementation project(':tim')
 	implementation project(':util')
+	implementation componentDependencies.kotlin
 
-	// Support
-	api "androidx.appcompat:appcompat:$appCompatVersion"
-	api "androidx.core:core-ktx:$ktxVersion"
-	api "androidx.collection:collection-ktx:$ktxVersion"
-	api "com.google.android.material:material:$materialVersion"
+	// Android
+	implementation componentDependencies.appCompat
+	implementation componentDependencies.coreKtx
+	implementation componentDependencies.collectionKtx
+	implementation componentDependencies.material
 
 	// Reactive
-	api "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-	api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-	api "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+	implementation componentDependencies.rxJava
+	implementation componentDependencies.rxAndroid
+	implementation componentDependencies.rxKotlin
 
-	// Tests
-	testImplementation 'junit:junit:4.12'
-	androidTestImplementation 'com.android.support.test:runner:1.0.2'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
+
+	// Acceptance tests
+	androidTestImplementation acceptanceTestDependencies.testRunner
 }

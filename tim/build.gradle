@@ -2,16 +2,19 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
-	buildToolsVersion rootProject.ext.buildToolsVersion
+	def rootExt = rootProject.ext
+
+	compileSdkVersion rootExt.compileSdk
+	buildToolsVersion rootExt.buildToolsVersion
 
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode getAutoVersionCode()
-		versionName getAutoVersionName()
+		minSdkVersion rootExt.minSdk
+		targetSdkVersion rootExt.targetSdk
 
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		versionCode generateVersionCode()
+		versionName generateVersionName()
+
+		testInstrumentationRunner rootExt.testRunner
 	}
 
 	buildTypes {
@@ -40,12 +43,19 @@ android {
 }
 
 dependencies {
+	def rootExt = rootProject.ext
+	def componentDependencies = rootExt.coreComponent
+	def unitTestDependencies = rootExt.unitTesting
+
+	// Base
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+	implementation componentDependencies.kotlin
 
-	// Utils
-	api 'com.jakewharton.timber:timber:4.7.1'
+	// Other
+	api componentDependencies.timber
 
-	// Tests
-	testImplementation 'junit:junit:4.12'
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
 }
