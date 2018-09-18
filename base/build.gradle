@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -16,21 +16,20 @@ android {
 		versionCode generateVersionCode()
 		versionName generateVersionName()
 
-		applicationId rootExt.applicationId
 		testInstrumentationRunner rootExt.testRunner
 	}
 
 	buildTypes {
 		debug {
-			applicationIdSuffix '.debug'
-			versionNameSuffix '.debug'
-
+			resValue 'string', 'appName', 'Gitez dev'
 			minifyEnabled false
 			useProguard false
 			shrinkResources false
 		}
 
 		release {
+			resValue 'string', 'appName', 'Gitez'
+
 			minifyEnabled false
 			useProguard false
 			shrinkResources false
@@ -61,16 +60,10 @@ dependencies {
 
 	// Base
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation project(':base')
 	implementation project(':androidcore')
 	implementation project(':tim')
 	implementation project(':util')
 	implementation appDependencies.kotlin
-
-	// Android
-	implementation appDependencies.appCompat
-	implementation appDependencies.coreKtx
-	implementation appDependencies.constraintLayout
 
 	// Unit/Integration tests
 	testImplementation unitTestDependencies.kotlin

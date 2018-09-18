@@ -1,19 +1,11 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	package="com.socros.android.app.gitez">
 
-	<application
-		android:name=".GitezApp"
-		android:allowBackup="true"
-		android:icon="@mipmap/ic_launcher"
-		android:label="@string/appName"
-		android:roundIcon="@mipmap/ic_launcher_round"
-		android:supportsRtl="true"
-		android:theme="@style/GitezTheme">
-
+	<application tools:ignore="GoogleAppIndexingWarning">
 		<activity
-			android:name=".view.launcher.SplashActivity"
-			android:theme="@style/GitezTheme.Dark">
+			android:name=".view.launcher.SplashActivity">
 			<!-- Main intent filter to launch app from icon -->
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
