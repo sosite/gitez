@@ -62,7 +62,6 @@ static def getGitCommitsCount() {
 }
 
 static def getGitSha() {
-	//return "git --git-dir=${rootDir}/../.git --work-tree=${rootDir}/../ rev-parse --short HEAD".execute().text.trim()
 	return "git rev-parse --verify --short HEAD".execute().text.trim()
 }
 
@@ -73,7 +72,8 @@ static def getCurrentBranch() {
 static def getLastMasterGitTagVersion() {
 	def longVersionName = "git describe --tags master --long".execute().text.replace("v", "").trim()
 	def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
-//	return fullVersionTag // simplify git tag version usage
+	// TODO simplify git tag version usage
+	// return fullVersionTag
 	def (versionMajor, versionMinor, versionPatch) = fullVersionTag.tokenize('.')
 
 	return sprintf("%s.%s.%s", [versionMajor, versionMinor, versionPatch])
