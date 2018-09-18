@@ -20,6 +20,7 @@ ext {
 			rxKotlin          : '2.2.0',
 
 			// Other
+			dagger            : '2.17',
 			timber            : '4.7.1',
 
 			// Unit Testing
@@ -37,23 +38,26 @@ ext {
 			// Android
 			appCompat       : "androidx.appcompat:appcompat:${versions.appCompat}",
 			coreKtx         : "androidx.core:core-ktx:${versions.ktx}",
-			constraintLayout: "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"]
+			constraintLayout: "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
+			// Other
+			dagger          : "com.google.dagger:dagger:${versions.dagger}",
+			daggerAndroid   : "com.google.dagger:dagger-android-support:${versions.dagger}",
+			daggerProcessor : "com.google.dagger:dagger-compiler:${versions.dagger}"]
 
 	coreComponent = [
 			// Kotlin
-			kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
+			kotlin       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
 			// Android
-			appCompat         : "androidx.appcompat:appcompat:${versions.appCompat}",
-			androidAnnotations: "androidx.annotation:annotation:${versions.supportAnnotations}",
-			coreKtx           : "androidx.core:core-ktx:${versions.ktx}",
-			collectionKtx     : "androidx.collection:collection-ktx:${versions.ktx}",
-			material          : "com.google.android.material:material:${versions.material}",
+			appCompat    : "androidx.appcompat:appcompat:${versions.appCompat}",
+			coreKtx      : "androidx.core:core-ktx:${versions.ktx}",
+			collectionKtx: "androidx.collection:collection-ktx:${versions.ktx}",
+			material     : "com.google.android.material:material:${versions.material}",
 			// Reactive
-			rxJava            : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
-			rxAndroid         : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
-			rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
+			rxJava       : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+			rxAndroid    : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+			rxKotlin     : "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
 			// Other
-			timber            : "com.jakewharton.timber:timber:${versions.timber}"]
+			timber       : "com.jakewharton.timber:timber:${versions.timber}"]
 
 	unitTesting = [
 			// Kotlin

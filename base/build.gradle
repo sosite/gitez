@@ -65,6 +65,11 @@ dependencies {
 	implementation project(':util')
 	implementation appDependencies.kotlin
 
+	// Other
+	implementation appDependencies.dagger
+	implementation appDependencies.daggerAndroid
+	kapt appDependencies.daggerProcessor
+
 	// Unit/Integration tests
 	testImplementation unitTestDependencies.kotlin
 	testImplementation unitTestDependencies.kotlinTest

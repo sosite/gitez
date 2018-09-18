@@ -53,9 +53,7 @@ dependencies {
 
 	// Android
 	implementation componentDependencies.appCompat
-	implementation componentDependencies.androidAnnotations
 	implementation componentDependencies.coreKtx
-	implementation componentDependencies.collectionKtx
 
 	// Reactive
 	implementation componentDependencies.rxJava
