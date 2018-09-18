@@ -4,13 +4,17 @@ apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
 	ext {
-		kotlinVersion = '1.2.70'
-		gradleToolsVersion = '3.2.0-rc03'
-		buildToolsVersion = '28.0.2'
+		versions = [
+				// Main
+				kotlin     : '1.2.70',
+				gradleTools: '3.2.0-rc03',
+				buildTools : '28.0.2']
 
-		minSdk = 21
-		targetSdk = 28
-		compileSdk = 28
+		sdk = [
+				// App sdk version definitions
+				min    : 21,
+				target : 28,
+				compile: 28]
 
 		applicationId = 'com.socros.android.app.gitez'
 		testRunner = 'android.support.test.runner.AndroidJUnitRunner'
@@ -22,9 +26,9 @@ buildscript {
 	}
 
 	dependencies {
-		classpath "com.android.tools.build:gradle:$gradleToolsVersion"
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-		classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
+		classpath "com.android.tools.build:gradle:${versions.gradleTools}"
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+		classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}"
 	}
 }
 

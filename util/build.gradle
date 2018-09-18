@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android'
 android {
 	def rootExt = rootProject.ext
 
-	compileSdkVersion rootExt.compileSdk
-	buildToolsVersion rootExt.buildToolsVersion
+	compileSdkVersion rootExt.sdk.compile
+	buildToolsVersion rootExt.versions.buildTools
 
 	defaultConfig {
-		minSdkVersion rootExt.minSdk
-		targetSdkVersion rootExt.targetSdk
+		minSdkVersion rootExt.sdk.min
+		targetSdkVersion rootExt.sdk.target
 
 		versionCode generateVersionCode()
 		versionName generateVersionName()

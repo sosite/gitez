@@ -6,66 +6,67 @@ allprojects {
 }
 
 ext {
-	// Android
-	appCompatVersion = '1.0.0-rc02'
-	supportAnnotationsVersion = '1.0.0-rc02'
-	ktxVersion = '1.0.0-rc02'
-	materialVersion = '1.0.0-rc02'
-	constraintLayoutVersion = '1.1.3'
+	versions << [
+			// Android
+			appCompat         : '1.0.0-rc02',
+			supportAnnotations: '1.0.0-rc02',
+			ktx               : '1.0.0-rc02',
+			material          : '1.0.0-rc02',
+			constraintLayout  : '1.1.3',
 
-	// Reactive
-	rxJavaVersion = '2.1.14'
-	rxAndroidVersion = '2.0.1'
-	rxKotlinVersion = '2.2.0'
+			// Reactive
+			rxJava            : '2.1.14',
+			rxAndroid         : '2.0.1',
+			rxKotlin          : '2.2.0',
 
-	// Other
-	timberVersion = '4.7.1'
+			// Other
+			timber            : '4.7.1',
 
-	// Unit Testing
-	junitVersion = '4.12'
-	robolectricVersion = '3.8'
-	mockitoKotlinVersion = '2.0.0-RC2'
+			// Unit Testing
+			junit             : '4.12',
+			robolectric       : '3.8',
+			mockitoKotlin     : '2.0.0-RC2',
 
-	// Acceptance Testing
-	runnerVersion = '1.0.2'
-	espressoVersion = '3.0.2'
+			// Acceptance Testing
+			runner            : '1.0.2',
+			espresso          : '3.0.2']
 
 	mainApplication = [
 			// Kotlin
-			kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+			kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
 			// Android
-			appCompat         : "androidx.appcompat:appcompat:$appCompatVersion",
-			coreKtx           : "androidx.core:core-ktx:$ktxVersion",
-			constraintLayout  : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"]
+			appCompat       : "androidx.appcompat:appcompat:${versions.appCompat}",
+			coreKtx         : "androidx.core:core-ktx:${versions.ktx}",
+			constraintLayout: "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"]
 
 	coreComponent = [
 			// Kotlin
-			kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+			kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
 			// Android
-			appCompat         : "androidx.appcompat:appcompat:$appCompatVersion",
-			androidAnnotations: "androidx.annotation:annotation:$supportAnnotationsVersion",
-			coreKtx           : "androidx.core:core-ktx:$ktxVersion",
-			collectionKtx     : "androidx.collection:collection-ktx:$ktxVersion",
-			material          : "com.google.android.material:material:$materialVersion",
+			appCompat         : "androidx.appcompat:appcompat:${versions.appCompat}",
+			androidAnnotations: "androidx.annotation:annotation:${versions.supportAnnotations}",
+			coreKtx           : "androidx.core:core-ktx:${versions.ktx}",
+			collectionKtx     : "androidx.collection:collection-ktx:${versions.ktx}",
+			material          : "com.google.android.material:material:${versions.material}",
 			// Reactive
-			rxJava            : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
-			rxAndroid         : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
-			rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+			rxJava            : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+			rxAndroid         : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+			rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
 			// Other
-			timber            : "com.jakewharton.timber:timber:$timberVersion"]
+			timber            : "com.jakewharton.timber:timber:${versions.timber}"]
 
 	unitTesting = [
 			// Kotlin
-			kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
-			kotlinTest: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+			kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}",
+			kotlinTest: "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}",
 			// Unit/Integration tests
-			junit     : "junit:junit:$junitVersion",
-			mockito   : "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"]
+			junit     : "junit:junit:${versions.junit}",
+			mockito   : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}"]
 
 	acceptanceTesting = [
 			// Acceptance tests
-			testRunner        : "com.android.support.test:runner:$runnerVersion",
-			espressoCore      : "com.android.support.test.espresso:espresso-core:$espressoVersion",
-			espressoIntents   : "com.android.support.test.espresso:espresso-intents:$espressoVersion",
-			androidAnnotations: "androidx.annotation:annotation:$supportAnnotationsVersion"]
+			testRunner        : "com.android.support.test:runner:${versions.runner}",
+			espressoCore      : "com.android.support.test.espresso:espresso-core:${versions.espresso}",
+			espressoIntents   : "com.android.support.test.espresso:espresso-intents:${versions.espresso}",
+			androidAnnotations: "androidx.annotation:annotation:${versions.supportAnnotations}"]
 }
