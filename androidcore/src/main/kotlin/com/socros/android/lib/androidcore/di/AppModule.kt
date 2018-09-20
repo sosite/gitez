@@ -1,4 +1,4 @@
-package com.socros.android.app.gitez.base.di
+package com.socros.android.lib.androidcore.di
 
 import android.app.Application
 import android.content.Context
@@ -11,12 +11,12 @@ import dagger.Module
  * we simply need to expose our Application as Context.
  * One of the advantages of Dagger.Android is that your
  * Application & Activities are provided into your graph for you.
- * [ApplicationComponent].
+ * [AppComponent].
  *
  * @see <a href="https://github.com/googlesamples/android-architecture-components">Android Architecture Components samples</a>
  */
 @Module
-abstract class ApplicationModule {
+abstract class AppModule {
 	@Binds
 	abstract fun bindContext(application: Application): Context
 }

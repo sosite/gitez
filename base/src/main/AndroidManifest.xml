@@ -3,12 +3,12 @@
 	package="com.socros.android.app.gitez.base">
 
 	<application
-		android:name=".GitezApplication"
+		android:name=".GitezApp"
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/appName"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/GitezTheme.Dark" />
+		android:theme="@style/GitezTheme" />
 
 </manifest>

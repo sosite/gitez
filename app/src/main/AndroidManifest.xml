@@ -5,7 +5,8 @@
 
 	<application tools:ignore="GoogleAppIndexingWarning">
 		<activity
-			android:name=".view.launcher.SplashActivity">
+			android:name=".view.launcher.SplashActivity"
+			android:theme="@style/GitezTheme.Dark">
 			<!-- Main intent filter to launch app from icon -->
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
