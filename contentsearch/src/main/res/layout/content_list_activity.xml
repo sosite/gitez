@@ -18,7 +18,7 @@
 		android:layout_marginTop="@dimen/activityMargin_vertical"
 		android:adjustViewBounds="true"
 		android:contentDescription="@string/contentSearch_octocat"
-		android:src="@drawable/sadoctocat_img"
+		android:src="@drawable/img_sadoctocat"
 		app:layout_constraintBottom_toTopOf="@id/placeholderTxt"
 		app:layout_constraintDimensionRatio="1.2"
 		app:layout_constraintEnd_toEndOf="parent"
