@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.doOnPreDraw
 import com.socros.android.app.gitez.R
+import com.socros.android.app.gitez.contentsearch.view.ContentListActivity
 import com.socros.android.lib.androidcore.view.launcher.ACSplashActivity
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.splash_activity.authorTxt
@@ -31,7 +32,7 @@ class SplashActivity : ACSplashActivity() {
 	}
 
 	override fun provideNextActivity(): Intent {
-		return Intent(this, SplashActivity::class.java)
+		return Intent(this, ContentListActivity::class.java)
 	}
 
 	private fun initQuote() {

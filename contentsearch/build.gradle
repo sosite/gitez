@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -16,15 +16,11 @@ android {
 		versionCode generateVersionCode()
 		versionName generateVersionName()
 
-		applicationId rootExt.applicationId
 		testInstrumentationRunner rootExt.testRunner
 	}
 
 	buildTypes {
 		debug {
-			applicationIdSuffix '.debug'
-			versionNameSuffix '.debug'
-
 			minifyEnabled false
 			useProguard false
 			shrinkResources false
@@ -61,7 +57,6 @@ dependencies {
 
 	// Base
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation project(':contentsearch')
 	implementation project(':base')
 	implementation project(':androidcore')
 	implementation project(':tim')

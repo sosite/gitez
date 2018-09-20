@@ -1,0 +1,5 @@
+<resources>
+	<string name="contentSearch_title">Lorem ipsum</string>
+
+	<string name="contentSearch_placeholder">Octocat jest smutny ponieważ jest tutaj tylko na pokaz</string>
+</resources>
