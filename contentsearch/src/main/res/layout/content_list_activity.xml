@@ -8,8 +8,16 @@
 	<androidx.appcompat.widget.Toolbar
 		android:id="@id/toolbar"
 		style="@style/Toolbar"
+		android:animateLayoutChanges="true"
 		app:layout_constraintTop_toTopOf="parent"
 		tools:title="Lorem ipsum" />
+
+	<androidx.constraintlayout.widget.Group
+		android:id="@+id/placeholderGroup"
+		style="@style/BaseNoDimens"
+		android:visibility="visible"
+		app:constraint_referenced_ids="octocatImg, placeholderTxt, searchBtn"
+		tools:visibility="visible" />
 
 	<ImageView
 		android:id="@+id/octocatImg"
@@ -30,15 +38,28 @@
 	<TextView
 		android:id="@+id/placeholderTxt"
 		style="@style/Text"
-		android:layout_width="0dp"
+		android:layout_width="267dp"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="@dimen/activityMargin_vertical"
 		android:layout_marginTop="12dp"
 		android:gravity="center_horizontal"
 		android:text="@string/contentSearch_placeholder"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="@id/octocatImg"
-		app:layout_constraintStart_toStartOf="@id/octocatImg"
+		app:layout_constraintBottom_toTopOf="@id/searchBtn"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/octocatImg" />
+
+	<Button
+		android:id="@+id/searchBtn"
+		style="@style/Widget.AppCompat.Button.Colored"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/activityMargin_vertical"
+		android:layout_marginTop="12dp"
+		android:text="@string/contentSearch_searchBtn"
+		android:textColor="?android:textColorPrimary"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/placeholderTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
