@@ -9,11 +9,21 @@
 		<item name="android:paddingEnd">4dp</item>
 		<item name="titleTextAppearance">@style/ToolbarTitle</item>
 		<item name="contentInsetStartWithNavigation">0dp</item>
-		<item name="theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
+		<item name="theme">@style/ToolbarTheme</item>
 		<item name="popupTheme">@style/ThemeOverlay.Light</item>
 	</style>
 
+	<style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+		<item name="autoCompleteTextViewStyle">@style/AutoCompleteTextView</item>
+	</style>
+
 	<style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+		<item name="android:fontFamily">@font/museo_700</item>
+	</style>
+
+	<style name="AutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+		<item name="android:paddingStart">0dp</item>
+		<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
 		<item name="android:fontFamily">@font/museo_700</item>
 	</style>
 
