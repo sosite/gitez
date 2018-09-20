@@ -9,9 +9,9 @@
 	<color name="primary_light">@color/github_gray800</color>
 	<color name="primary_dark">@color/black</color>
 
-	<color name="accent">#ffb300</color>
-	<color name="accent_light">#ffe54c</color>
-	<color name="accent_dark">#c68400</color>
+	<color name="accent">#ffdd00</color>
+	<color name="accent_light">#fffbe5</color>
+	<color name="accent_dark">#ebcd07</color>
 
 	<color name="github_gray900">#24292e</color>
 	<color name="github_gray800">#3c4146</color>
