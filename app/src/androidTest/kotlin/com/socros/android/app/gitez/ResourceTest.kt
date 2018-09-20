@@ -3,7 +3,7 @@ package com.socros.android.app.gitez
 import android.content.Context
 import android.content.res.Resources
 import android.os.LocaleList
-import android.support.test.InstrumentationRegistry
+import androidx.test.InstrumentationRegistry
 import com.socros.android.app.gitez.ResourceTest.ResourceType.ARRAY
 import com.socros.android.app.gitez.ResourceTest.ResourceType.STRING
 import com.socros.android.lib.util.EnumValueCompanion
