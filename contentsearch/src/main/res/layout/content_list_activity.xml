@@ -11,4 +11,34 @@
 		app:layout_constraintTop_toTopOf="parent"
 		tools:title="Lorem ipsum" />
 
+	<ImageView
+		android:id="@+id/octocatImg"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginTop="@dimen/activityMargin_vertical"
+		android:adjustViewBounds="true"
+		android:contentDescription="@string/contentSearch_octocat"
+		android:src="@drawable/sadoctocat_img"
+		app:layout_constraintBottom_toTopOf="@id/placeholderTxt"
+		app:layout_constraintDimensionRatio="1.2"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/toolbar"
+		app:layout_constraintVertical_chainStyle="packed"
+		app:layout_constraintWidth_max="267dp" />
+
+	<TextView
+		android:id="@+id/placeholderTxt"
+		style="@style/Text"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/activityMargin_vertical"
+		android:layout_marginTop="12dp"
+		android:gravity="center_horizontal"
+		android:text="@string/contentSearch_placeholder"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="@id/octocatImg"
+		app:layout_constraintStart_toStartOf="@id/octocatImg"
+		app:layout_constraintTop_toBottomOf="@id/octocatImg" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

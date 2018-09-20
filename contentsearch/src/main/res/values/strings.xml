@@ -1,5 +1,6 @@
 <resources>
 	<string name="contentSearch_title">Lorem ipsum</string>
 
-	<string name="contentSearch_placeholder">Octocat is sad because it\'s only as a placeholder</string>
+	<string name="contentSearch_octocat" translatable="false">Octocat</string>
+	<string name="contentSearch_placeholder">Octocat is sad because it\'s only a placeholder</string>
 </resources>
