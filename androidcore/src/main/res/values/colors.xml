@@ -16,7 +16,8 @@
 	<color name="ripple_onLight">#2000</color>
 	<color name="ripple_onDark">#4fff</color>
 
-	<color name="navigationBar_semiTransparent">#5000</color>
+	<color name="navigationBar_semiTransparent_light">#5fff</color>
+	<color name="navigationBar_semiTransparent_dark">#5000</color>
 
 	<color name="textPrimary_onLight">#de000000</color>
 	<color name="textSecondary_onLight">#8a000000</color>

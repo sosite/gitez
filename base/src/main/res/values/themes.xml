@@ -16,7 +16,7 @@
 	</style>
 
 	<style name="GitezTheme" parent="GitezTheme.Base">
-		<item name="android:navigationBarColor">@color/navigationBar_semiTransparent</item>
+		<item name="android:navigationBarColor">@color/navigationBar_semiTransparent_dark</item>
 	</style>
 
 
