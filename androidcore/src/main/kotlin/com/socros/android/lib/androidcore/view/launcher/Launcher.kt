@@ -1,4 +1,4 @@
-package com.socros.android.app.base.view.launcher
+package com.socros.android.lib.androidcore.view.launcher
 
 import android.content.Intent
 

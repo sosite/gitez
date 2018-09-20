@@ -1,4 +1,4 @@
-package com.socros.android.app.base.view.launcher
+package com.socros.android.lib.androidcore.view.launcher
 
 import android.app.Activity
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.os.Bundle
  *
  * Use with `android:theme="@android:style/Theme.NoDisplay"`
  */
-abstract class CoreLauncherActivity : Activity(), Launcher {
+abstract class ACLauncherActivity : Activity(), Launcher {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		startActivity(provideNextActivity())

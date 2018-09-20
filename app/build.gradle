@@ -71,6 +71,18 @@ dependencies {
 	implementation appDependencies.appCompat
 	implementation appDependencies.coreKtx
 	implementation appDependencies.constraintLayout
+	implementation appDependencies.lifecycle
+	kapt appDependencies.lifecycleProcessor
+
+	// Reactive
+	implementation appDependencies.rxJava
+	implementation appDependencies.rxAndroid
+	implementation appDependencies.rxKotlin
+
+	// Other
+	implementation appDependencies.dagger
+	implementation appDependencies.daggerAndroid
+	kapt appDependencies.daggerProcessor
 
 	// Unit/Integration tests
 	testImplementation unitTestDependencies.kotlin

@@ -19,7 +19,7 @@
 		app:layout_constraintGuide_end="@dimen/activityMargin_horizontal" />
 
 	<TextView
-		android:id="@+id/quoteTxt"
+		android:id="@+id/sentenceTxt"
 		style="@style/Text"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
@@ -47,8 +47,8 @@
 		android:layout_marginEnd="11dp"
 		android:layout_marginTop="12dp"
 		android:fontFamily="@font/museo_700"
-		app:layout_constraintEnd_toEndOf="@id/quoteTxt"
-		app:layout_constraintTop_toBottomOf="@id/quoteTxt"
+		app:layout_constraintEnd_toEndOf="@id/sentenceTxt"
+		app:layout_constraintTop_toBottomOf="@id/sentenceTxt"
 		tools:text="― John Johnson" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
