@@ -21,4 +21,7 @@ abstract class ACActivity : AppCompatActivity(), AppProvider {
 			setContentView(it)
 		}
 	}
+
+	protected fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null
+
 }
