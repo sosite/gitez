@@ -61,6 +61,7 @@ dependencies {
 
 	// Base
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation project(':contentsearch')
 	implementation project(':base')
 	implementation project(':androidcore')
 	implementation project(':tim')

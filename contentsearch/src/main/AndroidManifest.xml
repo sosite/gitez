@@ -1,0 +1,12 @@
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.socros.android.app.gitez.contentsearch">
+
+	<application>
+		<activity
+			android:name=".view.ContentListActivity"
+			android:label="@string/contentSearch_title"
+			android:launchMode="singleTask"
+			android:windowSoftInputMode="stateHidden|adjustResize" />
+	</application>
+</manifest>

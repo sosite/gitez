@@ -11,10 +11,10 @@ interface AppModuleInjector<T : AppProvider> : AndroidInjector<T> {
 
 		abstract operator fun plus(component: AppModuleSubComponent): Builder<T>
 
-		fun inject(activity: T) {
-			plus(activity.provideApp().provideAppModuleSubComponent())
-			create(activity)
-					.inject(activity)
+		fun inject(objectToInject: T) {
+			plus(objectToInject.provideApp().provideAppModuleSubComponent())
+			create(objectToInject)
+					.inject(objectToInject)
 		}
 	}
 }

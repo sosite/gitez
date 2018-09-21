@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 	def rootExt = rootProject.ext
@@ -42,29 +44,47 @@ android {
 	}
 }
 
+androidExtensions {
+	experimental = true
+	defaultCacheImplementation = 'SPARSE_ARRAY'
+}
+
 dependencies {
 	def rootExt = rootProject.ext
-	def componentDependencies = rootExt.coreComponent
+	def appDependencies = rootExt.mainApplication
 	def unitTestDependencies = rootExt.unitTesting
+	def acceptanceTestDependencies = rootExt.acceptanceTesting
 
 	// Base
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation componentDependencies.kotlin
+	implementation project(':base')
+	implementation project(':androidcore')
+	implementation project(':tim')
+	implementation project(':util')
+	implementation appDependencies.kotlin
 
 	// Android
-	implementation componentDependencies.appCompat
-	implementation componentDependencies.coreKtx
+	implementation appDependencies.appCompat
+	implementation appDependencies.coreKtx
+	implementation appDependencies.constraintLayout
+	implementation appDependencies.lifecycle
+	kapt appDependencies.lifecycleProcessor
 
 	// Reactive
-	implementation componentDependencies.rxJava
-	implementation componentDependencies.rxAndroid
-	implementation componentDependencies.rxKotlin
+	implementation appDependencies.rxJava
+	implementation appDependencies.rxAndroid
+	implementation appDependencies.rxKotlin
 
 	// Other
-	implementation componentDependencies.dagger
+	implementation appDependencies.dagger
+	implementation appDependencies.daggerAndroid
+	kapt appDependencies.daggerProcessor
 
 	// Unit/Integration tests
 	testImplementation unitTestDependencies.kotlin
 	testImplementation unitTestDependencies.kotlinTest
 	testImplementation unitTestDependencies.junit
+
+	// Acceptance tests
+	androidTestImplementation acceptanceTestDependencies.testRunner
 }

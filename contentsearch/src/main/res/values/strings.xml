@@ -1,0 +1,8 @@
+<resources>
+	<string name="contentSearch_title">@string/appName</string>
+
+	<string name="contentSearch_actionSearch">Search</string>
+	<string name="contentSearch_searchBtn">@string/contentSearch_actionSearch</string>
+	<string name="contentSearch_octocat" translatable="false">Octocat</string>
+	<string name="contentSearch_placeholder">Octocat is sad because\nyou\'re not search anything :(</string>
+</resources>

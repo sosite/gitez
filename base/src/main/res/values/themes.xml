@@ -7,6 +7,8 @@
 		<item name="colorPrimaryDark">@color/primary_dark</item>
 		<item name="colorAccent">@color/accent</item>
 
+		<item name="android:textColorPrimary">@color/github_gray900</item>
+
 		<item name="dividerColor">@color/divider_onLight</item>
 		<item name="errorColor">@color/error_onLight</item>
 
@@ -16,7 +18,7 @@
 	</style>
 
 	<style name="GitezTheme" parent="GitezTheme.Base">
-		<item name="android:navigationBarColor">@color/navigationBar_semiTransparent</item>
+		<item name="android:navigationBarColor">@color/navigationBar_semiTransparent_dark</item>
 	</style>
 
 
@@ -35,8 +37,8 @@
 	</style>
 
 	<style name="GitezTheme.Dark" parent="GitezTheme.Dark.Base">
-		<item name="android:statusBarColor">@color/windowBackgroundOnDark</item>
-		<item name="android:navigationBarColor">@color/windowBackgroundOnDark</item>
+		<item name="android:statusBarColor">@color/transparent</item>
+		<item name="android:navigationBarColor">@color/transparent</item>
 	</style>
 
 </resources>
