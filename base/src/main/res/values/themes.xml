@@ -7,6 +7,8 @@
 		<item name="colorPrimaryDark">@color/primary_dark</item>
 		<item name="colorAccent">@color/accent</item>
 
+		<item name="android:textColorPrimary">@color/github_gray900</item>
+
 		<item name="dividerColor">@color/divider_onLight</item>
 		<item name="errorColor">@color/error_onLight</item>
 
