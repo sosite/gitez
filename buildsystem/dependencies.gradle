@@ -20,7 +20,12 @@ ext {
 			rxKotlin        : '2.2.0',
 			autoDispose     : '1.0.0-RC2',
 
+			// Network
+			retrofit        : '2.4.0',
+			okHttp          : '3.11.0',
+
 			// Other
+			anko            : '0.10.6',
 			autoFactory     : '1.0-beta5',
 			dagger          : '2.17',
 			timber          : '4.7.1',
@@ -68,7 +73,14 @@ ext {
 			rxAndroid         : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
 			rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
 			autoDispose       : "com.uber.autodispose:autodispose-android-archcomponents-ktx:${versions.autoDispose}",
+			// Network
+			retrofit          : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+			retrofitRx        : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+			retrofitJackson   : "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
+			okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
 			// Other
+			anko              : "org.jetbrains.anko:anko-commons:${versions.anko}",
+			ankoSdk21         : "org.jetbrains.anko:anko-sdk21:${versions.anko}",
 			dagger            : "com.google.dagger:dagger:${versions.dagger}",
 			daggerAndroid     : "com.google.dagger:dagger-android-support:${versions.dagger}",
 			daggerProcessor   : "com.google.dagger:dagger-compiler:${versions.dagger}",
