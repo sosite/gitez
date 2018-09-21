@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+	def rootExt = rootProject.ext
+
+	compileSdkVersion rootExt.sdk.compile
+	buildToolsVersion rootExt.versions.buildTools
+
+	defaultConfig {
+		minSdkVersion rootExt.sdk.min
+		targetSdkVersion rootExt.sdk.target
+
+		versionCode generateVersionCode()
+		versionName generateVersionName()
+
+		testInstrumentationRunner rootExt.testRunner
+	}
+
+	buildTypes {
+		debug {
+			minifyEnabled false
+			useProguard false
+			shrinkResources false
+		}
+
+		release {
+			minifyEnabled false
+			useProguard false
+			shrinkResources false
+
+			files { rootProject.file('settings/proguard').listFiles() }.each {
+				proguardFile it
+			}
+		}
+	}
+
+	sourceSets {
+		androidTest.java.srcDirs += 'src/androidTest/kotlin'
+		main.java.srcDirs += 'src/main/kotlin'
+		test.java.srcDirs += 'src/test/kotlin'
+	}
+}
+
+dependencies {
+	def rootExt = rootProject.ext
+	def componentDependencies = rootExt.coreComponent
+	def unitTestDependencies = rootExt.unitTesting
+
+	// Base
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation componentDependencies.kotlin
+
+	// Android
+	implementation componentDependencies.roomRuntime
+	implementation componentDependencies.roomRx
+	kapt componentDependencies.roomProcessor
+
+	// Reactive
+	implementation componentDependencies.rxJava
+	implementation componentDependencies.rxAndroid
+	implementation componentDependencies.rxKotlin
+
+	// Other
+	implementation componentDependencies.dagger
+
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
+}
