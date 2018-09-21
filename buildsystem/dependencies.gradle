@@ -21,6 +21,7 @@ ext {
 			autoDispose     : '1.0.0-RC2',
 
 			// Other
+			autoFactory     : '1.0-beta5',
 			dagger          : '2.17',
 			timber          : '4.7.1',
 
@@ -47,6 +48,7 @@ ext {
 			rxAndroid         : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
 			rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
 			// Other
+			autoFactory       : "com.google.auto.factory:auto-factory:${versions.autoFactory}",
 			dagger            : "com.google.dagger:dagger:${versions.dagger}",
 			daggerAndroid     : "com.google.dagger:dagger-android-support:${versions.dagger}",
 			daggerProcessor   : "com.google.dagger:dagger-compiler:${versions.dagger}"]
