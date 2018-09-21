@@ -29,10 +29,10 @@ class SplashModule {
 	@Provides
 	@IntoMap
 	@ViewModelKey(SplashViewModel::class)
-	fun provideSplashViewModel(): ViewModel = SplashViewModel()
+	internal fun provideSplashViewModel(): ViewModel = SplashViewModel()
 
 	@Provides
-	fun createSplashViewModel(target: SplashActivity, factory: ViewModelFactory) =
+	internal fun createSplashViewModel(target: SplashActivity, factory: ViewModelFactory) =
 			factory.create<SplashViewModel>(target)
 
 }
