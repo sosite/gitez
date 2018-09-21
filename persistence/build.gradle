@@ -54,13 +54,6 @@ dependencies {
 
 	// Android
 	implementation componentDependencies.roomRuntime
-	implementation componentDependencies.roomRx
-	kapt componentDependencies.roomProcessor
-
-	// Reactive
-	implementation componentDependencies.rxJava
-	implementation componentDependencies.rxAndroid
-	implementation componentDependencies.rxKotlin
 
 	// Other
 	implementation componentDependencies.dagger
