@@ -11,10 +11,6 @@ class SplashViewModel @Inject constructor() : ACSplashViewModel<Any>() {
 
 	private val quoteSubject = BehaviorSubject.create<Quote>()
 
-	init {
-		initialize()
-	}
-
 	fun getQuote(sentencesArray: Array<String>, authorsArray: Array<String>): Observable<Quote> {
 		if (!quoteSubject.hasValue()) {
 			val randomIndex = (0..sentencesArray.size).random()

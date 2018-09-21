@@ -17,12 +17,11 @@ class SplashActivity : ACSplashActivity() {
 
 	@Inject
 	override lateinit var viewModel: SplashViewModel
-
 	private lateinit var disposable: Disposable
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
 		DaggerSplashComponent.builder().inject(this)
+		super.onCreate(savedInstanceState)
 		initQuote()
 	}
 

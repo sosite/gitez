@@ -18,7 +18,7 @@ abstract class ACSplashViewModel<T> : ViewModel() {
 	val finished: Observable<*>
 		get() = finishedSubject
 
-	protected fun initialize() {
+	internal fun initialize() {
 		disposable = provideObservableOperation()
 				?.delayToAtLeast(splashMinVisibilityTime.toLong(), MILLISECONDS)
 				?.composeAsync()
