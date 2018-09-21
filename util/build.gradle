@@ -60,6 +60,9 @@ dependencies {
 	implementation componentDependencies.rxAndroid
 	implementation componentDependencies.rxKotlin
 
+	// Other
+	implementation componentDependencies.dagger
+
 	// Unit/Integration tests
 	testImplementation unitTestDependencies.kotlin
 	testImplementation unitTestDependencies.kotlinTest
