@@ -1,5 +1,6 @@
 package com.socros.android.lib.androidcore.view.launcher
 
+import android.os.Bundle
 import com.socros.android.lib.androidcore.view.ACActivity
 import io.reactivex.disposables.Disposable
 
@@ -16,6 +17,11 @@ abstract class ACSplashActivity : ACActivity(), Launcher {
 	abstract val viewModel: ACSplashViewModel<*>
 
 	private lateinit var disposable: Disposable
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		if (firstTimeCreated(savedInstanceState)) viewModel.initialize()
+	}
 
 	override fun onResume() {
 		super.onResume()
