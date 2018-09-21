@@ -51,15 +51,6 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation componentDependencies.kotlin
 
-	// Android
-	implementation componentDependencies.appCompat
-	implementation componentDependencies.coreKtx
-
-	// Reactive
-	implementation componentDependencies.rxJava
-	implementation componentDependencies.rxAndroid
-	implementation componentDependencies.rxKotlin
-
 	// Network
 	implementation componentDependencies.retrofit
 	implementation componentDependencies.retrofitRx
