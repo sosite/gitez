@@ -8,6 +8,6 @@
 		android:icon="@drawable/ic_search_on_light_24dp"
 		android:title="@string/contentSearch_actionSearch"
 		app:actionViewClass="androidx.appcompat.widget.SearchView"
-		app:showAsAction="ifRoom|collapseActionView" />
+		app:showAsAction="always|collapseActionView" />
 
 </menu>
