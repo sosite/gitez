@@ -20,7 +20,11 @@ open class EnumValueCompanion<in Value, out EnumType : Enum<*>?> {
 	private val defaultDefined: Boolean
 	private val default: EnumType?
 
-	@Deprecated("Possible dangerous operation! Try use constructor with the specified default!")
+	/**
+	 * **Possible dangerous operation!**
+	 *
+	 * Try use constructor with the specified default or ensure that you always fetch enum from a proper value.
+	 */
 	constructor(valueMap: Map<Value, EnumType>) {
 		this.valueMap = valueMap
 		this.defaultDefined = false
