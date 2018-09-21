@@ -19,10 +19,16 @@ import javax.inject.Inject
 
 class ContentListActivity : BaseActivity(), OnActionExpandListener {
 
+	companion object {
+		private const val STATE_SEARCH_QUERY = "stateSearchQuery"
+	}
+
 	override val layoutResId = R.layout.content_list_activity
 
 	private lateinit var searchMenu: MenuItem
 	private lateinit var searchView: SearchView
+
+	private var searchQuery: CharSequence? = null
 
 	@Inject
 	lateinit var searchViewModel: ContentSearchViewModel
@@ -31,7 +37,17 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		DaggerContentSearchComponent.builder().inject(this)
 		super.onCreate(savedInstanceState)
 		setSupportActionBar(toolbar)
+
+		savedInstanceState?.let {
+			searchQuery = it.getCharSequence(STATE_SEARCH_QUERY)
+		}
+
 		initView()
+	}
+
+	override fun onSaveInstanceState(outState: Bundle) {
+		searchQuery?.let { outState.putCharSequence(STATE_SEARCH_QUERY, it) }
+		super.onSaveInstanceState(outState)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,6 +72,12 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		searchMenu.setOnActionExpandListener(this)
 		searchView = searchMenu.actionView as SearchView
 
+		if (searchQuery != null) {
+			searchMenu.expandActionView()
+			searchView.setQuery(searchQuery, false)
+			searchView.clearFocus()
+		}
+
 		searchView.apply {
 			setOnQueryTextFocusChangeListener { _, hasFocus ->
 				if (!hasFocus && searchView.query.isEmpty()) {
@@ -66,11 +88,12 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 			setOnQueryTextListener(object : OnQueryTextListener {
 				override fun onQueryTextSubmit(query: String): Boolean {
 					// unfocus search view
-					content.requestFocus()
+					searchView.clearFocus()
 					return false
 				}
 
 				override fun onQueryTextChange(query: String): Boolean {
+					searchQuery = query
 					searchViewModel.updateSearchQuery(query)
 					return true
 				}
@@ -79,15 +102,19 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	}
 
 	override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-		searchResultsFragment.view?.visible = true
-		placeholderGroup.visible = false
+		onSearchViewVisibilityChanged(true)
 		return true
 	}
 
 	override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-		searchResultsFragment.view?.visible = false
-		placeholderGroup.visible = true
+		searchQuery = null
+		onSearchViewVisibilityChanged(false)
 		return true
+	}
+
+	private fun onSearchViewVisibilityChanged(visible: Boolean) {
+		searchResultsFragment.view?.visible = visible
+		placeholderGroup.visible = !visible
 	}
 
 }
