@@ -1,5 +1,5 @@
 <resources>
-	<string name="contentSearch_title">Lorem ipsum</string>
+	<string name="contentSearch_title">@string/appName</string>
 
 	<string name="contentSearch_actionSearch">Szukaj</string>
 	<string name="contentSearch_searchBtn">@string/contentSearch_actionSearch</string>
