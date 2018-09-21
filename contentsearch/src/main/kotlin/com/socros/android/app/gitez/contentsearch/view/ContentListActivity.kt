@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MenuItem.OnActionExpandListener
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import com.socros.android.app.gitez.base.view.BaseActivity
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.lib.util.visible
@@ -49,10 +50,24 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		searchMenu.setOnActionExpandListener(this)
 		searchView = searchMenu.actionView as SearchView
 
-		searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
-			if (!hasFocus && searchView.query.isEmpty()) {
-				searchMenu.collapseActionView()
+		searchView.apply {
+			setOnQueryTextFocusChangeListener { _, hasFocus ->
+				if (!hasFocus && searchView.query.isEmpty()) {
+					searchMenu.collapseActionView()
+				}
 			}
+
+			setOnQueryTextListener(object : OnQueryTextListener {
+				override fun onQueryTextSubmit(query: String): Boolean {
+					// unfocus search view
+					content.requestFocus()
+					return false
+				}
+
+				override fun onQueryTextChange(newText: String): Boolean {
+					return true
+				}
+			})
 		}
 	}
 
