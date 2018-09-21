@@ -9,6 +9,7 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.content_list_fragment.currentValueTxt
 import javax.inject.Inject
 
+@ContentSearchScope
 class ContentListFragment : ACFragment() {
 
 	override val layoutResId = R.layout.content_list_fragment

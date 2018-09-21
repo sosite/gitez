@@ -6,6 +6,7 @@ import com.socros.android.lib.androidcore.di.AppModuleSubComponent
 import com.socros.android.lib.androidcore.di.viewmodel.ViewModelFactory
 import com.socros.android.lib.androidcore.di.viewmodel.ViewModelKey
 import com.socros.android.lib.androidcore.di.viewmodel.create
+import com.socros.android.lib.util.createFragment
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -17,7 +18,9 @@ import javax.inject.Scope
 annotation class ContentSearchScope
 
 @ContentSearchScope
-@Component(modules = [ContentSearchModule::class], dependencies = [AppModuleSubComponent::class])
+@Component(
+		modules = [ContentListActivityModule::class, ContentSearchModule::class],
+		dependencies = [AppModuleSubComponent::class])
 interface ContentSearchComponent : AppModuleInjector<ContentListActivity> {
 	@Component.Builder
 	abstract class Builder : AppModuleInjector.Builder<ContentListActivity>()
@@ -33,20 +36,27 @@ interface ContentListFragmentComponent : AppModuleInjector<ContentListFragment> 
 }
 
 @Module
+class ContentListActivityModule {
+	@Provides
+	@ContentSearchScope
+	internal fun provideContentListFragment() = createFragment<ContentListFragment>()
+}
+
+@Module
 class ContentSearchModule {
 	@Provides
 	@IntoMap
 	@ViewModelKey(ContentSearchViewModel::class)
-	fun provideContentSearchViewModel(): ViewModel = ContentSearchViewModel()
+	internal fun provideContentSearchViewModel(): ViewModel = ContentSearchViewModel()
 
 	@Provides
-	fun createContentSearchViewModel(target: ContentListActivity, factory: ViewModelFactory) =
+	internal fun createContentSearchViewModel(target: ContentListActivity, factory: ViewModelFactory) =
 			factory.create<ContentSearchViewModel>(target)
 }
 
 @Module
 class ContentSearchFragmentModule {
 	@Provides
-	fun provideContentListActivity(fragment: ContentListFragment) =
+	internal fun provideContentListActivity(fragment: ContentListFragment) =
 			fragment.activity as ContentListActivity
 }

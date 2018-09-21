@@ -9,11 +9,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import com.socros.android.app.gitez.base.view.BaseActivity
 import com.socros.android.app.gitez.contentsearch.R
+import com.socros.android.lib.util.addFragment
 import com.socros.android.lib.util.visible
+import dagger.Lazy
 import kotlinx.android.synthetic.main.content_list_activity.content
 import kotlinx.android.synthetic.main.content_list_activity.placeholderGroup
 import kotlinx.android.synthetic.main.content_list_activity.searchBtn
-import kotlinx.android.synthetic.main.content_list_activity.searchResultsFragment
+import kotlinx.android.synthetic.main.content_list_activity.searchResultFragmentContainer
 import kotlinx.android.synthetic.main.content_list_activity.toolbar
 import javax.inject.Inject
 
@@ -25,24 +27,27 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 
 	override val layoutResId = R.layout.content_list_activity
 
+	@Inject
+	lateinit var searchViewModel: ContentSearchViewModel
+
+	@Inject
+	lateinit var contentListFragmentProvider: Lazy<ContentListFragment>
+
 	private lateinit var searchMenu: MenuItem
 	private lateinit var searchView: SearchView
 
 	private var searchQuery: CharSequence? = null
 
-	@Inject
-	lateinit var searchViewModel: ContentSearchViewModel
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		DaggerContentSearchComponent.builder().inject(this)
 		super.onCreate(savedInstanceState)
 		setSupportActionBar(toolbar)
+		initView()
+		addFragment(R.id.searchResultFragmentContainer, contentListFragmentProvider)
 
 		savedInstanceState?.let {
 			searchQuery = it.getCharSequence(STATE_SEARCH_QUERY)
 		}
-
-		initView()
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
@@ -113,7 +118,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	}
 
 	private fun onSearchViewVisibilityChanged(visible: Boolean) {
-		searchResultsFragment.view?.visible = visible
+		searchResultFragmentContainer.visible = visible
 		placeholderGroup.visible = !visible
 	}
 

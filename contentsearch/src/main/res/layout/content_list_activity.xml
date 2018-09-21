@@ -64,11 +64,9 @@
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/placeholderTxt" />
 
-	<fragment
-		android:id="@+id/searchResultsFragment"
-		android:name="com.socros.android.app.gitez.contentsearch.view.ContentListFragment"
-		android:layout_width="0dp"
-		android:layout_height="0dp"
+	<FrameLayout
+		android:id="@+id/searchResultFragmentContainer"
+		style="@style/BaseNoDimens"
 		android:visibility="gone"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
