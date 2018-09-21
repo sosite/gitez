@@ -37,8 +37,8 @@
 	</style>
 
 	<style name="GitezTheme.Dark" parent="GitezTheme.Dark.Base">
-		<item name="android:statusBarColor">@color/windowBackgroundOnDark</item>
-		<item name="android:navigationBarColor">@color/windowBackgroundOnDark</item>
+		<item name="android:statusBarColor">@color/transparent</item>
+		<item name="android:navigationBarColor">@color/transparent</item>
 	</style>
 
 </resources>
