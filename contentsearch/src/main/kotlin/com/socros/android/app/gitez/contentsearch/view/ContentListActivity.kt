@@ -13,7 +13,9 @@ import com.socros.android.lib.util.visible
 import kotlinx.android.synthetic.main.content_list_activity.content
 import kotlinx.android.synthetic.main.content_list_activity.placeholderGroup
 import kotlinx.android.synthetic.main.content_list_activity.searchBtn
+import kotlinx.android.synthetic.main.content_list_activity.searchResultsFragment
 import kotlinx.android.synthetic.main.content_list_activity.toolbar
+import javax.inject.Inject
 
 class ContentListActivity : BaseActivity(), OnActionExpandListener {
 
@@ -22,7 +24,11 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	private lateinit var searchMenu: MenuItem
 	private lateinit var searchView: SearchView
 
+	@Inject
+	lateinit var searchViewModel: ContentSearchViewModel
+
 	override fun onCreate(savedInstanceState: Bundle?) {
+		DaggerContentSearchComponent.builder().inject(this)
 		super.onCreate(savedInstanceState)
 		setSupportActionBar(toolbar)
 		initView()
@@ -64,7 +70,8 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 					return false
 				}
 
-				override fun onQueryTextChange(newText: String): Boolean {
+				override fun onQueryTextChange(query: String): Boolean {
+					searchViewModel.updateSearchQuery(query)
 					return true
 				}
 			})
@@ -72,11 +79,13 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	}
 
 	override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+		searchResultsFragment.view?.visible = true
 		placeholderGroup.visible = false
 		return true
 	}
 
 	override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+		searchResultsFragment.view?.visible = false
 		placeholderGroup.visible = true
 		return true
 	}
