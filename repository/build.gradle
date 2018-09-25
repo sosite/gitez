@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+dependencies {
+	def rootExt = rootProject.ext
+	def componentDependencies = rootExt.coreComponent
+	def unitTestDependencies = rootExt.unitTesting
+
+	// Base
+	api project(':network')
+	api project(':persistence')
+	implementation project(':util')
+
+	// Android
+	implementation componentDependencies.annotations
+	implementation componentDependencies.lifecycle
+
+	// Reactive
+	implementation componentDependencies.rxJava
+	implementation componentDependencies.rxAndroid
+	implementation componentDependencies.rxKotlin
+
+	// Network
+	implementation componentDependencies.retrofit
+
+	// Other
+	implementation componentDependencies.dagger
+
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
+}
