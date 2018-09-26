@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.socros.android.app.gitez.contentsearch.R
+import com.socros.android.app.gitez.contentsearch.di.ContentSearchScope
+import com.socros.android.app.gitez.contentsearch.di.DaggerContentListFragmentComponent
 import com.socros.android.lib.androidcore.view.ACFragment
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.content_list_fragment.currentValueTxt

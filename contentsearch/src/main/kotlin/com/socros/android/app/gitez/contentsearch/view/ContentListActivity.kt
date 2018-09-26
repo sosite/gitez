@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import com.socros.android.app.gitez.base.view.BaseActivity
 import com.socros.android.app.gitez.contentsearch.R
+import com.socros.android.app.gitez.contentsearch.di.DaggerContentSearchActivityComponent
 import com.socros.android.lib.util.addFragment
 import com.socros.android.lib.util.visible
 import dagger.Lazy
@@ -39,7 +40,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	private var searchQuery: CharSequence? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		DaggerContentSearchComponent.builder().inject(this)
+		DaggerContentSearchActivityComponent.builder().inject(this)
 		super.onCreate(savedInstanceState)
 		setSupportActionBar(toolbar)
 		initView()
