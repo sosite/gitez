@@ -6,14 +6,23 @@ dependencies {
 	def componentDependencies = rootExt.coreComponent
 	def unitTestDependencies = rootExt.unitTesting
 
+	// Base
+	api project(':network')
+	api project(':persistence')
+	implementation project(':util')
+
+	// Android
+	implementation componentDependencies.roomRx
+
+	// Reactive
+	implementation componentDependencies.rxJava
+	implementation componentDependencies.rxAndroid
+	implementation componentDependencies.rxKotlin
+
 	// Network
 	implementation componentDependencies.retrofit
-	implementation componentDependencies.retrofitRx
-	implementation componentDependencies.retrofitJackson
-	implementation componentDependencies.okHttpLogger
 
 	// Other
-	implementation componentDependencies.ankoSdk21
 	implementation componentDependencies.dagger
 
 	// Unit/Integration tests

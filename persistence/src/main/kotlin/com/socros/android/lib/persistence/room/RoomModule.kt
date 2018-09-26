@@ -1,18 +1,10 @@
 package com.socros.android.lib.persistence.room
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import dagger.Provides
-import javax.inject.Singleton
 
-abstract class RoomModule<Db : RoomDatabase>(private val dbClass: Class<Db>, private val dbName: String) {
+interface RoomModule
 
-	@Singleton
-	@Provides
-	internal fun provideDb(context: Application): Db {
-		return Room.databaseBuilder(context.applicationContext, dbClass, dbName)
-				.build()
-	}
-
-}
+inline fun <reified Db : RoomDatabase> RoomModule.buildDb(context: Context, dbName: String) =
+		Room.databaseBuilder(context, Db::class.java, dbName).build()

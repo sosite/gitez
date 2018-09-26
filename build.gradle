@@ -1,13 +1,14 @@
 import java.text.SimpleDateFormat
 
 apply from: 'buildsystem/dependencies.gradle'
+apply from: 'buildsystem/moduleAutoConfiguration.gradle'
 
 buildscript {
 	ext {
 		versions = [
 				// Main
 				kotlin     : '1.2.70',
-				gradleTools: '3.2.0-rc03',
+				gradleTools: '3.2.0',
 				buildTools : '28.0.2']
 
 		sdk = [
@@ -82,4 +83,3 @@ static def getLastMasterGitTagVersion() {
 
 	return sprintf("%s.%s.%s", [versionMajor, versionMinor, versionPatch])
 }
-
