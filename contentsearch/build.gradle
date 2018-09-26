@@ -11,6 +11,7 @@ dependencies {
 
 	// Base
 	implementation project(':base')
+	implementation project(':repository')
 	implementation project(':androidcore')
 	implementation project(':tim')
 	implementation project(':util')
@@ -21,6 +22,9 @@ dependencies {
 	implementation appDependencies.constraintLayout
 	implementation appDependencies.lifecycle
 	kapt appDependencies.lifecycleProcessor
+	implementation appDependencies.roomRuntime
+	implementation appDependencies.roomRx
+	kapt appDependencies.roomProcessor
 
 	// Reactive
 	implementation appDependencies.rxJava
