@@ -1,0 +1,71 @@
+subprojects {
+	project.plugins.whenPluginAdded { plugin ->
+		if ('org.jetbrains.kotlin.android.extensions' == plugin.class.name) {
+			project.androidExtensions {
+				experimental = true
+				defaultCacheImplementation = 'SPARSE_ARRAY'
+			}
+		}
+	}
+
+	afterEvaluate {
+		if (it.hasProperty('android')) { // ensure that we has an android module
+			android {
+				def rootExt = rootProject.ext
+
+				compileSdkVersion rootExt.sdk.compile
+				buildToolsVersion rootExt.versions.buildTools
+
+				defaultConfig {
+					minSdkVersion rootExt.sdk.min
+					targetSdkVersion rootExt.sdk.target
+
+					versionCode generateVersionCode()
+					versionName generateVersionName()
+
+					testInstrumentationRunner rootExt.testRunner
+
+					// add schemaLocation to the modules that implements project(':repository')
+					def repositoryDependency = project.configurations.getByName('implementation').dependencies.find {
+						it.hasProperty('dependencyProject') && it.dependencyProject.toString() == "project ':repository'"
+					}
+					if (repositoryDependency != null) {
+						kapt.arguments {
+							arg("room.schemaLocation", "$rootProject.projectDir/schemas".toString())
+						}
+					}
+				}
+
+				buildTypes {
+					debug {
+						minifyEnabled false
+						useProguard false
+						shrinkResources false
+					}
+
+					release {
+						minifyEnabled false
+						useProguard false
+						shrinkResources false
+
+						files { rootProject.file('settings/proguard').listFiles() }.each {
+							proguardFile it
+						}
+					}
+				}
+
+				sourceSets {
+					androidTest.java.srcDirs += 'src/androidTest/kotlin'
+					main.java.srcDirs += 'src/main/kotlin'
+					test.java.srcDirs += 'src/test/kotlin'
+				}
+			}
+		}
+
+		dependencies {
+			// Add kotlin and included *.jar libraries
+			implementation fileTree(dir: 'libs', include: ['*.jar'])
+			implementation rootProject.ext.main.kotlin
+		}
+	}
+}

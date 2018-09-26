@@ -4,53 +4,18 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-	def rootExt = rootProject.ext
-
-	compileSdkVersion rootExt.sdk.compile
-	buildToolsVersion rootExt.versions.buildTools
-
 	defaultConfig {
-		minSdkVersion rootExt.sdk.min
-		targetSdkVersion rootExt.sdk.target
-
 		versionCode generateVersionCode()
 		versionName generateVersionName()
-
-		applicationId rootExt.applicationId
-		testInstrumentationRunner rootExt.testRunner
+		applicationId rootProject.ext.applicationId
 	}
 
 	buildTypes {
 		debug {
 			applicationIdSuffix '.debug'
 			versionNameSuffix '.debug'
-
-			minifyEnabled false
-			useProguard false
-			shrinkResources false
-		}
-
-		release {
-			minifyEnabled false
-			useProguard false
-			shrinkResources false
-
-			files { rootProject.file('settings/proguard').listFiles() }.each {
-				proguardFile it
-			}
 		}
 	}
-
-	sourceSets {
-		androidTest.java.srcDirs += 'src/androidTest/kotlin'
-		main.java.srcDirs += 'src/main/kotlin'
-		test.java.srcDirs += 'src/test/kotlin'
-	}
-}
-
-androidExtensions {
-	experimental = true
-	defaultCacheImplementation = 'SPARSE_ARRAY'
 }
 
 dependencies {
@@ -60,13 +25,11 @@ dependencies {
 	def acceptanceTestDependencies = rootExt.acceptanceTesting
 
 	// Base
-	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation project(':contentsearch')
 	implementation project(':base')
 	implementation project(':androidcore')
 	implementation project(':tim')
 	implementation project(':util')
-	implementation appDependencies.kotlin
 
 	// Android
 	implementation appDependencies.appCompat
