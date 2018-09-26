@@ -61,6 +61,10 @@ abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constru
 		initialize()
 	}
 
+	/**
+	 * A more advanced version of [Observable.distinctUntilChanged],
+	 * where we also corresponds to the [resetInProgress] flag and reset them
+	 */
 	@MainThread
 	private fun <T : Resource<ResultType?>> setValue(newValue: T) {
 		if (resetInProgress || subject.value != newValue) {
