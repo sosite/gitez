@@ -12,8 +12,7 @@ dependencies {
 	implementation project(':util')
 
 	// Android
-	implementation componentDependencies.annotations
-	implementation componentDependencies.lifecycle
+	implementation componentDependencies.roomRx
 
 	// Reactive
 	implementation componentDependencies.rxJava

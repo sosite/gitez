@@ -2,15 +2,15 @@ package com.socros.android.lib.repository
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
+import androidx.room.EmptyResultSetException
 import com.socros.android.lib.repository.Resource.LoadingInProgress
 import com.socros.android.lib.repository.Resource.NetworkError
 import com.socros.android.lib.repository.Resource.ServerError
 import com.socros.android.lib.repository.Resource.Success
-import com.socros.android.lib.util.toForeverObservable
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import retrofit2.HttpException
@@ -26,66 +26,86 @@ import java.io.IOException
 abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constructor() {
 
 	private val subject = BehaviorSubject.create<Resource<out ResultType?>>()
-	val result: Observable<Resource<out ResultType?>> = subject
+	val result: Observable<Resource<out ResultType?>> = subject.switchMap {
+		if (resetInProgress) Observable.never()
+		else Observable.just(it)
+	}
 
-	init {
-		@Suppress("LeakingThis")
-		val dbSource = loadFromDb().toForeverObservable()
+	private var compositeDisposable = CompositeDisposable()
+	private var resetInProgress = false
 
-		val disposable: Disposable = dbSource.share()
-				.map {
-					val data = it.data
-					if (data == null || shouldFetch(data)) {
-						// if doesn't have a proper data at all or should fetch new
-						fetchFromNetwork(data)
-						LoadingInProgress(data)
+	fun initialize() {
+		@Suppress("ConvertReferenceToLambda")
+		subject.doOnDispose(compositeDisposable::dispose)
 
-					} else Success(data)
+		loadFromDb()
+				.subscribeOn(Schedulers.io())
+				.subscribe { dbData: ResultType?, throwable: Throwable? ->
+					when {
+						shouldFetch(dbData) ->
+							fetchFromNetwork(dbData)
+
+						dbData != null || throwable is EmptyResultSetException ->
+							setValue(Success(dbData))
+
+						else -> throw throwable!!
+					}
 				}
-				.subscribe(subject::onNext)
+				.addTo(compositeDisposable)
+	}
 
-		subject.doOnDispose(disposable::dispose)
+	fun reset() {
+		resetInProgress = true
+		compositeDisposable.dispose()
+		compositeDisposable = CompositeDisposable()
+		initialize()
+	}
+
+	@MainThread
+	private fun <T : Resource<ResultType?>> setValue(newValue: T) {
+		if (resetInProgress || subject.value != newValue) {
+			// the same item will be emitted after reset to propagate the old value to the current observables
+			resetInProgress = false
+			subject.onNext(newValue)
+		}
 	}
 
 	private fun fetchFromNetwork(dbData: ResultType?) {
-		val disposable: Disposable = createCall()
-				.observeOn(Schedulers.io())
-				.doOnNext { saveCallResult(processResponse(it)) }
-				.map { true }
-				.observeOn(AndroidSchedulers.mainThread())
-				.onErrorReturn {
-					onFetchFailed()
-					when (it) {
-						is IOException -> subject.onNext(NetworkError(dbData))
-						is HttpException -> subject.onNext(ServerError(dbData))
-					}
-					false
-				}
-				.subscribe()
+		setValue(LoadingInProgress(dbData))
 
-		subject.doOnDispose(disposable::dispose)
+		createCall()
+				.observeOn(Schedulers.io())
+				.doOnSuccess { networkData -> saveCallResult(networkData) }
+				.flatMap { loadFromDb() }
+				.subscribe { newDbData: ResultType?, throwable: Throwable? ->
+					setValue(when {
+						throwable is IOException -> NetworkError(newDbData)
+						throwable is HttpException -> ServerError(newDbData)
+						newDbData != null || throwable is EmptyResultSetException -> Success(newDbData)
+
+						else -> throw throwable!!
+					})
+				}
+				.addTo(compositeDisposable)
 	}
 
 	/**
 	 * Called to get the cached data from the database.
 	 */
 	@MainThread
-	protected abstract fun loadFromDb(): LiveData<ResultType?>
+	protected abstract fun loadFromDb(): Single<ResultType>
 
 	/**
 	 * Called with the data in the database to decide whether to fetch potentially updated data from the network.
 	 */
 	@MainThread
-	abstract fun shouldFetch(data: ResultType): Boolean
+	abstract fun shouldFetch(data: ResultType?): Boolean
 
 	/**
 	 * Called to create the API call.
 	 */
 	@MainThread
-	protected abstract fun createCall(): Observable<RequestType>
-
-	@WorkerThread
-	protected open fun processResponse(response: RequestType) = response
+	protected abstract fun createCall(): Single<RequestType>
 
 	/**
 	 * Called to save the subject of the API response into the database.
