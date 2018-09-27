@@ -21,20 +21,22 @@ class ContentSearchResource @Inject constructor(
 	}
 
 	override fun loadFromDb(): Single<List<SearchItem>> {
-		return Single.zip(
+		return if (query.isBlank()) Single.just(emptyList())
+		else Single.zip(
 				contentSearchDao.searchUsers(query),
 				contentSearchDao.searchRepositories(query),
 				BiFunction { userList, repoList ->
 					ArrayList<SearchItem>(userList).apply {
 						addAll(repoList)
-						sortBy { it.id } // TODO zip sorted lists in a better way
+						sortBy { it.id } // TODO zip sorted lists in a more efficient way
 					}
 				})
 	}
 
 	override fun shouldFetch(data: List<SearchItem>?): Boolean {
-		// fetch data every time right now
-		return true
+		// fetch data every time when has a query to search
+		// TODO check if we really need to sync data from API based on last sync time
+		return query.isNotBlank()
 	}
 
 	override fun createCall(): Single<List<SearchItem>> {
