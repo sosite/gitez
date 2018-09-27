@@ -7,10 +7,11 @@ dependencies {
 	def unitTestDependencies = rootExt.unitTesting
 
 	// Network
+	implementation componentDependencies.jacksonModuleKotlin
+	implementation componentDependencies.okHttpLogger
 	implementation componentDependencies.retrofit
 	implementation componentDependencies.retrofitRx
 	implementation componentDependencies.retrofitJackson
-	implementation componentDependencies.okHttpLogger
 
 	// Other
 	implementation componentDependencies.ankoSdk21
