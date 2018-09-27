@@ -70,6 +70,8 @@ ext {
 			retrofitRx         : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
 			retrofitJackson    : "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
 			// Other
+			anko               : "org.jetbrains.anko:anko-commons:${versions.anko}",
+			ankoSdk21          : "org.jetbrains.anko:anko-sdk21:${versions.anko}",
 			autoFactory        : "com.google.auto.factory:auto-factory:${versions.autoFactory}",
 			dagger             : "com.google.dagger:dagger:${versions.dagger}",
 			daggerAndroid      : "com.google.dagger:dagger-android-support:${versions.dagger}",

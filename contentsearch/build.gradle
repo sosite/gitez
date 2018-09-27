@@ -37,6 +37,7 @@ dependencies {
 	implementation appDependencies.jacksonAnnotations
 
 	// Other
+	implementation appDependencies.ankoSdk21
 	implementation appDependencies.dagger
 	implementation appDependencies.daggerAndroid
 	kapt appDependencies.daggerProcessor

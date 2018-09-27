@@ -48,7 +48,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		super.onCreate(savedInstanceState)
 		setSupportActionBar(toolbar)
 		initView()
-		boundToSearchEvents()
+		bindToSearchStatus()
 		addFragment(R.id.searchResultFragmentContainer, contentListFragmentProvider)
 
 		savedInstanceState?.let {
@@ -77,7 +77,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		searchBtn.setOnClickListener { searchMenu.expandActionView() }
 	}
 
-	private fun boundToSearchEvents() {
+	private fun bindToSearchStatus() {
 		searchViewModel.searchResultsStatus.subscribe {
 			progressContainer.visible = it is InProgress
 		}.addTo(disposable)

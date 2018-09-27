@@ -5,4 +5,7 @@
 	<string name="contentSearch_searchBtn">@string/contentSearch_actionSearch</string>
 	<string name="contentSearch_octocat" translatable="false">Octocat</string>
 	<string name="contentSearch_placeholder">Octocat is sad because\nyou\'re not search anything :(</string>
+
+	<string name="contentSearch_empty">We didn\'t find anything for you :(</string>
+	<string name="contentSearch_serverError_details">Ups! Something goes wrong.\nYou probably reached query limit for unauthenticated requests per 1 minute.</string>
 </resources>

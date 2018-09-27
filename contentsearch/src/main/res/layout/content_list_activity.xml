@@ -5,6 +5,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/content"
 	style="@style/BaseMatch"
+	tools:context=".view.ContentListActivity"
 	android:focusableInTouchMode="true">
 
 	<androidx.appcompat.widget.Toolbar
