@@ -80,7 +80,7 @@
 	<TextView
 		android:id="@+id/languageTxt"
 		style="@style/Text.Secondary"
-		android:drawableEnd="@drawable/ic_language_blueGray200_14dp"
+		android:drawableEnd="@drawable/ic_language_blue_gray200_14dp"
 		android:drawablePadding="6dp"
 		app:layout_constraintBaseline_toBaselineOf="@id/repoNameTxt"
 		android:gravity="center_vertical"
@@ -94,7 +94,7 @@
 		android:id="@+id/starCountTxt"
 		style="@style/Text.Secondary"
 		android:layout_marginTop="4dp"
-		android:drawableEnd="@drawable/ic_star_blueGray200_18dp"
+		android:drawableEnd="@drawable/ic_star_blue_gray200_18dp"
 		android:drawablePadding="4dp"
 		android:gravity="center_vertical"
 		android:textSize="@dimen/text_caption"
