@@ -1,2 +1,9 @@
 <resources>
+	<string name="networkError_header">Network problem</string>
+	<string name="networkError_details">Please check your network connection</string>
+	<string name="networkError_btn">Try again…</string>
+
+	<string name="serverError_header">Internal server error</string>
+	<string name="serverError_details">Ups! Something goes wrong</string>
+	<string name="serverError_btn">Try again…</string>
 </resources>
