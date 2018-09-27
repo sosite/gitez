@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.socros.android.app.gitez.contentsearch.R
+import com.socros.android.app.gitez.contentsearch.data.RepositoryItem
+import com.socros.android.app.gitez.contentsearch.data.UserItem
 import com.socros.android.app.gitez.contentsearch.di.ContentSearchScope
 import com.socros.android.app.gitez.contentsearch.di.DaggerContentListFragmentComponent
 import com.socros.android.lib.androidcore.view.ACFragment
@@ -26,8 +28,18 @@ class ContentListFragment : ACFragment() {
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		disposable = searchViewModel.searchResults.subscribe {
-			currentValueTxt.text = it
+		disposable = searchViewModel.searchResults.subscribe { itemsList ->
+			var data = ""
+			itemsList.forEach {
+				data += "#${it.id}, "
+				data += when (it) {
+					is UserItem -> "User " + it.login
+					is RepositoryItem -> "Repo " + it.fullName
+					else -> "Id " + it.id
+				}
+				data += '\n'
+			}
+			currentValueTxt.text = data
 		}
 	}
 

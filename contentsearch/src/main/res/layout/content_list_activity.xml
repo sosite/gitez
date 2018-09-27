@@ -14,6 +14,24 @@
 		app:layout_constraintTop_toTopOf="parent"
 		tools:title="Gitez" />
 
+	<FrameLayout
+		android:id="@+id/progressContainer"
+		android:layout_width="match_parent"
+		android:layout_height="3dp"
+		android:visibility="gone"
+		app:layout_constraintBottom_toBottomOf="@id/toolbar"
+		tools:ignore="UnusedAttribute"
+		tools:visibility="visible">
+
+		<ProgressBar
+			android:id="@+id/progress"
+			style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="16dp"
+			android:layout_gravity="center_vertical"
+			android:indeterminate="true" />
+	</FrameLayout>
+
 	<androidx.constraintlayout.widget.Group
 		android:id="@+id/placeholderGroup"
 		style="@style/BaseNoDimens"

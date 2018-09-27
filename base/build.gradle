@@ -25,7 +25,7 @@ dependencies {
 
 	// Base
 	implementation project(':androidcore')
-	implementation project(':network')
+	implementation project(':repository')
 	implementation project(':tim')
 	implementation project(':util')
 
