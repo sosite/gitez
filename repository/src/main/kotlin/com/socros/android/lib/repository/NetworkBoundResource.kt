@@ -25,8 +25,8 @@ import java.io.IOException
  */
 abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constructor() {
 
-	private val subject = BehaviorSubject.create<Resource<out ResultType?>>()
-	val result: Observable<Resource<out ResultType?>> = subject.switchMap {
+	private val subject = BehaviorSubject.create<Resource<ResultType?>>()
+	val result: Observable<Resource<ResultType?>> = subject.switchMap {
 		if (resetInProgress) Observable.never()
 		else Observable.just(it)
 	}

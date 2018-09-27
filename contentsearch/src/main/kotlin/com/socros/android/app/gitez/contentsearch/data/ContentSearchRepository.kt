@@ -12,7 +12,7 @@ class ContentSearchRepository @Inject constructor() {
 	@Inject
 	internal lateinit var contentSearchResource: Lazy<ContentSearchResource>
 
-	fun searchContent(query: String): Observable<Resource<out List<SearchItem>?>> {
+	fun searchContent(query: String): Observable<Resource<List<SearchItem>?>> {
 		return contentSearchResource.get().run {
 			updateQuery(query)
 			result
