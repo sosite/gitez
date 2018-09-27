@@ -11,8 +11,9 @@ dependencies {
 
 	// Base
 	implementation project(':base')
-	implementation project(':repository')
 	implementation project(':androidcore')
+	implementation project(':repository')
+	implementation project(':network')
 	implementation project(':tim')
 	implementation project(':util')
 
@@ -30,6 +31,10 @@ dependencies {
 	implementation appDependencies.rxJava
 	implementation appDependencies.rxAndroid
 	implementation appDependencies.rxKotlin
+
+	// Network
+	implementation appDependencies.retrofit
+	implementation appDependencies.jacksonAnnotations
 
 	// Other
 	implementation appDependencies.dagger

@@ -35,7 +35,9 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 						}
 						data += '\n'
 					}
-					searchResultsSubject.onNext("" + ++i + "\n" + data)
+					searchResultsSubject.onNext("${it::class.java.simpleName}\n" +
+							"refresh: ${++i}\n" +
+							data)
 				}
 	}
 
