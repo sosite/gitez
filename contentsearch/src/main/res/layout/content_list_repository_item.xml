@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/BaseMatchHorizontal"
+	android:background="?android:selectableItemBackground"
+	android:minHeight="72dp"
+	tools:context=".view.ContentListActivity">
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@id/guidelineEnd"
+		style="@style/BaseNoDimens"
+		android:orientation="vertical"
+		app:layout_constraintGuide_end="@dimen/activityMargin_horizontal" />
+
+	<ImageView
+		android:id="@+id/codeImg"
+		style="@style/BaseWrap"
+		android:layout_marginBottom="16dp"
+		android:layout_marginStart="@dimen/activityMargin_horizontal"
+		android:layout_marginTop="16dp"
+		android:background="@drawable/item_img_placeholder"
+		android:contentDescription="@string/searchItem_repositoryImgDescription"
+		android:scaleType="center"
+		android:src="@drawable/ic_code_on_dark_24dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0" />
+
+	<TextView
+		android:id="@+id/repoNameTxt"
+		style="@style/Text.Medium"
+		android:layout_width="0dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginStart="16dp"
+		android:ellipsize="end"
+		android:lines="1"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="@dimen/text_subhead"
+		app:layout_constraintBottom_toTopOf="@id/descriptionTxt"
+		app:layout_constraintEnd_toStartOf="@id/detailsBarrier"
+		app:layout_constraintStart_toEndOf="@id/codeImg"
+		app:layout_constraintTop_toTopOf="@id/codeImg"
+		app:layout_constraintVertical_chainStyle="packed"
+		tools:text="sosite/gitez" />
+
+	<TextView
+		android:id="@+id/descriptionTxt"
+		style="@style/Text.Secondary"
+		android:layout_width="0dp"
+		android:layout_marginEnd="16dp"
+		android:ellipsize="end"
+		android:maxLines="2"
+		android:textSize="@dimen/text_caption"
+		app:layout_constraintBottom_toTopOf="@id/userIdTxt"
+		app:layout_constraintEnd_toStartOf="@id/detailsBarrier"
+		app:layout_constraintStart_toStartOf="@id/repoNameTxt"
+		app:layout_constraintTop_toBottomOf="@id/repoNameTxt"
+		tools:text="@tools:sample/lorem"
+		tools:visibility="visible" />
+
+	<TextView
+		android:id="@+id/userIdTxt"
+		style="@style/Text.Secondary"
+		android:layout_marginBottom="16dp"
+		android:textSize="@dimen/text_caption"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="@id/repoNameTxt"
+		app:layout_constraintTop_toBottomOf="@id/descriptionTxt"
+		tools:text="#147568743" />
+
+	<androidx.constraintlayout.widget.Barrier
+		android:id="@+id/detailsBarrier"
+		style="@style/BaseNoDimens"
+		app:barrierDirection="start"
+		app:constraint_referenced_ids="languageTxt, starCountTxt" />
+
+	<TextView
+		android:id="@+id/languageTxt"
+		style="@style/Text.Secondary"
+		android:drawableEnd="@drawable/ic_language_blueGray200_14dp"
+		android:drawablePadding="6dp"
+		app:layout_constraintBaseline_toBaselineOf="@id/repoNameTxt"
+		android:gravity="center_vertical"
+		android:paddingEnd="2dp"
+		android:textSize="@dimen/text_caption"
+		app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+		tools:ignore="RtlSymmetry"
+		tools:text="@tools:sample/cities" />
+
+	<TextView
+		android:id="@+id/starCountTxt"
+		style="@style/Text.Secondary"
+		android:layout_marginTop="4dp"
+		android:drawableEnd="@drawable/ic_star_blueGray200_18dp"
+		android:drawablePadding="4dp"
+		android:gravity="center_vertical"
+		android:textSize="@dimen/text_caption"
+		app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+		app:layout_constraintTop_toBottomOf="@id/languageTxt"
+		tools:text="654" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
