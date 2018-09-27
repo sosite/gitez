@@ -27,4 +27,9 @@
 		<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
 	</style>
 
+	<style name="Text.Title" parent="Text.Primary">
+		<item name="android:fontFamily">@font/museo_700</item>
+		<item name="android:textSize">@dimen/text_title</item>
+	</style>
+
 </resources>
