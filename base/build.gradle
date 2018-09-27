@@ -7,10 +7,12 @@ android {
 	buildTypes {
 		debug {
 			resValue 'string', 'appName', 'Gitez dev'
+			buildConfigField 'String', 'URL_API', '"https://api.github.com/"'
 		}
 
 		release {
 			resValue 'string', 'appName', 'Gitez'
+			buildConfigField 'String', 'URL_API', '"https://api.github.com/"'
 		}
 	}
 }
@@ -23,8 +25,16 @@ dependencies {
 
 	// Base
 	implementation project(':androidcore')
+	implementation project(':network')
 	implementation project(':tim')
 	implementation project(':util')
+
+	// Network
+	implementation appDependencies.jacksonModuleKotlin
+	implementation appDependencies.okHttpLogger
+	implementation appDependencies.retrofit
+	implementation appDependencies.retrofitRx
+	implementation appDependencies.retrofitJackson
 
 	// Other
 	implementation appDependencies.dagger
