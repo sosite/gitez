@@ -2,11 +2,11 @@ package com.socros.android.lib.repository
 
 import java.util.Objects
 
-sealed class Resource<T>(val data: T) {
-	class LoadingInProgress<T> internal constructor(data: T?) : Resource<T?>(data)
-	class Success<T> internal constructor(data: T?) : Resource<T?>(data)
-	class NetworkError<T> internal constructor(data: T?) : Resource<T?>(data)
-	class ServerError<T> internal constructor(data: T?) : Resource<T?>(data)
+sealed class Resource<out T>(val data: T?) {
+	class LoadingInProgress<out T> internal constructor(data: T?) : Resource<T>(data)
+	class Success<out T> internal constructor(data: T?) : Resource<T>(data)
+	class NetworkError<out T> internal constructor(data: T?) : Resource<T>(data)
+	class ServerError<out T> internal constructor(data: T?) : Resource<T>(data)
 
 	override fun equals(other: Any?): Boolean {
 		return super.equals(other)

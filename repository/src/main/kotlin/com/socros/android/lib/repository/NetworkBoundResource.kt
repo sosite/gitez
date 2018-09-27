@@ -74,22 +74,28 @@ abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constru
 		}
 	}
 
-	private fun fetchFromNetwork(dbData: ResultType?) {
-		setValue(LoadingInProgress(dbData))
+	private fun fetchFromNetwork(oldDbData: ResultType?) {
+		setValue(LoadingInProgress(oldDbData))
 
 		createCall()
 				.observeOn(Schedulers.io())
 				.doOnSuccess { networkData -> saveCallResult(networkData) }
-				.flatMap { loadFromDb() }
-				.subscribe { newDbData: ResultType?, throwable: Throwable? ->
-					setValue(when {
-						throwable is IOException -> NetworkError(newDbData)
-						throwable is HttpException -> ServerError(newDbData)
-						newDbData != null || throwable is EmptyResultSetException -> Success(newDbData)
-
-						else -> throw throwable!!
-					})
+				.flatMap {
+					loadFromDb().map { newDbData ->
+						Success(newDbData) as Resource<ResultType>
+					}
 				}
+				.onErrorResumeNext { throwable ->
+					loadFromDb().map { newDbData ->
+						when (throwable) {
+							is EmptyResultSetException -> Success(newDbData) // if db data is empty
+							is IOException -> NetworkError(newDbData)
+							is HttpException -> ServerError(newDbData)
+							else -> throw throwable
+						}
+					}
+				}
+				.subscribe(::setValue)
 				.addTo(compositeDisposable)
 	}
 
