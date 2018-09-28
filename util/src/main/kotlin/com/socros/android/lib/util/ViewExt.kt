@@ -1,8 +1,12 @@
 package com.socros.android.lib.util
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewStub
 import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
 
 /* MAIN UTILS */
 
@@ -51,4 +55,15 @@ tailrec fun View?.traverseUpToFindParent(predicate: View.() -> Boolean): View? {
 fun View?.traverseUpToFindParentOrThrow(predicate: View.() -> Boolean): View {
 	return this?.traverseUpToFindParent(predicate)
 			?: throw IllegalArgumentException("Can't find parent with specified predicate!")
+}
+
+
+/* INFLATING */
+
+fun Context.inflate(@LayoutRes layoutRes: Int, root: ViewGroup? = null, attachToRoot: Boolean = false): View {
+	return LayoutInflater.from(this).inflate(layoutRes, root, attachToRoot)
+}
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
+	return context.inflate(layoutRes, this, attachToRoot)
 }
