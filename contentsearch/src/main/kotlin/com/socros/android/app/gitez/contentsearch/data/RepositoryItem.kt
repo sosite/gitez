@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @Entity(tableName = "repositories")
 data class RepositoryItem(
 		@PrimaryKey override val id: Long,
+		val name: String,
 		@JsonProperty("full_name") val fullName: String,
 		val description: String?,
 		val language: String?,
