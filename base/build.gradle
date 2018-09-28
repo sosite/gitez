@@ -30,11 +30,13 @@ dependencies {
 	implementation project(':util')
 
 	// Network
-	implementation appDependencies.jacksonModuleKotlin
-	implementation appDependencies.okHttpLogger
 	implementation appDependencies.retrofit
 	implementation appDependencies.retrofitRx
 	implementation appDependencies.retrofitJackson
+	implementation appDependencies.jacksonModuleKotlin
+	implementation appDependencies.okHttpLogger
+	implementation appDependencies.glide
+	kapt appDependencies.glideProcessor
 
 	// Other
 	implementation appDependencies.dagger

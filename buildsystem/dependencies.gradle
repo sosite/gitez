@@ -28,6 +28,7 @@ ext {
 			// Network
 			retrofit        : '2.4.0',
 			okHttp          : '3.11.0',
+			glide           : '4.8.0',
 
 			// Other
 			anko            : '0.10.6',
@@ -71,12 +72,14 @@ ext {
 			rxBindingCompatKtx : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:${versions.rxBinding}",
 			autoDispose        : "com.uber.autodispose:autodispose-android-archcomponents-ktx:${versions.autoDispose}",
 			// Network
-			jacksonAnnotations : "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
-			jacksonModuleKotlin: "com.fasterxml.jackson.module:jackson-module-kotlin:${versions.jackson}",
-			okHttpLogger       : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
 			retrofit           : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
 			retrofitRx         : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
 			retrofitJackson    : "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
+			jacksonAnnotations : "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
+			jacksonModuleKotlin: "com.fasterxml.jackson.module:jackson-module-kotlin:${versions.jackson}",
+			okHttpLogger       : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
+			glide              : "com.github.bumptech.glide:glide:${versions.glide}",
+			glideProcessor     : "com.github.bumptech.glide:compiler:${versions.glide}",
 			// Other
 			anko               : "org.jetbrains.anko:anko-commons:${versions.anko}",
 			ankoSdk21          : "org.jetbrains.anko:anko-sdk21:${versions.anko}",
@@ -107,12 +110,14 @@ ext {
 			rxBindingCompatKtx : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:${versions.rxBinding}",
 			autoDispose        : "com.uber.autodispose:autodispose-android-archcomponents-ktx:${versions.autoDispose}",
 			// Network
-			jacksonAnnotations : "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
-			jacksonModuleKotlin: "com.fasterxml.jackson.module:jackson-module-kotlin:${versions.jackson}",
-			okHttpLogger       : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
 			retrofit           : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
 			retrofitRx         : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
 			retrofitJackson    : "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
+			jacksonAnnotations : "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
+			jacksonModuleKotlin: "com.fasterxml.jackson.module:jackson-module-kotlin:${versions.jackson}",
+			okHttpLogger       : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
+			glide              : "com.github.bumptech.glide:glide:${versions.glide}",
+			glideProcessor     : "com.github.bumptech.glide:compiler:${versions.glide}",
 			// Other
 			anko               : "org.jetbrains.anko:anko-commons:${versions.anko}",
 			ankoSdk21          : "org.jetbrains.anko:anko-sdk21:${versions.anko}",

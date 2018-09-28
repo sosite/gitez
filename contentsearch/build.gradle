@@ -37,6 +37,7 @@ dependencies {
 	// Network
 	implementation appDependencies.retrofit
 	implementation appDependencies.jacksonAnnotations
+	implementation appDependencies.glide
 
 	// Other
 	implementation appDependencies.ankoSdk21
