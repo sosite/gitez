@@ -25,6 +25,7 @@ dependencies {
 	implementation componentDependencies.rxJava
 	implementation componentDependencies.rxAndroid
 	implementation componentDependencies.rxKotlin
+	implementation componentDependencies.rxBindingKtx
 
 	// Other
 	implementation componentDependencies.dagger
