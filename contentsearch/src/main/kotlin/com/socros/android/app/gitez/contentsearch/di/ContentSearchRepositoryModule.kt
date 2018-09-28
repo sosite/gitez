@@ -17,7 +17,8 @@ class ContentSearchRepositoryModule : RoomModule {
 
 	@ContentSearchScope
 	@Provides
-	internal fun provideDb(@AppContext context: Context): ContentSearchDatabase = buildDb(context, "ContentSearch.db")
+	internal fun provideDb(@AppContext context: Context): ContentSearchDatabase =
+			buildDb(context, "ContentSearch.db") { fallbackToDestructiveMigration() }
 
 	@ContentSearchScope
 	@Provides
