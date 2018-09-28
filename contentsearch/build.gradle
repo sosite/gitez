@@ -12,22 +12,35 @@ dependencies {
 	// Base
 	implementation project(':base')
 	implementation project(':androidcore')
+	implementation project(':repository')
+	implementation project(':network')
 	implementation project(':tim')
 	implementation project(':util')
 
 	// Android
 	implementation appDependencies.appCompat
 	implementation appDependencies.coreKtx
-	implementation appDependencies.constraintLayout
 	implementation appDependencies.lifecycle
 	kapt appDependencies.lifecycleProcessor
+	implementation appDependencies.roomRuntime
+	implementation appDependencies.roomRx
+	kapt appDependencies.roomProcessor
+	implementation appDependencies.constraintLayout
+	implementation appDependencies.recyclerView
 
 	// Reactive
 	implementation appDependencies.rxJava
 	implementation appDependencies.rxAndroid
 	implementation appDependencies.rxKotlin
+//	implementation appDependencies.rxBindingKtx
+
+	// Network
+	implementation appDependencies.retrofit
+	implementation appDependencies.jacksonAnnotations
+	implementation appDependencies.glide
 
 	// Other
+	implementation appDependencies.ankoSdk21
 	implementation appDependencies.dagger
 	implementation appDependencies.daggerAndroid
 	kapt appDependencies.daggerProcessor

@@ -1,6 +1,5 @@
 package com.socros.android.app.gitez.contentsearch.view
 
-import android.animation.LayoutTransition
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,12 +7,16 @@ import android.view.MenuItem.OnActionExpandListener
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import com.socros.android.app.gitez.base.view.BaseActivity
+import com.socros.android.app.gitez.base.view.DataStatus.InProgress
 import com.socros.android.app.gitez.contentsearch.R
+import com.socros.android.app.gitez.contentsearch.di.DaggerContentSearchActivityComponent
 import com.socros.android.lib.util.addFragment
 import com.socros.android.lib.util.visible
 import dagger.Lazy
-import kotlinx.android.synthetic.main.content_list_activity.content
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.content_list_activity.placeholderGroup
+import kotlinx.android.synthetic.main.content_list_activity.progressContainer
 import kotlinx.android.synthetic.main.content_list_activity.searchBtn
 import kotlinx.android.synthetic.main.content_list_activity.searchResultFragmentContainer
 import kotlinx.android.synthetic.main.content_list_activity.toolbar
@@ -33,16 +36,19 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	@Inject
 	lateinit var contentListFragmentProvider: Lazy<ContentListFragment>
 
+	private val disposable = CompositeDisposable()
+
 	private lateinit var searchMenu: MenuItem
 	private lateinit var searchView: SearchView
 
 	private var searchQuery: CharSequence? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		DaggerContentSearchComponent.builder().inject(this)
+		DaggerContentSearchActivityComponent.builder().inject(this)
 		super.onCreate(savedInstanceState)
 		setSupportActionBar(toolbar)
 		initView()
+		bindToSearchStatus()
 		addFragment(R.id.searchResultFragmentContainer, contentListFragmentProvider)
 
 		savedInstanceState?.let {
@@ -55,6 +61,11 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		super.onSaveInstanceState(outState)
 	}
 
+	override fun onDestroy() {
+		disposable.dispose()
+		super.onDestroy()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.contentsearch, menu)
 		searchMenu = menu.findItem(R.id.actionSearch)
@@ -63,14 +74,13 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	}
 
 	private fun initView() {
-		// enable fade out animations
-		content.layoutTransition = LayoutTransition().apply {
-			disableTransitionType(LayoutTransition.CHANGE_APPEARING)
-			disableTransitionType(LayoutTransition.CHANGE_DISAPPEARING)
-			disableTransitionType(LayoutTransition.APPEARING)
-		}
-
 		searchBtn.setOnClickListener { searchMenu.expandActionView() }
+	}
+
+	private fun bindToSearchStatus() {
+		searchViewModel.searchResultsStatus.subscribe {
+			progressContainer.visible = it is InProgress
+		}.addTo(disposable)
 	}
 
 	private fun initSearchView() {

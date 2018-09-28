@@ -25,8 +25,8 @@ import java.io.IOException
  */
 abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constructor() {
 
-	private val subject = BehaviorSubject.create<Resource<out ResultType?>>()
-	val result: Observable<Resource<out ResultType?>> = subject.switchMap {
+	private val subject = BehaviorSubject.create<Resource<ResultType?>>()
+	val result: Observable<Resource<ResultType?>> = subject.switchMap {
 		if (resetInProgress) Observable.never()
 		else Observable.just(it)
 	}
@@ -61,6 +61,10 @@ abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constru
 		initialize()
 	}
 
+	/**
+	 * A more advanced version of [Observable.distinctUntilChanged],
+	 * where we also corresponds to the [resetInProgress] flag and reset them
+	 */
 	@MainThread
 	private fun <T : Resource<ResultType?>> setValue(newValue: T) {
 		if (resetInProgress || subject.value != newValue) {
@@ -70,22 +74,28 @@ abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constru
 		}
 	}
 
-	private fun fetchFromNetwork(dbData: ResultType?) {
-		setValue(LoadingInProgress(dbData))
+	private fun fetchFromNetwork(oldDbData: ResultType?) {
+		setValue(LoadingInProgress(oldDbData))
 
 		createCall()
 				.observeOn(Schedulers.io())
 				.doOnSuccess { networkData -> saveCallResult(networkData) }
-				.flatMap { loadFromDb() }
-				.subscribe { newDbData: ResultType?, throwable: Throwable? ->
-					setValue(when {
-						throwable is IOException -> NetworkError(newDbData)
-						throwable is HttpException -> ServerError(newDbData)
-						newDbData != null || throwable is EmptyResultSetException -> Success(newDbData)
-
-						else -> throw throwable!!
-					})
+				.flatMap {
+					loadFromDb().map { newDbData ->
+						Success(newDbData) as Resource<ResultType>
+					}
 				}
+				.onErrorResumeNext { throwable ->
+					loadFromDb().map { newDbData ->
+						when (throwable) {
+							is EmptyResultSetException -> Success(newDbData) // if db data is empty
+							is IOException -> NetworkError(newDbData)
+							is HttpException -> ServerError(newDbData)
+							else -> throw throwable
+						}
+					}
+				}
+				.subscribe(::setValue)
 				.addTo(compositeDisposable)
 	}
 
