@@ -3,23 +3,23 @@ package com.socros.android.app.gitez.contentsearch.view
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.socros.android.app.gitez.base.view.DataStatus
 import com.socros.android.app.gitez.base.view.DataStatus.Success
 import com.socros.android.app.gitez.contentsearch.R
-import com.socros.android.app.gitez.contentsearch.data.RepositoryItem
-import com.socros.android.app.gitez.contentsearch.data.UserItem
 import com.socros.android.app.gitez.contentsearch.di.ContentSearchScope
 import com.socros.android.app.gitez.contentsearch.di.DaggerContentListFragmentComponent
+import com.socros.android.app.gitez.contentsearch.view.adapter.ContentListAdapter
 import com.socros.android.lib.androidcore.view.ACFragment
 import com.socros.android.lib.util.visible
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import kotlinx.android.synthetic.main.content_list_fragment.currentValueTxt
 import kotlinx.android.synthetic.main.content_list_fragment.emptyPlaceholderTxt
 import kotlinx.android.synthetic.main.content_list_fragment.errorBtn
 import kotlinx.android.synthetic.main.content_list_fragment.errorContainer
 import kotlinx.android.synthetic.main.content_list_fragment.errorDetailsTxt
 import kotlinx.android.synthetic.main.content_list_fragment.errorHeaderTxt
+import kotlinx.android.synthetic.main.content_list_fragment.recyclerView
 import org.jetbrains.anko.textResource
 import org.jetbrains.anko.toast
 import javax.inject.Inject
@@ -31,6 +31,10 @@ class ContentListFragment : ACFragment() {
 
 	@Inject
 	lateinit var searchViewModel: ContentSearchViewModel
+
+	@Inject
+	lateinit var adapter: ContentListAdapter
+
 	private val disposable = CompositeDisposable()
 
 	override fun onAttach(context: Context) {
@@ -39,8 +43,10 @@ class ContentListFragment : ACFragment() {
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		initRecyclerView()
 		bindToSearchResults()
 		bindToSearchStatus()
+		bindToRecyclerClickListener()
 		errorBtn.setOnClickListener { searchViewModel.refreshResults() }
 	}
 
@@ -49,21 +55,15 @@ class ContentListFragment : ACFragment() {
 		super.onDestroyView()
 	}
 
-	private fun bindToSearchResults() {
-		searchViewModel.searchResults.subscribe { itemsList ->
-			var data = ""
-			itemsList.forEach {
-				data += "#${it.id}, "
-				data += when (it) {
-					is UserItem -> "User " + it.login
-					is RepositoryItem -> "Repo " + it.fullName
-					else -> "Id " + it.id
-				}
-				data += '\n'
-			}
-			currentValueTxt.text = data
+	private fun initRecyclerView() {
+		recyclerView.let {
+			it.layoutManager = LinearLayoutManager(context)
+			it.adapter = adapter
+		}
+	}
 
-		}.addTo(disposable)
+	private fun bindToSearchResults() {
+		adapter.subscribe().addTo(disposable)
 	}
 
 	private fun bindToSearchStatus() {
@@ -86,6 +86,12 @@ class ContentListFragment : ACFragment() {
 				}
 			}
 
+		}.addTo(disposable)
+	}
+
+	private fun bindToRecyclerClickListener() {
+		adapter.itemClicks.subscribe {
+			context?.toast("#${it.id} ${it::class.java.simpleName}")
 		}.addTo(disposable)
 	}
 

@@ -6,10 +6,10 @@
 	style="@style/BaseMatch"
 	tools:context=".view.ContentListActivity">
 
-	<TextView
-		android:id="@+id/currentValueTxt"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" />
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@id/recyclerView"
+		style="@style/BaseMatch"
+		tools:listitem="@layout/content_list_repository_item" />
 
 	<TextView
 		android:id="@+id/emptyPlaceholderTxt"
@@ -22,7 +22,7 @@
 		android:id="@+id/errorContainer"
 		style="@style/BaseMatch"
 		android:visibility="gone"
-		tools:visibility="visible">
+		tools:visibility="gone">
 
 		<TextView
 			android:id="@+id/errorHeaderTxt"

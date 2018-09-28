@@ -20,17 +20,19 @@ dependencies {
 	// Android
 	implementation appDependencies.appCompat
 	implementation appDependencies.coreKtx
-	implementation appDependencies.constraintLayout
 	implementation appDependencies.lifecycle
 	kapt appDependencies.lifecycleProcessor
 	implementation appDependencies.roomRuntime
 	implementation appDependencies.roomRx
 	kapt appDependencies.roomProcessor
+	implementation appDependencies.constraintLayout
+	implementation appDependencies.recyclerView
 
 	// Reactive
 	implementation appDependencies.rxJava
 	implementation appDependencies.rxAndroid
 	implementation appDependencies.rxKotlin
+//	implementation appDependencies.rxBindingKtx
 
 	// Network
 	implementation appDependencies.retrofit
