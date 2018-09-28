@@ -11,6 +11,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Scope
 
+
 @Scope
 @Retention
 annotation class ContentSearchScope
@@ -26,7 +27,8 @@ interface ContentSearchActivityComponent : AppModuleInjector<ContentListActivity
 
 @ContentSearchScope
 @Component(
-		modules = [ContentSearchFragmentModule::class, ContentSearchModule::class, AppModule::class],
+		modules = [ContentSearchFragmentModule::class, ContentSearchModule::class,
+			ContentListAdapterModule::class, AppModule::class],
 		dependencies = [AppModuleSubComponent::class])
 interface ContentListFragmentComponent : AppModuleInjector<ContentListFragment> {
 	@Component.Builder
