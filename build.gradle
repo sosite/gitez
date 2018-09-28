@@ -7,7 +7,7 @@ buildscript {
 	ext {
 		versions = [
 				// Main
-				kotlin     : '1.2.70',
+				kotlin     : '1.2.71',
 				gradleTools: '3.2.0',
 				buildTools : '28.0.2']
 
