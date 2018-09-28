@@ -4,6 +4,7 @@ import android.content.Context
 import com.socros.android.app.gitez.base.di.GithubApiModule
 import com.socros.android.app.gitez.contentsearch.data.local.ContentSearchDatabase
 import com.socros.android.app.gitez.contentsearch.data.remote.ContentSearchApi
+import com.socros.android.lib.androidcore.di.AppContext
 import com.socros.android.lib.network.api.create
 import com.socros.android.lib.persistence.room.RoomModule
 import com.socros.android.lib.persistence.room.buildDb
@@ -16,7 +17,7 @@ class ContentSearchRepositoryModule : RoomModule {
 
 	@ContentSearchScope
 	@Provides
-	internal fun provideDb(context: Context): ContentSearchDatabase = buildDb(context, "ContentSearch.db")
+	internal fun provideDb(@AppContext context: Context): ContentSearchDatabase = buildDb(context, "ContentSearch.db")
 
 	@ContentSearchScope
 	@Provides
