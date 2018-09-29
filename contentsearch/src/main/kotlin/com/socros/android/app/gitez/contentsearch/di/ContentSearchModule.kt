@@ -20,6 +20,6 @@ class ContentSearchModule {
 			ContentSearchViewModel(contentSearchRepository)
 
 	@Provides
-	internal fun createContentSearchViewModel(target: ContentListActivity, factory: ViewModelFactory) =
-			factory.create<ContentSearchViewModel>(target)
+	internal fun createContentSearchViewModel(target: ContentListActivity, factory: ViewModelFactory)
+			: ContentSearchViewModel = factory.create(target)
 }
