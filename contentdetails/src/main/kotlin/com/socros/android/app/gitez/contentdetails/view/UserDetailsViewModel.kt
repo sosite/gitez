@@ -25,24 +25,26 @@ class UserDetailsViewModel @Inject constructor(private val contentDetailsReposit
 	private var disposable: Disposable? = null
 
 	fun initUserDetails(username: String) {
-		disposable?.dispose()
-		disposable = contentDetailsRepository.getUser(username)
-				.composeAsync()
-				.subscribe { result ->
-					result.data?.let { detailsResultsSubject.onNext(it) }
+		if (!detailsResultsSubject.hasValue()) {
+			disposable?.dispose()
+			disposable = contentDetailsRepository.getUser(username)
+					.composeAsync()
+					.subscribe { result ->
+						result.data?.let { detailsResultsSubject.onNext(it) }
 
-					val hasData = result.data != null
-					searchResultsStatusSubject.onNext(
-							if (result is Resource.ServerError) {
-								ServerError(hasData, detailsStringRes = R.string.userDetails_serverError_details)
+						val hasData = result.data != null
+						searchResultsStatusSubject.onNext(
+								if (result is Resource.ServerError) {
+									ServerError(hasData, detailsStringRes = R.string.userDetails_serverError_details)
 
-							} else DataStatus.fromRepositoryResource(result, hasData)
-					)
-				}
+								} else DataStatus.fromRepositoryResource(result, hasData)
+						)
+					}
+		}
 	}
 
 	override fun onCleared() {
-		disposable?.dispose()
+		disposable!!.dispose()
 	}
 
 }

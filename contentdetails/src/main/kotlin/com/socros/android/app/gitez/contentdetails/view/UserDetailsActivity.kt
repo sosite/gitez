@@ -64,9 +64,7 @@ class UserDetailsActivity : BaseActivity() {
 		bindToDetailsResults()
 		bindToDetailsStatus()
 
-		if (firstTimeCreated(savedInstanceState)) {
-			detailsViewModel.initUserDetails(username)
-		}
+		detailsViewModel.initUserDetails(username)
 	}
 
 	override fun onDestroy() {
