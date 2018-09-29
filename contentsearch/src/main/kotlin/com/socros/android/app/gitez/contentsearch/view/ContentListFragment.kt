@@ -6,9 +6,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.socros.android.app.gitez.base.view.DataStatus
 import com.socros.android.app.gitez.base.view.DataStatus.Success
+import com.socros.android.app.gitez.contentdetails.view.UserDetailsActivity
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.app.gitez.contentsearch.data.RepositoryItem
-import com.socros.android.app.gitez.contentsearch.data.SearchItem
 import com.socros.android.app.gitez.contentsearch.data.UserItem
 import com.socros.android.app.gitez.contentsearch.di.ContentSearchScope
 import com.socros.android.app.gitez.contentsearch.di.DaggerContentListFragmentComponent
@@ -94,15 +94,14 @@ class ContentListFragment : ACFragment() {
 
 	private fun bindToRecyclerClickListener() {
 		adapter.itemClicks.subscribe {
-			context?.toast("${it.displayName}\n#${it.id}")
+			when (it) {
+				is UserItem ->
+					context?.let { context -> startActivity(UserDetailsActivity.createIntent(context, it.login)) }
+
+				is RepositoryItem ->
+					context?.toast("${it.name}\n#${it.id}")
+			}
 		}.addTo(disposable)
 	}
-
-	private val SearchItem.displayName: String
-		get() = when (this) {
-			is UserItem -> login
-			is RepositoryItem -> name
-			else -> ""
-		}
 
 }

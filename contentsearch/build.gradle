@@ -10,10 +10,10 @@ dependencies {
 	def acceptanceTestDependencies = rootExt.acceptanceTesting
 
 	// Base
+	implementation project(':contentdetails')
 	implementation project(':base')
 	implementation project(':androidcore')
 	implementation project(':repository')
-	implementation project(':network')
 	implementation project(':tim')
 	implementation project(':util')
 
@@ -32,7 +32,6 @@ dependencies {
 	implementation appDependencies.rxJava
 	implementation appDependencies.rxAndroid
 	implementation appDependencies.rxKotlin
-//	implementation appDependencies.rxBindingKtx
 
 	// Network
 	implementation appDependencies.retrofit
