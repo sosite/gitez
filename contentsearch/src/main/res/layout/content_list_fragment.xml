@@ -15,7 +15,7 @@
 		style="@style/Text.Secondary"
 		android:layout_gravity="center"
 		android:text="@string/contentSearch_empty"
-		tools:visibility="gone" />
+		android:visibility="gone" />
 
 	<include
 		layout="@layout/error_container"

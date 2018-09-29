@@ -27,9 +27,12 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 
 	private var disposable: Disposable? = null
 
-	fun updateSearchQuery(query: String) {
-		searchQuerySubject.onNext(query)
-		refreshResults()
+	fun updateSearchQuery(query: String, restoredValue: Boolean) {
+		if (!restoredValue || !searchQuerySubject.hasValue()) {
+			// if new query or need to initialize
+			searchQuerySubject.onNext(query)
+			refreshResults()
+		}
 	}
 
 	fun refreshResults() {

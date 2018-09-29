@@ -42,7 +42,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	private lateinit var searchView: SearchView
 
 	// not null when search bar is active
-	private var searchQuery: CharSequence? = null
+	private var searchQuery: String? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		DaggerContentSearchActivityComponent.builder().inject(this)
@@ -53,12 +53,12 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		addFragment(R.id.searchResultFragmentContainer, contentListFragmentProvider)
 
 		savedInstanceState?.let {
-			searchQuery = it.getCharSequence(STATE_SEARCH_QUERY)
+			searchQuery = it.getString(STATE_SEARCH_QUERY)
 		}
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
-		searchQuery?.let { outState.putCharSequence(STATE_SEARCH_QUERY, it) }
+		searchQuery?.let { outState.putString(STATE_SEARCH_QUERY, it) }
 		super.onSaveInstanceState(outState)
 	}
 
@@ -96,6 +96,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		searchQuery?.let { query ->
 			searchMenu.expandActionView()
 			searchView.setQuery(query, false)
+			searchViewModel.updateSearchQuery(query, true)
 			if (query.isNotBlank()) searchView.clearFocus()
 		}
 
@@ -115,7 +116,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 
 				override fun onQueryTextChange(query: String): Boolean {
 					searchQuery = query
-					searchViewModel.updateSearchQuery(query)
+					searchViewModel.updateSearchQuery(query, false)
 					return true
 				}
 			})
