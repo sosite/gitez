@@ -23,6 +23,4 @@ abstract class ACFragment : Fragment(), AppProvider {
 		}
 	}
 
-	protected fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null
-
 }
