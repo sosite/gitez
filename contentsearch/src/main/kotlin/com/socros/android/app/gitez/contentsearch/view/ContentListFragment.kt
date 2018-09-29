@@ -4,8 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.socros.android.app.gitez.base.view.DataStatus
 import com.socros.android.app.gitez.base.view.DataStatus.Success
+import com.socros.android.app.gitez.base.view.ErrorContainer
 import com.socros.android.app.gitez.contentdetails.view.UserDetailsActivity
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.app.gitez.contentsearch.data.RepositoryItem
@@ -18,12 +18,8 @@ import com.socros.android.lib.util.visible
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.content_list_fragment.emptyPlaceholderTxt
-import kotlinx.android.synthetic.main.content_list_fragment.errorBtn
-import kotlinx.android.synthetic.main.content_list_fragment.errorContainer
-import kotlinx.android.synthetic.main.content_list_fragment.errorDetailsTxt
-import kotlinx.android.synthetic.main.content_list_fragment.errorHeaderTxt
+import kotlinx.android.synthetic.main.content_list_fragment.includedErrorContainer
 import kotlinx.android.synthetic.main.content_list_fragment.recyclerView
-import org.jetbrains.anko.textResource
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -31,6 +27,7 @@ import javax.inject.Inject
 class ContentListFragment : ACFragment() {
 
 	override val layoutResId = R.layout.content_list_fragment
+	private lateinit var errorContainer: ErrorContainer
 
 	@Inject
 	lateinit var searchViewModel: ContentSearchViewModel
@@ -50,7 +47,7 @@ class ContentListFragment : ACFragment() {
 		bindToSearchResults()
 		bindToSearchStatus()
 		bindToRecyclerClickListener()
-		errorBtn.setOnClickListener { searchViewModel.refreshResults() }
+		errorContainer = ErrorContainer(includedErrorContainer) { searchViewModel.refreshResults() }
 	}
 
 	override fun onDestroyView() {
@@ -76,18 +73,7 @@ class ContentListFragment : ACFragment() {
 					&& !it.hasData
 					&& !searchViewModel.searchQuery.isNullOrBlank()
 
-			errorContainer.visible =
-					it is DataStatus.Error
-					&& !it.hasData
-
-			if (it is DataStatus.Error) {
-				if (it.hasData) context?.toast(it.detailsStringRes)
-				else {
-					errorHeaderTxt.textResource = it.headerStringRes
-					errorDetailsTxt.textResource = it.detailsStringRes
-					errorBtn.textResource = it.buttonStringRes
-				}
-			}
+			errorContainer.updateVisibility(it) { error -> context?.toast(error.detailsStringRes) }
 
 		}.addTo(disposable)
 	}

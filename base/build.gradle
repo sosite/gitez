@@ -29,6 +29,9 @@ dependencies {
 	implementation project(':tim')
 	implementation project(':util')
 
+	// Android
+	implementation appDependencies.constraintLayout
+
 	// Network
 	implementation appDependencies.retrofit
 	implementation appDependencies.retrofitRx
@@ -39,6 +42,7 @@ dependencies {
 	kapt appDependencies.glideProcessor
 
 	// Other
+	implementation appDependencies.ankoSdk21
 	implementation appDependencies.dagger
 	implementation appDependencies.daggerAndroid
 	kapt appDependencies.daggerProcessor

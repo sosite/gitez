@@ -39,7 +39,7 @@ dependencies {
 	implementation appDependencies.glide
 
 	// Other
-	implementation appDependencies.ankoSdk21
+	implementation appDependencies.anko
 	implementation appDependencies.dagger
 	implementation appDependencies.daggerAndroid
 	kapt appDependencies.daggerProcessor

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	style="@style/BaseMatch"
 	tools:context=".view.ContentListActivity">
@@ -18,50 +17,9 @@
 		android:text="@string/contentSearch_empty"
 		tools:visibility="gone" />
 
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:id="@+id/errorContainer"
-		style="@style/BaseMatch"
-		android:visibility="gone"
-		tools:visibility="gone">
-
-		<TextView
-			android:id="@+id/errorHeaderTxt"
-			style="@style/Text.Title"
-			android:layout_marginTop="24dp"
-			app:layout_constraintBottom_toTopOf="@id/errorDetailsTxt"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintVertical_chainStyle="packed"
-			tools:text="@string/networkError_header" />
-
-		<TextView
-			android:id="@+id/errorDetailsTxt"
-			style="@style/Text.Secondary"
-			android:layout_width="0dp"
-			android:layout_marginTop="6dp"
-			android:gravity="center_horizontal"
-			app:layout_constraintBottom_toTopOf="@id/errorBtn"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/errorHeaderTxt"
-			app:layout_constraintWidth_max="288dp"
-			tools:text="@string/networkError_details" />
-
-		<Button
-			android:id="@+id/errorBtn"
-			style="@style/Widget.AppCompat.Button.Colored"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="@dimen/activityMargin_vertical"
-			android:layout_marginTop="12dp"
-			android:textColor="?android:textColorPrimary"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/errorDetailsTxt"
-			tools:text="@string/networkError_btn" />
-
-	</androidx.constraintlayout.widget.ConstraintLayout>
+	<include
+		layout="@layout/error_container"
+		android:id="@+id/includedErrorContainer"
+		tools:visibility="gone" />
 
 </FrameLayout>
