@@ -86,14 +86,19 @@ abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constru
 					}
 				}
 				.onErrorResumeNext { throwable ->
-					loadFromDb().map { newDbData ->
-						when (throwable) {
-							is EmptyResultSetException -> Success(newDbData) // if db data is empty
-							is IOException -> NetworkError(newDbData)
-							is HttpException -> ServerError(newDbData)
-							else -> throw throwable
-						}
-					}
+					loadFromDb()
+							.map { Optional(it) }
+							.onErrorReturn {
+								if (it is EmptyResultSetException) Optional(null)
+								else throw it
+							}
+							.map { newDbData ->
+								when (throwable) {
+									is IOException -> NetworkError(newDbData.value)
+									is HttpException -> ServerError(newDbData.value)
+									else -> throw throwable
+								}
+							}
 				}
 				.subscribe(::setValue)
 				.addTo(compositeDisposable)
@@ -127,5 +132,7 @@ abstract class NetworkBoundResource<RequestType, ResultType> @MainThread constru
 	 * Called when the fetch fails. The child class may want to reset components like rate limiter.
 	 */
 	protected open fun onFetchFailed() {}
+
+	private class Optional<T>(var value: T?)
 
 }
