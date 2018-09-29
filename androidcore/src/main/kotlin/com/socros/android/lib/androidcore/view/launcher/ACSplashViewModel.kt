@@ -1,5 +1,6 @@
 package com.socros.android.lib.androidcore.view.launcher
 
+import android.os.SystemClock
 import androidx.lifecycle.ViewModel
 import com.socros.android.lib.util.composeAsync
 import com.socros.android.lib.util.delayToAtLeast
@@ -13,23 +14,26 @@ abstract class ACSplashViewModel<T> : ViewModel() {
 	protected abstract val splashMinVisibilityTime: Int
 
 	private val finishedSubject = BehaviorSubject.create<Any>()
-	private lateinit var disposable: Disposable
+	private var disposable: Disposable? = null
 
 	val finished: Observable<*>
 		get() = finishedSubject
 
-	internal fun initialize() {
-		disposable = provideObservableOperation()
-				?.delayToAtLeast(splashMinVisibilityTime.toLong(), MILLISECONDS)
-				?.composeAsync()
-				?.subscribeOperation()
+	internal fun initialize(initStartTime: Long) {
+		if (disposable == null) {
+			val minVisibilityTime = initStartTime - SystemClock.elapsedRealtime() + splashMinVisibilityTime
+			disposable = provideObservableOperation()
+					?.delayToAtLeast(minVisibilityTime, MILLISECONDS)
+					?.composeAsync()
+					?.subscribeOperation()
 
-				?: Observable.timer(splashMinVisibilityTime.toLong(), MILLISECONDS)
-				.subscribe { onSplashStartOperationFinished() }
+					?: Observable.timer(minVisibilityTime, MILLISECONDS)
+					.subscribe { onSplashStartOperationFinished() }
+		}
 	}
 
 	override fun onCleared() {
-		disposable.dispose()
+		disposable!!.dispose()
 	}
 
 	@Suppress("MemberVisibilityCanBePrivate")

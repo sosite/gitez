@@ -1,6 +1,7 @@
 package com.socros.android.lib.androidcore.view.launcher
 
 import android.os.Bundle
+import android.os.SystemClock
 import com.socros.android.lib.androidcore.view.ACActivity
 import io.reactivex.disposables.Disposable
 
@@ -9,18 +10,29 @@ import io.reactivex.disposables.Disposable
  */
 abstract class ACSplashActivity : ACActivity(), Launcher {
 
+	companion object {
+		private const val STATE_INIT_START_TIME = "stateInitStartTime"
+	}
+
 	/**
 	 * You can pass a `null` value when you set custom drawable as activity theme in `android:windowBackground`
 	 */
 	abstract override val layoutResId: Int?
 
 	abstract val viewModel: ACSplashViewModel<*>
-
 	private lateinit var disposable: Disposable
+
+	private var initStartTime: Long = -1
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		if (firstTimeCreated(savedInstanceState)) viewModel.initialize()
+		initStartTime = savedInstanceState?.getLong(STATE_INIT_START_TIME) ?: SystemClock.elapsedRealtime()
+		viewModel.initialize(initStartTime)
+	}
+
+	override fun onSaveInstanceState(outState: Bundle) {
+		outState.putLong(STATE_INIT_START_TIME, initStartTime)
+		super.onSaveInstanceState(outState)
 	}
 
 	override fun onResume() {
