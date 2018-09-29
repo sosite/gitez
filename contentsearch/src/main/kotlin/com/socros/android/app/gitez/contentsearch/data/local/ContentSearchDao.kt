@@ -15,14 +15,8 @@ interface ContentSearchDao {
 	@Query("SELECT * FROM users WHERE login LIKE '%' || :query || '%' ORDER BY id ASC")
 	fun searchUsers(query: String): Single<List<UserItem>>
 
-	@Query("SELECT * FROM users")
-	fun searchUsers(): Single<List<UserItem>>
-
 	@Query("SELECT * FROM repositories WHERE fullName LIKE '%' || :query || '%' ORDER BY id ASC")
 	fun searchRepositories(query: String): Single<List<RepositoryItem>>
-
-	@Query("SELECT * FROM repositories")
-	fun searchRepositories(): Single<List<RepositoryItem>>
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
 	fun insertUserItem(user: UserItem)

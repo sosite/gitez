@@ -1,13 +1,12 @@
 package com.socros.android.app.gitez.contentsearch.view.adapter
 
 import android.view.ViewGroup
-import android.widget.TextView
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.app.gitez.contentsearch.R.string
 import com.socros.android.app.gitez.contentsearch.data.RepositoryItem
 import com.socros.android.app.gitez.contentsearch.data.SearchItem
 import com.socros.android.lib.androidcore.view.recycler.BaseViewHolder
-import com.socros.android.lib.util.visible
+import com.socros.android.lib.util.textOrHide
 import io.reactivex.Observer
 import kotlinx.android.synthetic.main.content_list_repository_item.view.descriptionTxt
 import kotlinx.android.synthetic.main.content_list_repository_item.view.languageTxt
@@ -27,13 +26,6 @@ class RepositoryViewHolder(parent: ViewGroup, itemClickObserver: Observer<in Rep
 			starCountTxt.text = item.starCount.toString()
 		}
 	}
-
-	var TextView.textOrHide: String?
-		get() = text.toString()
-		set(value) {
-			visible = !value.isNullOrBlank()
-			text = value
-		}
 
 	internal class Factory: SearchItemViewHolderFactory {
 		override fun createViewHolder(parent: ViewGroup, itemClickObserver: Observer<SearchItem>)

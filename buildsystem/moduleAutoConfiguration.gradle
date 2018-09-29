@@ -1,6 +1,6 @@
 subprojects {
 	project.plugins.whenPluginAdded { plugin ->
-		if ('org.jetbrains.kotlin.android.extensions' == plugin.class.name) {
+		if (plugin.class.name == 'org.jetbrains.kotlin.gradle.internal.AndroidExtensionsSubpluginIndicator') {
 			project.androidExtensions {
 				experimental = true
 				defaultCacheImplementation = 'SPARSE_ARRAY'
@@ -25,13 +25,15 @@ subprojects {
 
 					testInstrumentationRunner rootExt.testRunner
 
-					// add schemaLocation to the modules that implements project(':repository')
-					def repositoryDependency = project.configurations.getByName('implementation').dependencies.find {
-						it.hasProperty('dependencyProject') && it.dependencyProject.toString() == "project ':repository'"
-					}
-					if (repositoryDependency != null) {
-						kapt.arguments {
-							arg("room.schemaLocation", "$rootProject.projectDir/schemas".toString())
+					// add schemaLocation to the modules that implements project(':repository') except 'base' module
+					if (it.name != 'base') {
+						def repositoryDependency = project.configurations.getByName('implementation').dependencies.find {
+							it.hasProperty('dependencyProject') && it.dependencyProject.toString() == "project ':repository'"
+						}
+						if (repositoryDependency != null) {
+							kapt.arguments {
+								arg("room.schemaLocation", "$rootProject.projectDir/schemas".toString())
+							}
 						}
 					}
 				}

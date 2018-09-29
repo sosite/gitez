@@ -10,10 +10,10 @@ import javax.inject.Inject
 class ContentSearchRepository @Inject constructor() {
 
 	@Inject
-	internal lateinit var contentSearchResource: Lazy<ContentSearchResource>
+	internal lateinit var contentSearchResourceProvider: Lazy<ContentSearchResource>
 
 	fun searchContent(query: String): Observable<Resource<List<SearchItem>?>> {
-		return contentSearchResource.get().run {
+		return contentSearchResourceProvider.get().run {
 			updateQuery(query)
 			result
 		}

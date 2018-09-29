@@ -37,7 +37,7 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 		disposable = contentSearchRepository.searchContent(searchQuery ?: "")
 				.composeAsync()
 				.subscribe { result ->
-					result.data?.let { searchResultsSubject.onNext(it) }
+					searchResultsSubject.onNext(result.data!!)
 
 					val hasData = result.data?.isNotEmpty() == true
 					searchResultsStatusSubject.onNext(

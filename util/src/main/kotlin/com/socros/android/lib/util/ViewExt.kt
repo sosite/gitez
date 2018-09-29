@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
+import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 
@@ -67,3 +68,12 @@ fun Context.inflate(@LayoutRes layoutRes: Int, root: ViewGroup? = null, attachTo
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
 	return context.inflate(layoutRes, this, attachToRoot)
 }
+
+/* TextView UTILS */
+
+var TextView.textOrHide: String?
+	get() = text.toString()
+	set(value) {
+		visible = !value.isNullOrBlank()
+		text = value
+	}
