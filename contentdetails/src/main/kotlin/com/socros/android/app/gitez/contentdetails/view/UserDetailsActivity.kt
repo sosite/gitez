@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.socros.android.app.gitez.base.glide.GlideApp
 import com.socros.android.app.gitez.base.view.BaseActivity
+import com.socros.android.app.gitez.base.view.ErrorContainer
 import com.socros.android.app.gitez.contentdetails.R
 import com.socros.android.app.gitez.contentdetails.data.UserDetails
 import com.socros.android.app.gitez.contentdetails.di.DaggerUserDetailsActivityComponent
@@ -17,11 +18,13 @@ import kotlinx.android.synthetic.main.user_details_activity.bioTxt
 import kotlinx.android.synthetic.main.user_details_activity.followGroup
 import kotlinx.android.synthetic.main.user_details_activity.followersValueTxt
 import kotlinx.android.synthetic.main.user_details_activity.followingValueTxt
+import kotlinx.android.synthetic.main.user_details_activity.includedErrorContainer
 import kotlinx.android.synthetic.main.user_details_activity.loginPlaceholder
 import kotlinx.android.synthetic.main.user_details_activity.loginTxt
 import kotlinx.android.synthetic.main.user_details_activity.namePlaceholder
 import kotlinx.android.synthetic.main.user_details_activity.nameTxt
 import kotlinx.android.synthetic.main.user_details_activity.toolbar
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class UserDetailsActivity : BaseActivity() {
@@ -37,6 +40,7 @@ class UserDetailsActivity : BaseActivity() {
 	}
 
 	override val layoutResId = R.layout.user_details_activity
+	private lateinit var errorContainer: ErrorContainer
 
 	@Inject
 	lateinit var detailsViewModel: UserDetailsViewModel
@@ -56,6 +60,7 @@ class UserDetailsActivity : BaseActivity() {
 			setDisplayShowTitleEnabled(false)
 		}
 
+		errorContainer = ErrorContainer(includedErrorContainer) { detailsViewModel.initUserDetails(username) }
 		bindToDetailsResults()
 		bindToDetailsStatus()
 
@@ -101,6 +106,11 @@ class UserDetailsActivity : BaseActivity() {
 		}
 	}
 
-	private fun bindToDetailsStatus() {}
+	private fun bindToDetailsStatus() {
+		detailsViewModel.detailsResultsStatus.subscribe {
+			errorContainer.updateVisibility(it) { error -> toast(error.detailsStringRes) }
+
+		}.addTo(disposable)
+	}
 
 }
