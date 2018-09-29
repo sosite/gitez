@@ -44,10 +44,11 @@ class ContentListFragment : ACFragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		initRecyclerView()
+		errorContainer = ErrorContainer(includedErrorContainer) { searchViewModel.refreshResults() }
+
 		bindToSearchResults()
 		bindToSearchStatus()
 		bindToRecyclerClickListener()
-		errorContainer = ErrorContainer(includedErrorContainer) { searchViewModel.refreshResults() }
 	}
 
 	override fun onDestroyView() {
