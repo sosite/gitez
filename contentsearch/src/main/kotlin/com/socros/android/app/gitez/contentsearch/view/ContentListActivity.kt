@@ -41,6 +41,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 	private lateinit var searchMenu: MenuItem
 	private lateinit var searchView: SearchView
 
+	// not null when search bar is active
 	private var searchQuery: CharSequence? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +67,11 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		super.onDestroy()
 	}
 
+	override fun onPause() {
+		if (!searchQuery.isNullOrBlank()) searchView.clearFocus()
+		super.onPause()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.contentsearch, menu)
 		searchMenu = menu.findItem(R.id.actionSearch)
@@ -87,10 +93,10 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 		searchMenu.setOnActionExpandListener(this)
 		searchView = searchMenu.actionView as SearchView
 
-		if (searchQuery != null) {
+		searchQuery?.let { query ->
 			searchMenu.expandActionView()
-			searchView.setQuery(searchQuery, false)
-			searchView.clearFocus()
+			searchView.setQuery(query, false)
+			if (query.isNotBlank()) searchView.clearFocus()
 		}
 
 		searchView.apply {
