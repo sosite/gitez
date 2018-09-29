@@ -2,8 +2,11 @@ package com.socros.android.app.gitez.contentdetails.view
 
 import androidx.lifecycle.ViewModel
 import com.socros.android.app.gitez.base.view.DataStatus
+import com.socros.android.app.gitez.base.view.DataStatus.Error.ServerError
+import com.socros.android.app.gitez.contentdetails.R
 import com.socros.android.app.gitez.contentdetails.data.ContentDetailsRepository
 import com.socros.android.app.gitez.contentdetails.data.UserDetails
+import com.socros.android.lib.repository.Resource
 import com.socros.android.lib.util.composeAsync
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
@@ -29,7 +32,12 @@ class UserDetailsViewModel @Inject constructor(private val contentDetailsReposit
 					result.data?.let { detailsResultsSubject.onNext(it) }
 
 					val hasData = result.data != null
-					searchResultsStatusSubject.onNext(DataStatus.fromRepositoryResource(result, hasData))
+					searchResultsStatusSubject.onNext(
+							if (result is Resource.ServerError) {
+								ServerError(hasData, detailsStringRes = R.string.userDetails_serverError_details)
+
+							} else DataStatus.fromRepositoryResource(result, hasData)
+					)
 				}
 	}
 
