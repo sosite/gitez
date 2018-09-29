@@ -25,13 +25,15 @@ subprojects {
 
 					testInstrumentationRunner rootExt.testRunner
 
-					// add schemaLocation to the modules that implements project(':repository')
-					def repositoryDependency = project.configurations.getByName('implementation').dependencies.find {
-						it.hasProperty('dependencyProject') && it.dependencyProject.toString() == "project ':repository'"
-					}
-					if (repositoryDependency != null) {
-						kapt.arguments {
-							arg("room.schemaLocation", "$rootProject.projectDir/schemas".toString())
+					// add schemaLocation to the modules that implements project(':repository') except 'base' module
+					if (this.name != 'base') {
+						def repositoryDependency = project.configurations.getByName('implementation').dependencies.find {
+							it.hasProperty('dependencyProject') && it.dependencyProject.toString() == "project ':repository'"
+						}
+						if (repositoryDependency != null) {
+							kapt.arguments {
+								arg("room.schemaLocation", "$rootProject.projectDir/schemas".toString())
+							}
 						}
 					}
 				}
