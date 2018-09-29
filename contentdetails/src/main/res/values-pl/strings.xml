@@ -1,2 +1,5 @@
 <resources>
+	<string name="userDetails_avatarDescription">awatar</string>
+	<string name="userDetails_followersCaption">Obserwowany</string>
+	<string name="userDetails_followingCaption">Obserwuje</string>
 </resources>

@@ -12,9 +12,6 @@ data class UserDetails(
 		val name: String?,
 		@JsonProperty("avatar_url") val avatarURl: String?,
 		val bio: String?,
-		val blog: String?,
-		val location: String?,
-		val email: String?,
 		val followers: Int,
 		val following: Int
 )

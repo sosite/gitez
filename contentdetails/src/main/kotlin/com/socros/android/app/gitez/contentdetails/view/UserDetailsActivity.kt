@@ -3,12 +3,24 @@ package com.socros.android.app.gitez.contentdetails.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.socros.android.app.gitez.base.glide.GlideApp
 import com.socros.android.app.gitez.base.view.BaseActivity
 import com.socros.android.app.gitez.contentdetails.R
+import com.socros.android.app.gitez.contentdetails.data.UserDetails
 import com.socros.android.app.gitez.contentdetails.di.DaggerUserDetailsActivityComponent
+import com.socros.android.lib.util.textOrHide
+import com.socros.android.lib.util.visible
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import kotlinx.android.synthetic.main.user_details_activity.textTxt
+import kotlinx.android.synthetic.main.user_details_activity.avatarImg
+import kotlinx.android.synthetic.main.user_details_activity.bioTxt
+import kotlinx.android.synthetic.main.user_details_activity.followGroup
+import kotlinx.android.synthetic.main.user_details_activity.followersValueTxt
+import kotlinx.android.synthetic.main.user_details_activity.followingValueTxt
+import kotlinx.android.synthetic.main.user_details_activity.loginPlaceholder
+import kotlinx.android.synthetic.main.user_details_activity.loginTxt
+import kotlinx.android.synthetic.main.user_details_activity.namePlaceholder
+import kotlinx.android.synthetic.main.user_details_activity.nameTxt
 import kotlinx.android.synthetic.main.user_details_activity.toolbar
 import javax.inject.Inject
 
@@ -39,9 +51,11 @@ class UserDetailsActivity : BaseActivity() {
 		super.onCreate(savedInstanceState)
 
 		setSupportActionBar(toolbar)
-		supportActionBar?.setDisplayHomeAsUpEnabled(true)
+		supportActionBar?.apply {
+			setDisplayHomeAsUpEnabled(true)
+			setDisplayShowTitleEnabled(false)
+		}
 
-		initView()
 		bindToDetailsResults()
 		bindToDetailsStatus()
 
@@ -55,12 +69,36 @@ class UserDetailsActivity : BaseActivity() {
 		super.onDestroy()
 	}
 
-	private fun initView() {}
-
 	private fun bindToDetailsResults() {
-		detailsViewModel.detailsResults.subscribe {
-			textTxt.text = it.login
-		}.addTo(disposable)
+		detailsViewModel.detailsResults.subscribe(::bindDetails)
+				.addTo(disposable)
+	}
+
+	private fun bindDetails(details: UserDetails) {
+		namePlaceholder.visible = false
+		loginPlaceholder.visible = false
+
+		details.run {
+			GlideApp.with(this@UserDetailsActivity)
+					.load(avatarURl)
+					.circleCrop()
+					.into(avatarImg)
+
+			if (name != null) {
+				nameTxt.text = name
+				loginTxt.text = login
+
+			} else {
+				nameTxt.text = login
+				loginTxt.visible = false
+			}
+
+			bioTxt.textOrHide = bio
+
+			followGroup.visible = true
+			followersValueTxt.text = followers.toString()
+			followingValueTxt.text = following.toString()
+		}
 	}
 
 	private fun bindToDetailsStatus() {}

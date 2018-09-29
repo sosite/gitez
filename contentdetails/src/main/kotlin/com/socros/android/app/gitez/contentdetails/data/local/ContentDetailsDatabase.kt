@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.socros.android.app.gitez.contentdetails.data.UserDetails
 
-@Database(entities = [UserDetails::class], version = 1)
+@Database(entities = [UserDetails::class], version = 2)
 abstract class ContentDetailsDatabase : RoomDatabase() {
 	abstract fun contentDetailsDao(): ContentDetailsDao
 }
