@@ -108,7 +108,7 @@ class UserDetailsActivity : BaseActivity() {
 
 	private fun bindToDetailsStatus() {
 		detailsViewModel.detailsResultsStatus.subscribe {
-			if (it is InProgress) {
+			if (it is InProgress && !it.hasData) {
 				namePlaceholder.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink))
 				loginPlaceholder.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink))
 			} else {
