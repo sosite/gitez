@@ -3,8 +3,10 @@ package com.socros.android.app.gitez.contentdetails.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import com.socros.android.app.gitez.base.glide.GlideApp
 import com.socros.android.app.gitez.base.view.BaseActivity
+import com.socros.android.app.gitez.base.view.DataStatus.InProgress
 import com.socros.android.app.gitez.base.view.ErrorContainer
 import com.socros.android.app.gitez.contentdetails.R
 import com.socros.android.app.gitez.contentdetails.data.UserDetails
@@ -106,6 +108,14 @@ class UserDetailsActivity : BaseActivity() {
 
 	private fun bindToDetailsStatus() {
 		detailsViewModel.detailsResultsStatus.subscribe {
+			if (it is InProgress) {
+				namePlaceholder.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink))
+				loginPlaceholder.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink))
+			} else {
+				namePlaceholder.clearAnimation()
+				loginPlaceholder.clearAnimation()
+			}
+
 			errorContainer.updateVisibility(it) { error -> toast(error.detailsStringRes) }
 
 		}.addTo(disposable)
