@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/BaseMatch"
+	tools:context=".view.launcher.SplashActivity">
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@id/guidelineStart"
+		style="@style/BaseNoDimens"
+		android:orientation="vertical"
+		app:layout_constraintGuide_begin="@dimen/activityMargin_horizontal" />
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@id/guidelineEnd"
+		style="@style/BaseNoDimens"
+		android:orientation="vertical"
+		app:layout_constraintGuide_end="@dimen/activityMargin_horizontal" />
+
+	<TextView
+		android:id="@+id/sentenceTxt"
+		style="@style/Text"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:autoSizeStepGranularity="1px"
+		android:autoSizeTextType="uniform"
+		android:fontFamily="@font/museo_700"
+		android:gravity="center_horizontal"
+		android:lines="2"
+		android:paddingEnd="1dp"
+		android:paddingStart="1dp"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="@dimen/text_display1"
+		app:autoSizeStepGranularity="1px"
+		app:autoSizeTextType="uniform"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+		app:layout_constraintStart_toStartOf="@id/guidelineStart"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:ignore="UnusedAttribute"
+		tools:text="&#8220;First, solve the problem.  \n  Then, write the code.&#8220;" />
+
+	<TextView
+		android:id="@+id/authorTxt"
+		style="@style/Text"
+		android:layout_marginEnd="11dp"
+		android:layout_marginTop="12dp"
+		android:fontFamily="@font/museo_700"
+		app:layout_constraintEnd_toEndOf="@id/sentenceTxt"
+		app:layout_constraintTop_toBottomOf="@id/sentenceTxt"
+		tools:text="― John Johnson" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

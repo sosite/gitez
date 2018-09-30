@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="splash_quoteSentence_container" translatable="false">„%s”</string>
+
+	<string-array name="splash_quoteSentences">
+		<item>Każda świetna aplikacja \n potrzebuje ekranu startowego</item>
+		<item>Kod nigdy nie kłamie, \n komentarze czasami</item>
+		<item>Najpierw rozwiąż problem. \n Następnie napisz kod.</item>
+		<item>Programowanie to myślenie \n a nie pisanie</item>
+	</string-array>
+
+	<string-array name="splash_quoteAuthors">
+		<item>jakiś Ziemianin</item>
+		<item>Ron Jeffries</item>
+		<item>John Johnson</item>
+		<item>Casey Patton</item>
+	</string-array>
+
+</resources>

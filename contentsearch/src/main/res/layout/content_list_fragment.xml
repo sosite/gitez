@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/BaseMatch"
+	tools:context=".view.ContentListActivity">
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@id/recyclerView"
+		style="@style/BaseMatch"
+		tools:listitem="@layout/content_list_repository_item" />
+
+	<TextView
+		android:id="@+id/emptyPlaceholderTxt"
+		style="@style/Text.Secondary"
+		android:layout_gravity="center"
+		android:text="@string/contentSearch_empty"
+		android:visibility="gone" />
+
+	<include
+		layout="@layout/error_container"
+		android:id="@+id/includedErrorContainer"
+		tools:visibility="gone" />
+
+</FrameLayout>

@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+dependencies {
+	def rootExt = rootProject.ext
+	def componentDependencies = rootExt.coreComponent
+	def unitTestDependencies = rootExt.unitTesting
+
+	// Network
+	implementation componentDependencies.jacksonModuleKotlin
+	implementation componentDependencies.okHttpLogger
+	implementation componentDependencies.retrofit
+	implementation componentDependencies.retrofitRx
+	implementation componentDependencies.retrofitJackson
+
+	// Other
+	implementation componentDependencies.ankoSdk21
+	implementation componentDependencies.dagger
+
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
+}

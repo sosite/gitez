@@ -1,0 +1,9 @@
+<resources>
+	<string name="networkError_header">Problem z internetem</string>
+	<string name="networkError_details">Proszę sprawdzić swoje połączenie\nz internetem</string>
+	<string name="networkError_btn">Spróbuj ponownie…</string>
+
+	<string name="serverError_header">Wewnętrzny błąd serwera</string>
+	<string name="serverError_details">Ups! Coś poszło nie tak</string>
+	<string name="serverError_btn">Spróbuj ponownie…</string>
+</resources>

@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+	def rootExt = rootProject.ext
+	def appDependencies = rootExt.mainApplication
+	def unitTestDependencies = rootExt.unitTesting
+	def acceptanceTestDependencies = rootExt.acceptanceTesting
+
+	// Base
+	implementation project(':base')
+	implementation project(':androidcore')
+	implementation project(':repository')
+	implementation project(':tim')
+	implementation project(':util')
+
+	// Android
+	implementation appDependencies.appCompat
+	implementation appDependencies.coreKtx
+	implementation appDependencies.lifecycle
+	kapt appDependencies.lifecycleProcessor
+	implementation appDependencies.roomRuntime
+	implementation appDependencies.roomRx
+	kapt appDependencies.roomProcessor
+	implementation appDependencies.constraintLayout
+
+	// Reactive
+	implementation appDependencies.rxJava
+	implementation appDependencies.rxAndroid
+	implementation appDependencies.rxKotlin
+//	implementation appDependencies.rxBindingKtx
+
+	// Network
+	implementation appDependencies.retrofit
+	implementation appDependencies.jacksonAnnotations
+	implementation appDependencies.glide
+
+	// Other
+	implementation appDependencies.anko
+	implementation appDependencies.dagger
+	implementation appDependencies.daggerAndroid
+	kapt appDependencies.daggerProcessor
+
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
+
+	// Acceptance tests
+	androidTestImplementation acceptanceTestDependencies.testRunner
+}

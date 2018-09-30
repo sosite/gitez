@@ -1,0 +1,2 @@
+rootProject.name = 'Gitez'
+include ':app', ':contentsearch',':contentdetails', ':base', ':androidcore', ':repository', ':network', ':persistence', ':tim', ':util'

@@ -1,0 +1,22 @@
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="com.socros.android.app.gitez">
+
+	<application tools:ignore="GoogleAppIndexingWarning">
+		<activity
+			android:name=".view.launcher.SplashActivity"
+			android:theme="@style/GitezTheme.Dark">
+			<!-- Main intent filter to launch app from icon -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity
+			android:name=".contentdetails.view.UserDetailsActivity"
+			android:parentActivityName=".contentsearch.view.ContentListActivity" />
+
+	</application>
+</manifest>

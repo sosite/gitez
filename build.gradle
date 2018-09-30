@@ -1,0 +1,85 @@
+import java.text.SimpleDateFormat
+
+apply from: 'buildsystem/dependencies.gradle'
+apply from: 'buildsystem/moduleAutoConfiguration.gradle'
+
+buildscript {
+	ext {
+		versions = [
+				// Main
+				kotlin     : '1.2.71',
+				gradleTools: '3.2.0',
+				buildTools : '28.0.2']
+
+		sdk = [
+				// App sdk version definitions
+				min    : 21,
+				target : 28,
+				compile: 28]
+
+		applicationId = 'com.socros.android.app.gitez'
+		testRunner = 'android.support.test.runner.AndroidJUnitRunner'
+	}
+
+	repositories {
+		google()
+		jcenter()
+	}
+
+	dependencies {
+		classpath "com.android.tools.build:gradle:${versions.gradleTools}"
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+		classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}"
+	}
+}
+
+allprojects {
+	repositories {
+		google()
+		jcenter()
+	}
+}
+
+task clean(type: Delete) {
+	delete rootProject.buildDir
+}
+
+static def generateVersionName() {
+	if (getCurrentBranch() == "master") {
+		return "${getLastMasterGitTagVersion()}"
+	} else {
+		return "${getBuildDate()} #${getGitCommitsCount()}.${getGitSha()}.${getCurrentBranch()}"
+	}
+}
+
+static def generateVersionCode() {
+	return getGitCommitsCount().toInteger()
+}
+
+static def getBuildDate() {
+	def df = new SimpleDateFormat("dd.MM.''yy")
+	df.setTimeZone(TimeZone.getTimeZone("UTC"))
+	return df.format(new Date())
+}
+
+static def getGitCommitsCount() {
+	return ("git rev-list ${getCurrentBranch()} --count").execute().text.trim()
+}
+
+static def getGitSha() {
+	return "git rev-parse --verify --short HEAD".execute().text.trim()
+}
+
+static def getCurrentBranch() {
+	return "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+}
+
+static def getLastMasterGitTagVersion() {
+	def longVersionName = "git describe --tags master --long".execute().text.replace("v", "").trim()
+	def (fullVersionTag, versionBuild, gitSha) = longVersionName.tokenize('-')
+	// TODO simplify git tag version usage
+	// return fullVersionTag
+	def (versionMajor, versionMinor, versionPatch) = fullVersionTag.tokenize('.')
+
+	return sprintf("%s.%s.%s", [versionMajor, versionMinor, versionPatch])
+}

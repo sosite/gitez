@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+	buildTypes {
+		debug {
+			resValue 'string', 'appName', 'Gitez dev'
+			buildConfigField 'String', 'URL_API', '"https://api.github.com/"'
+		}
+
+		release {
+			resValue 'string', 'appName', 'Gitez'
+			buildConfigField 'String', 'URL_API', '"https://api.github.com/"'
+		}
+	}
+}
+
+dependencies {
+	def rootExt = rootProject.ext
+	def appDependencies = rootExt.mainApplication
+	def unitTestDependencies = rootExt.unitTesting
+	def acceptanceTestDependencies = rootExt.acceptanceTesting
+
+	// Base
+	implementation project(':androidcore')
+	implementation project(':repository')
+	implementation project(':tim')
+	implementation project(':util')
+
+	// Android
+	implementation appDependencies.constraintLayout
+
+	// Network
+	implementation appDependencies.retrofit
+	implementation appDependencies.retrofitRx
+	implementation appDependencies.retrofitJackson
+	implementation appDependencies.jacksonModuleKotlin
+	implementation appDependencies.okHttpLogger
+	implementation appDependencies.glide
+	kapt appDependencies.glideProcessor
+
+	// Other
+	implementation appDependencies.ankoSdk21
+	implementation appDependencies.dagger
+	implementation appDependencies.daggerAndroid
+	kapt appDependencies.daggerProcessor
+
+	// Unit/Integration tests
+	testImplementation unitTestDependencies.kotlin
+	testImplementation unitTestDependencies.kotlinTest
+	testImplementation unitTestDependencies.junit
+
+	// Acceptance tests
+	androidTestImplementation acceptanceTestDependencies.testRunner
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="activityMargin_horizontal">64dp</dimen>
+	<dimen name="activityMargin_horizontal_asInteractiveContainer">60dp</dimen>
+	<dimen name="activityMargin_horizontalAddition">48dp</dimen> <!-- difference between normal and larger device -->
+
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+	<string name="contentSearch_title">@string/appName</string>
+
+	<string name="contentSearch_actionSearch">Szukaj</string>
+	<string name="contentSearch_searchBtn">@string/contentSearch_actionSearch</string>
+	<string name="contentSearch_placeholder">Octocat jest smutny\nponieważ niczego nie szukasz :(</string>
+
+	<string name="contentSearch_empty">Nie znaleźliśmy niczego dla Ciebie :(</string>
+	<string name="contentSearch_serverError_details">Ups! Coś poszło nie tak.\nPrawdopodobnie osiągnąłeś limit anonimowych zapytań na 1 minutę.</string>
+
+	<string name="searchItem_avatarDescription">awatar</string>
+	<string name="searchItem_repositoryImgDescription">repozytorium</string>
+</resources>
