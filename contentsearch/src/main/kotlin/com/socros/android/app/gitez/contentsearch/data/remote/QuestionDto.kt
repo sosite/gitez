@@ -8,5 +8,6 @@ data class QuestionDto(
 		@JsonProperty("question_id") val id: Long,
 		val title: String,
 		@JsonProperty("answer_count") val answerCount: Int,
-		@JsonProperty("owner") val owner: OwnerDto
+		@JsonProperty("owner") val owner: OwnerDto,
+		val link: String
 )

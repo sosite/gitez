@@ -9,5 +9,6 @@ data class QuestionItem(
 		val title: String,
 		val answerCount: Int,
 		val userName: String,
-		val userAvatarUrl: String?
+		val userAvatarUrl: String?,
+		val link: String
 )

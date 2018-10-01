@@ -1,9 +1,10 @@
 package com.socros.android.app.gitez.contentsearch.view
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.core.text.parseAsHtml
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.socros.android.app.gitez.base.view.DataStatus.Success
 import com.socros.android.app.gitez.base.view.ErrorContainer
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.content_list_fragment.recyclerView
 import kotlinx.android.synthetic.main.content_list_fragment.swipeRefresh
 import org.jetbrains.anko.toast
 import javax.inject.Inject
+
 
 @ContentSearchScope
 class ContentListFragment : ACFragment() {
@@ -90,7 +92,9 @@ class ContentListFragment : ACFragment() {
 
 	private fun bindToRecyclerClickListener() {
 		adapter.itemClicks.subscribe {
-			context?.toast("${it.title.parseAsHtml()}\n#${it.id}")
+			val builder = CustomTabsIntent.Builder()
+			val customTabsIntent = builder.build()
+			customTabsIntent.launchUrl(context, Uri.parse(it.link))
 		}.addTo(disposable)
 	}
 

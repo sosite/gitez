@@ -44,7 +44,8 @@ class ContentSearchResource @Inject constructor(
 					dto.title,
 					dto.answerCount,
 					dto.owner.name,
-					dto.owner.avatarUrl
+					dto.owner.avatarUrl,
+					dto.link
 			)
 		})
 	}
