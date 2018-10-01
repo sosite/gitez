@@ -13,10 +13,5 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-
-		<activity
-			android:name=".contentdetails.view.UserDetailsActivity"
-			android:parentActivityName=".contentsearch.view.ContentListActivity" />
-
 	</application>
 </manifest>

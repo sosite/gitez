@@ -10,7 +10,6 @@ dependencies {
 	def acceptanceTestDependencies = rootExt.acceptanceTesting
 
 	// Base
-	implementation project(':contentdetails')
 	implementation project(':base')
 	implementation project(':androidcore')
 	implementation project(':repository')

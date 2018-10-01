@@ -26,7 +26,6 @@ dependencies {
 
 	// Base
 	implementation project(':contentsearch')
-	implementation project(':contentdetails')
 	implementation project(':base')
 	implementation project(':androidcore')
 	implementation project(':tim')
