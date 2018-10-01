@@ -17,7 +17,7 @@ buildscript {
 				target : 28,
 				compile: 28]
 
-		applicationId = 'com.socros.android.app.gitez'
+		applicationId = 'com.socros.android.app.gitez.searchoverflow'
 		testRunner = 'android.support.test.runner.AndroidJUnitRunner'
 	}
 
