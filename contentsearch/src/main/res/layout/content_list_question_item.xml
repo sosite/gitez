@@ -37,7 +37,7 @@
 		app:layout_constraintStart_toEndOf="@id/userAvatarImg"
 		app:layout_constraintTop_toTopOf="@id/userAvatarImg"
 		app:layout_constraintVertical_chainStyle="packed"
-		tools:text="Clear firebase persistence after logout" />
+		tools:text="@tools:sample/lorem" />
 
 	<TextView
 		android:id="@+id/answersTxt"

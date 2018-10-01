@@ -5,10 +5,15 @@
 	style="@style/BaseMatch"
 	tools:context=".view.ContentListActivity">
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@id/recyclerView"
-		style="@style/BaseMatch"
-		tools:listitem="@layout/content_list_repository_item" />
+	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+		android:id="@+id/swipeRefresh"
+		style="@style/BaseMatch">
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@id/recyclerView"
+			style="@style/BaseMatch"
+			tools:listitem="@layout/content_list_question_item" />
+	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 	<TextView
 		android:id="@+id/emptyPlaceholderTxt"

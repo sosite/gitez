@@ -10,6 +10,7 @@ import com.socros.android.app.gitez.base.view.BaseActivity
 import com.socros.android.app.gitez.base.view.DataStatus.InProgress
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.app.gitez.contentsearch.di.DaggerContentSearchActivityComponent
+import com.socros.android.app.gitez.contentsearch.view.ContentSearchViewModel.InSwipeRefreshProgress
 import com.socros.android.lib.util.addFragment
 import com.socros.android.lib.util.visible
 import dagger.Lazy
@@ -85,7 +86,7 @@ class ContentListActivity : BaseActivity(), OnActionExpandListener {
 
 	private fun bindToSearchStatus() {
 		searchViewModel.searchResultsStatus.subscribe {
-			progressContainer.visible = it is InProgress
+			progressContainer.visible = it is InProgress && it !is InSwipeRefreshProgress
 		}.addTo(disposable)
 	}
 

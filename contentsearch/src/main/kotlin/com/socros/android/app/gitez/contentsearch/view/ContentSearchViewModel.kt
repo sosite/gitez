@@ -3,6 +3,7 @@ package com.socros.android.app.gitez.contentsearch.view
 import androidx.lifecycle.ViewModel
 import com.socros.android.app.gitez.base.view.DataStatus
 import com.socros.android.app.gitez.base.view.DataStatus.Error.ServerError
+import com.socros.android.app.gitez.base.view.DataStatus.InProgress
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.app.gitez.contentsearch.data.ContentSearchRepository
 import com.socros.android.app.gitez.contentsearch.data.QuestionItem
@@ -31,11 +32,15 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 		if (!restoredValue || !searchQuerySubject.hasValue()) {
 			// if new query or need to initialize
 			searchQuerySubject.onNext(query)
-			refreshResults()
+			refreshResults(false)
 		}
 	}
 
 	fun refreshResults() {
+		refreshResults(true)
+	}
+
+	private fun refreshResults(fromUser: Boolean) {
 		disposable?.dispose()
 		disposable = contentSearchRepository.searchQustions(searchQuery ?: "")
 				.composeAsync()
@@ -44,10 +49,13 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 
 					val hasData = result.data?.isNotEmpty() == true
 					searchResultsStatusSubject.onNext(
-							if (result is Resource.ServerError) {
-								ServerError(hasData, detailsStringRes = R.string.contentSearch_serverError_details)
+							when {
+								result is Resource.LoadingInProgress && fromUser -> InSwipeRefreshProgress(hasData)
+								result is Resource.ServerError ->
+									ServerError(hasData, detailsStringRes = R.string.contentSearch_serverError_details)
 
-							} else DataStatus.fromRepositoryResource(result, hasData)
+								else -> DataStatus.fromRepositoryResource(result, hasData)
+							}
 					)
 				}
 	}
@@ -55,5 +63,7 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 	override fun onCleared() {
 		disposable?.dispose()
 	}
+
+	class InSwipeRefreshProgress internal constructor(hasData: Boolean) : InProgress(hasData)
 
 }

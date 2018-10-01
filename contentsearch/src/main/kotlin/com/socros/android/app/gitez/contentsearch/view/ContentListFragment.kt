@@ -10,6 +10,7 @@ import com.socros.android.app.gitez.base.view.ErrorContainer
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.app.gitez.contentsearch.di.ContentSearchScope
 import com.socros.android.app.gitez.contentsearch.di.DaggerContentListFragmentComponent
+import com.socros.android.app.gitez.contentsearch.view.ContentSearchViewModel.InSwipeRefreshProgress
 import com.socros.android.app.gitez.contentsearch.view.adapter.ContentListAdapter
 import com.socros.android.lib.androidcore.view.ACFragment
 import com.socros.android.lib.util.visible
@@ -18,6 +19,7 @@ import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.content_list_fragment.emptyPlaceholderTxt
 import kotlinx.android.synthetic.main.content_list_fragment.includedErrorContainer
 import kotlinx.android.synthetic.main.content_list_fragment.recyclerView
+import kotlinx.android.synthetic.main.content_list_fragment.swipeRefresh
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -41,6 +43,7 @@ class ContentListFragment : ACFragment() {
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		initSwipeRefresh()
 		initRecyclerView()
 		errorContainer = ErrorContainer(includedErrorContainer) { searchViewModel.refreshResults() }
 
@@ -52,6 +55,12 @@ class ContentListFragment : ACFragment() {
 	override fun onDestroyView() {
 		disposable.dispose()
 		super.onDestroyView()
+	}
+
+	private fun initSwipeRefresh() {
+		swipeRefresh.setOnRefreshListener {
+			searchViewModel.refreshResults()
+		}
 	}
 
 	private fun initRecyclerView() {
@@ -67,6 +76,8 @@ class ContentListFragment : ACFragment() {
 
 	private fun bindToSearchStatus() {
 		searchViewModel.searchResultsStatus.subscribe {
+			swipeRefresh.isRefreshing = it is InSwipeRefreshProgress
+
 			emptyPlaceholderTxt.visible =
 					it is Success
 					&& !it.hasData
