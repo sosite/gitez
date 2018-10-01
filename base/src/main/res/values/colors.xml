@@ -9,7 +9,8 @@
 	<color name="primary_dark">@color/black</color>
 
 	<color name="accent">@color/stack_orange</color>
-	<color name="accent_light">#fefbeb</color>
+	<color name="accent_light">#ffaf46</color>
+	<color name="accent_reallyLight">#fefbeb</color>
 	<color name="accent_dark">#b35100</color>
 
 	<color name="placeholder">@color/stack_gray900</color>

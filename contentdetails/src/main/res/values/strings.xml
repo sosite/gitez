@@ -3,5 +3,5 @@
 	<string name="userDetails_followersCaption">Followers</string>
 	<string name="userDetails_followingCaption">Following</string>
 
-	<string name="userDetails_serverError_details">Ups! Something goes wrong.\nYou probably reached query limit for unauthenticated requests per 1 hour.</string>
+	<string name="userDetails_serverError_details">Ups! Something goes wrong.\nYou probably reached query limit for unauthenticated requests.</string>
 </resources>

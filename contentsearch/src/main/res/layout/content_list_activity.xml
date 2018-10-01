@@ -46,22 +46,22 @@
 		android:layout_height="0dp"
 		android:layout_marginTop="@dimen/activityMargin_vertical"
 		android:adjustViewBounds="true"
-		android:contentDescription="@string/contentSearch_octocat"
-		android:src="@drawable/img_sadoctocat"
+		android:contentDescription="@string/contentSearch_stack"
+		android:src="@drawable/img_stack"
 		app:layout_constraintBottom_toTopOf="@id/placeholderTxt"
 		app:layout_constraintDimensionRatio="1.2"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/toolbar"
 		app:layout_constraintVertical_chainStyle="packed"
-		app:layout_constraintWidth_max="267dp" />
+		app:layout_constraintWidth_max="133dp" />
 
 	<TextView
 		android:id="@+id/placeholderTxt"
 		style="@style/Text"
 		android:layout_width="267dp"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="12dp"
+		android:layout_marginTop="18dp"
 		android:gravity="center_horizontal"
 		android:text="@string/contentSearch_placeholder"
 		app:layout_constraintBottom_toTopOf="@id/searchBtn"

@@ -3,5 +3,5 @@
 	<string name="userDetails_followersCaption">Obserwowany</string>
 	<string name="userDetails_followingCaption">Obserwuje</string>
 
-	<string name="userDetails_serverError_details">Ups! Coś poszło nie tak.\nPrawdopodobnie osiągnąłeś limit anonimowych zapytań na 1 godzinę.</string>
+	<string name="userDetails_serverError_details">Ups! Coś poszło nie tak.\nPrawdopodobnie osiągnąłeś limit anonimowych zapytań.</string>
 </resources>
