@@ -9,6 +9,6 @@
 	<string name="contentSearch_empty">Nie znaleźliśmy niczego dla Ciebie :(</string>
 	<string name="contentSearch_serverError_details">Ups! Coś poszło nie tak.\nPrawdopodobnie osiągnąłeś limit anonimowych zapytań.</string>
 
+	<string name="searchItem_answersCountValue">O: %d</string>
 	<string name="searchItem_avatarDescription">awatar</string>
-	<string name="searchItem_repositoryImgDescription">repozytorium</string>
 </resources>

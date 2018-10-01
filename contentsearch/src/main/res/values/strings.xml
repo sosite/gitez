@@ -9,7 +9,6 @@
 	<string name="contentSearch_empty">We didn\'t find anything for you :(</string>
 	<string name="contentSearch_serverError_details">Ups! Something goes wrong.\nYou probably reached query limit for unauthenticated requests.</string>
 
-	<string name="searchItem_idValue" translatable="false">#%d</string>
+	<string name="searchItem_answersCountValue">A: %d</string>
 	<string name="searchItem_avatarDescription">avatar</string>
-	<string name="searchItem_repositoryImgDescription">repository</string>
 </resources>

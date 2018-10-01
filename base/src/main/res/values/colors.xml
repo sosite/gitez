@@ -13,7 +13,7 @@
 	<color name="accent_reallyLight">#fefbeb</color>
 	<color name="accent_dark">#b35100</color>
 
-	<color name="placeholder">@color/stack_gray900</color>
+	<color name="placeholder">@color/stack_gray400</color>
 
 	<color name="accentGreen">#6bba7b</color>
 	<color name="accentGreen_light">#9cedaa</color>

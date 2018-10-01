@@ -5,7 +5,7 @@ import com.socros.android.app.gitez.base.view.DataStatus
 import com.socros.android.app.gitez.base.view.DataStatus.Error.ServerError
 import com.socros.android.app.gitez.contentsearch.R
 import com.socros.android.app.gitez.contentsearch.data.ContentSearchRepository
-import com.socros.android.app.gitez.contentsearch.data.SearchItem
+import com.socros.android.app.gitez.contentsearch.data.QuestionItem
 import com.socros.android.lib.repository.Resource
 import com.socros.android.lib.util.composeAsync
 import io.reactivex.Observable
@@ -19,8 +19,8 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 	private val searchQuerySubject = BehaviorSubject.create<String>()
 	val searchQuery: String? get() = searchQuerySubject.value
 
-	private val searchResultsSubject = BehaviorSubject.create<List<SearchItem>>()
-	val searchResults: Observable<List<SearchItem>> = searchResultsSubject
+	private val searchResultsSubject = BehaviorSubject.create<List<QuestionItem>>()
+	val searchResults: Observable<List<QuestionItem>> = searchResultsSubject
 
 	private val searchResultsStatusSubject = BehaviorSubject.create<DataStatus>()
 	val searchResultsStatus: Observable<DataStatus> = searchResultsStatusSubject
@@ -37,7 +37,7 @@ class ContentSearchViewModel @Inject constructor(private val contentSearchReposi
 
 	fun refreshResults() {
 		disposable?.dispose()
-		disposable = contentSearchRepository.searchContent(searchQuery ?: "")
+		disposable = contentSearchRepository.searchQustions(searchQuery ?: "")
 				.composeAsync()
 				.subscribe { result ->
 					searchResultsSubject.onNext(result.data!!)

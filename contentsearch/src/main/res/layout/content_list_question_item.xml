@@ -5,7 +5,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	style="@style/BaseMatchHorizontal"
 	android:background="?android:selectableItemBackground"
-	android:minHeight="72dp"
 	tools:context=".view.ContentListActivity">
 
 	<androidx.constraintlayout.widget.Guideline
@@ -15,45 +14,51 @@
 		app:layout_constraintGuide_end="@dimen/activityMargin_horizontal" />
 
 	<ImageView
-		android:id="@+id/avatarImg"
+		android:id="@+id/userAvatarImg"
 		android:layout_width="40dp"
 		android:layout_height="40dp"
 		android:layout_marginStart="@dimen/activityMargin_horizontal"
+		android:layout_marginTop="16dp"
 		android:contentDescription="@string/searchItem_avatarDescription"
-		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
 		tools:src="@tools:sample/avatars" />
 
 	<TextView
-		android:id="@+id/userNameTxt"
+		android:id="@+id/questionTitleTxt"
 		style="@style/Text.Medium"
 		android:layout_width="0dp"
 		android:layout_marginStart="16dp"
 		android:ellipsize="end"
-		android:textSize="@dimen/text_subhead"
-		android:layout_marginTop="1dp"
-		android:lines="1"
+		android:maxLines="2"
 		android:textColor="?android:textColorPrimary"
-		app:layout_constraintBottom_toTopOf="@id/userIdTxt"
+		android:textSize="@dimen/text_subhead"
 		app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-		app:layout_constraintStart_toEndOf="@id/avatarImg"
-		app:layout_constraintTop_toTopOf="@id/avatarImg"
-		app:layout_constraintVertical_bias="0"
+		app:layout_constraintStart_toEndOf="@id/userAvatarImg"
+		app:layout_constraintTop_toTopOf="@id/userAvatarImg"
 		app:layout_constraintVertical_chainStyle="packed"
-		tools:text="@tools:sample/full_names" />
+		tools:text="Clear firebase persistence after logout" />
 
 	<TextView
-		android:id="@+id/userIdTxt"
+		android:id="@+id/answersTxt"
 		style="@style/Text.Secondary"
-		android:layout_width="0dp"
+		android:layout_marginBottom="16dp"
+		android:textSize="@dimen/text_caption"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintStart_toStartOf="@id/questionTitleTxt"
+		app:layout_constraintTop_toBottomOf="@id/questionTitleTxt"
+		tools:text="O: 54" />
+
+	<TextView
+		android:id="@+id/userNameTxt"
+		style="@style/Text.Secondary"
+		android:layout_width="wrap_content"
+		android:layout_marginStart="12dp"
 		android:ellipsize="end"
 		android:lines="1"
 		android:textSize="@dimen/text_caption"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-		app:layout_constraintStart_toStartOf="@id/userNameTxt"
-		app:layout_constraintTop_toBottomOf="@id/userNameTxt"
-		tools:text="#2025949" />
+		app:layout_constraintBaseline_toBaselineOf="@id/answersTxt"
+		app:layout_constraintStart_toEndOf="@id/answersTxt"
+		tools:text="sosite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

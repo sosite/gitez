@@ -2,10 +2,9 @@ package com.socros.android.app.gitez.contentsearch.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.socros.android.app.gitez.contentsearch.data.RepositoryItem
-import com.socros.android.app.gitez.contentsearch.data.UserItem
+import com.socros.android.app.gitez.contentsearch.data.QuestionItem
 
-@Database(entities = [RepositoryItem::class, UserItem::class], version = 2)
+@Database(entities = [QuestionItem::class], version = 1)
 abstract class ContentSearchDatabase : RoomDatabase() {
 	abstract fun contentSearchDao(): ContentSearchDao
 }

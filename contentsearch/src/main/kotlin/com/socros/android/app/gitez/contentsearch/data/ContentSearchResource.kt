@@ -2,16 +2,16 @@ package com.socros.android.app.gitez.contentsearch.data
 
 import com.socros.android.app.gitez.contentsearch.data.local.ContentSearchDao
 import com.socros.android.app.gitez.contentsearch.data.remote.ContentSearchApi
+import com.socros.android.app.gitez.contentsearch.data.remote.QuestionDto
 import com.socros.android.lib.repository.NetworkBoundResource
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
 
 class ContentSearchResource @Inject constructor(
 		private val contentSearchDao: ContentSearchDao,
 		private val contentSearchApi: ContentSearchApi)
-	: NetworkBoundResource<List<SearchItem>, List<SearchItem>>() {
+	: NetworkBoundResource<List<QuestionDto>, List<QuestionItem>>() {
 
 	private lateinit var query: String
 
@@ -20,40 +20,33 @@ class ContentSearchResource @Inject constructor(
 		reset()
 	}
 
-	override fun loadFromDb(): Single<List<SearchItem>> {
+	override fun loadFromDb(): Single<List<QuestionItem>> {
 		return if (query.isBlank()) Single.just(emptyList())
-		else Single.zip(
-				contentSearchDao.searchUsers(query),
-				contentSearchDao.searchRepositories(query),
-				BiFunction { userList, repoList ->
-					ArrayList<SearchItem>(userList).apply {
-						addAll(repoList)
-						sortBy { it.id } // TODO zip sorted lists in a more efficient way
-					}
-				})
+		else contentSearchDao.searchQuestions(query)
 	}
 
-	override fun shouldFetch(data: List<SearchItem>?): Boolean {
+	override fun shouldFetch(data: List<QuestionItem>?): Boolean {
 		// fetch data every time when has a query to search
 		// TODO check if we really need to sync data from API based on last sync time
 		return query.isNotBlank()
 	}
 
-	override fun createCall(): Single<List<SearchItem>> {
-		val call: Single<List<SearchItem>> = Single.zip(
-				contentSearchApi.searchUsers(query),
-				contentSearchApi.searchRepositories(query),
-				BiFunction { userListDto, repoListDto ->
-					ArrayList<SearchItem>(userListDto.items).also { it.addAll(repoListDto.items) }
-				}
-		)
-		// delay api request to bypass unauthenticated rate limit which for search query is 10 requests / minute
-		// but calling 2 requests we have a 5 request / minute
-		return call.delaySubscription(1500, MILLISECONDS)
+	override fun createCall(): Single<List<QuestionDto>> {
+		val call: Single<List<QuestionDto>> = contentSearchApi.searchQuestions(query).map { it.items }
+		// delay api request to bypass unauthenticated rate limit
+		return call.delaySubscription(500, MILLISECONDS)
 	}
 
-	override fun saveCallResult(result: List<SearchItem>) {
-		contentSearchDao.insertSearchItems(result)
+	override fun saveCallResult(result: List<QuestionDto>) {
+		contentSearchDao.insertQuestions(result.map { dto ->
+			QuestionItem(
+					dto.id,
+					dto.title,
+					dto.answerCount,
+					dto.owner.name,
+					dto.owner.avatarUrl
+			)
+		})
 	}
 
 }

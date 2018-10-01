@@ -1,7 +1,7 @@
 package com.socros.android.app.gitez.contentdetails.di
 
 import android.content.Context
-import com.socros.android.app.gitez.base.di.GithubApiModule
+import com.socros.android.app.gitez.base.di.StackExchangeApiModule
 import com.socros.android.app.gitez.contentdetails.data.local.ContentDetailsDatabase
 import com.socros.android.app.gitez.contentdetails.data.remote.ContentDetailsApi
 import com.socros.android.lib.androidcore.di.AppContext
@@ -12,7 +12,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-@Module(includes = [GithubApiModule::class])
+@Module(includes = [StackExchangeApiModule::class])
 class ContentDetailsRepositoryModule : RoomModule {
 
 	@ContentDetailsScope

@@ -1,7 +1,7 @@
 package com.socros.android.app.gitez.contentsearch.di
 
 import android.content.Context
-import com.socros.android.app.gitez.base.di.GithubApiModule
+import com.socros.android.app.gitez.base.di.StackExchangeApiModule
 import com.socros.android.app.gitez.contentsearch.data.local.ContentSearchDatabase
 import com.socros.android.app.gitez.contentsearch.data.remote.ContentSearchApi
 import com.socros.android.lib.androidcore.di.AppContext
@@ -12,7 +12,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-@Module(includes = [GithubApiModule::class])
+@Module(includes = [StackExchangeApiModule::class])
 class ContentSearchRepositoryModule : RoomModule {
 
 	@ContentSearchScope

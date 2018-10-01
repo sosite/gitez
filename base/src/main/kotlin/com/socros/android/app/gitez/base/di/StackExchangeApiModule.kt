@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class GithubApiModule : ApiModule {
+class StackExchangeApiModule : ApiModule {
 
 	@Provides
 	internal fun provideRetrofit() = buildRetrofit(BuildConfig.URL_API, BuildConfig.DEBUG)
