@@ -6,13 +6,13 @@ apply plugin: 'kotlin-kapt'
 android {
 	buildTypes {
 		debug {
-			resValue 'string', 'appName', 'Gitez dev'
-			buildConfigField 'String', 'URL_API', '"https://api.github.com/"'
+			resValue 'string', 'appName', 'Search Overflow dev'
+			buildConfigField 'String', 'URL_API', '"https://api.stackexchange.com/2.2/"'
 		}
 
 		release {
-			resValue 'string', 'appName', 'Gitez'
-			buildConfigField 'String', 'URL_API', '"https://api.github.com/"'
+			resValue 'string', 'appName', 'Search Overflow'
+			buildConfigField 'String', 'URL_API', '"https://api.stackexchange.com/2.2/"'
 		}
 	}
 }
