@@ -18,6 +18,14 @@
 		android:orientation="vertical"
 		app:layout_constraintGuide_end="@dimen/activityMargin_horizontal" />
 
+	<View
+		style="@style/BaseNoDimens"
+		android:background="@color/accent_light"
+		app:layout_constraintBottom_toBottomOf="@id/sentenceTxt"
+		app:layout_constraintEnd_toEndOf="@id/sentenceTxt"
+		app:layout_constraintStart_toStartOf="@id/sentenceTxt"
+		app:layout_constraintTop_toTopOf="@id/sentenceTxt" />
+
 	<TextView
 		android:id="@+id/sentenceTxt"
 		style="@style/Text"
@@ -30,7 +38,7 @@
 		android:lines="2"
 		android:paddingEnd="1dp"
 		android:paddingStart="1dp"
-		android:textColor="?android:textColorPrimary"
+		android:textColor="?android:textColorPrimaryInverse"
 		android:textSize="@dimen/text_display1"
 		app:autoSizeStepGranularity="1px"
 		app:autoSizeTextType="uniform"
